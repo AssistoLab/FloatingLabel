@@ -1,8 +1,6 @@
 
 import UIKit
 
-public typealias Closure = () -> Void
-
 internal enum HelperState {
 	
 	case Hidden

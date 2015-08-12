@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0A0106881B75FF4300AAB163 /* PasswordFloatingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0106871B75FF4300AAB163 /* PasswordFloatingField.swift */; };
+		0A4670E91B7B6C770082E098 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4670DD1B7B6C770082E098 /* DropDownCell.xib */; };
+		0A4670EA1B7B6C770082E098 /* DropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4670DF1B7B6C770082E098 /* DropDown.swift */; };
+		0A4670EB1B7B6C770082E098 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4670E01B7B6C770082E098 /* DropDownCell.swift */; };
+		0A46ED111B7B85E900E7FD13 /* DPDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46ED0E1B7B85E900E7FD13 /* DPDConstants.swift */; };
+		0A46ED121B7B85E900E7FD13 /* DPDKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46ED0F1B7B85E900E7FD13 /* DPDKeyboardListener.swift */; };
+		0A46ED131B7B85E900E7FD13 /* DPDUIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46ED101B7B85E900E7FD13 /* DPDUIView+Extension.swift */; };
 		0A6B5BF01B71D53E00D7C54A /* FloatingLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE045FA1B4FAFFE001F8100 /* FloatingLabelTests.swift */; };
 		0A6B856C1B788C05006B2C24 /* FloatingFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B856B1B788C05006B2C24 /* FloatingFieldTableViewCell.swift */; };
 		0A6B856E1B788C52006B2C24 /* FloatingFieldCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6B856D1B788C52006B2C24 /* FloatingFieldCollectionViewCell.swift */; };
-		0ADFC8A11B738AB80072E63F /* DropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFC89E1B738AA40072E63F /* DropDown.framework */; };
-		0ADFC8A51B7390F00072E63F /* DropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFC89E1B738AA40072E63F /* DropDown.framework */; };
-		0ADFC8A61B7390F00072E63F /* DropDown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFC89E1B738AA40072E63F /* DropDown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ADFC8E11B74F8960072E63F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8BA1B74F8960072E63F /* AppDelegate.swift */; };
 		0ADFC8E21B74F8960072E63F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADFC8BB1B74F8960072E63F /* Images.xcassets */; };
 		0ADFC8E31B74F8960072E63F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8BC1B74F8960072E63F /* ViewController.swift */; };
@@ -39,7 +42,6 @@
 		0ADFC8F71B74F8960072E63F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8D51B74F8960072E63F /* Helpers.swift */; };
 		0ADFC8F81B74F8960072E63F /* PhoneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8D61B74F8960072E63F /* PhoneHelper.swift */; };
 		0ADFC8F91B74F8960072E63F /* UIImage+RenderingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8D71B74F8960072E63F /* UIImage+RenderingMode.swift */; };
-		0ADFC8FA1B74F8960072E63F /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8D81B74F8960072E63F /* UIView+Constraints.swift */; };
 		0ADFC8FB1B74F8960072E63F /* FloatingField+InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8DA1B74F8960072E63F /* FloatingField+InputField.swift */; };
 		0ADFC8FC1B74F8960072E63F /* FloatingFieldTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8DB1B74F8960072E63F /* FloatingFieldTextField.swift */; };
 		0ADFC8FD1B74F8960072E63F /* FloatingFieldTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFC8DC1B74F8960072E63F /* FloatingFieldTextView.swift */; };
@@ -53,34 +55,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0ADFC89D1B738AA40072E63F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFC8981B738AA40072E63F /* DropDown.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AE3F96D1B7381270007177C;
-			remoteInfo = DropDown;
-		};
-		0ADFC89F1B738AA40072E63F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFC8981B738AA40072E63F /* DropDown.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AE3F9781B7381270007177C;
-			remoteInfo = DropDownTests;
-		};
-		0ADFC8A21B738D0F0072E63F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFC8981B738AA40072E63F /* DropDown.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0AE3F96C1B7381270007177C;
-			remoteInfo = DropDown;
-		};
-		0ADFC8A71B7390F00072E63F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFC8981B738AA40072E63F /* DropDown.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0AE3F96C1B7381270007177C;
-			remoteInfo = DropDown;
-		};
 		0AE045F51B4FAFFE001F8100 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AE045D71B4FAFFE001F8100 /* Project object */;
@@ -90,25 +64,16 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0ADFC8A91B7390F10072E63F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0ADFC8A61B7390F00072E63F /* DropDown.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0A0106871B75FF4300AAB163 /* PasswordFloatingField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordFloatingField.swift; sourceTree = "<group>"; };
+		0A4670DD1B7B6C770082E098 /* DropDownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
+		0A4670DF1B7B6C770082E098 /* DropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDown.swift; sourceTree = "<group>"; };
+		0A4670E01B7B6C770082E098 /* DropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
+		0A46ED0E1B7B85E900E7FD13 /* DPDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDConstants.swift; sourceTree = "<group>"; };
+		0A46ED0F1B7B85E900E7FD13 /* DPDKeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPDKeyboardListener.swift; sourceTree = "<group>"; };
+		0A46ED101B7B85E900E7FD13 /* DPDUIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DPDUIView+Extension.swift"; sourceTree = "<group>"; };
 		0A6B856B1B788C05006B2C24 /* FloatingFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingFieldTableViewCell.swift; sourceTree = "<group>"; };
 		0A6B856D1B788C52006B2C24 /* FloatingFieldCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingFieldCollectionViewCell.swift; sourceTree = "<group>"; };
-		0ADFC8981B738AA40072E63F /* DropDown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DropDown.xcodeproj; path = DropDown/DropDown.xcodeproj; sourceTree = "<group>"; };
 		0ADFC8BA1B74F8960072E63F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ADFC8BB1B74F8960072E63F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0ADFC8BC1B74F8960072E63F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +99,6 @@
 		0ADFC8D51B74F8960072E63F /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0ADFC8D61B74F8960072E63F /* PhoneHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneHelper.swift; sourceTree = "<group>"; };
 		0ADFC8D71B74F8960072E63F /* UIImage+RenderingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+RenderingMode.swift"; sourceTree = "<group>"; };
-		0ADFC8D81B74F8960072E63F /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		0ADFC8DA1B74F8960072E63F /* FloatingField+InputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FloatingField+InputField.swift"; sourceTree = "<group>"; };
 		0ADFC8DB1B74F8960072E63F /* FloatingFieldTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingFieldTextField.swift; sourceTree = "<group>"; };
 		0ADFC8DC1B74F8960072E63F /* FloatingFieldTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingFieldTextView.swift; sourceTree = "<group>"; };
@@ -161,8 +125,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ADFC8A11B738AB80072E63F /* DropDown.framework in Frameworks */,
-				0ADFC8A51B7390F00072E63F /* DropDown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +138,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4670D01B7B6C770082E098 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				0A4670DC1B7B6C770082E098 /* resources */,
+				0A4670DE1B7B6C770082E098 /* src */,
+				0A46ED0D1B7B85E900E7FD13 /* helpers */,
+			);
+			name = DropDown;
+			path = DropDown/DropDown;
+			sourceTree = SOURCE_ROOT;
+		};
+		0A4670DC1B7B6C770082E098 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				0A4670DD1B7B6C770082E098 /* DropDownCell.xib */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		0A4670DE1B7B6C770082E098 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0A4670DF1B7B6C770082E098 /* DropDown.swift */,
+				0A4670E01B7B6C770082E098 /* DropDownCell.swift */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		0A46ED0D1B7B85E900E7FD13 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0A46ED0E1B7B85E900E7FD13 /* DPDConstants.swift */,
+				0A46ED0F1B7B85E900E7FD13 /* DPDKeyboardListener.swift */,
+				0A46ED101B7B85E900E7FD13 /* DPDUIView+Extension.swift */,
+			);
+			name = helpers;
+			path = DropDown/DropDown/helpers;
+			sourceTree = SOURCE_ROOT;
+		};
 		0A6B856A1B788BD2006B2C24 /* tableView:collectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,15 +185,6 @@
 				0AE6D8AF1B7A12A400BA9D61 /* UIView+Extension.swift */,
 			);
 			path = "tableView:collectionView";
-			sourceTree = "<group>";
-		};
-		0ADFC8991B738AA40072E63F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0ADFC89E1B738AA40072E63F /* DropDown.framework */,
-				0ADFC8A01B738AA40072E63F /* DropDownTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		0ADFC8B91B74F8960072E63F /* demo */ = {
@@ -267,7 +259,6 @@
 				0ADFC8D51B74F8960072E63F /* Helpers.swift */,
 				0ADFC8D61B74F8960072E63F /* PhoneHelper.swift */,
 				0ADFC8D71B74F8960072E63F /* UIImage+RenderingMode.swift */,
-				0ADFC8D81B74F8960072E63F /* UIView+Constraints.swift */,
 				0AE6D8AC1B7A0BA500BA9D61 /* Array+Extension.swift */,
 			);
 			path = helpers;
@@ -296,7 +287,6 @@
 		0AE045D61B4FAFFE001F8100 = {
 			isa = PBXGroup;
 			children = (
-				0ADFC8981B738AA40072E63F /* DropDown.xcodeproj */,
 				0AE045E11B4FAFFE001F8100 /* FloatingLabel */,
 				0AE045F71B4FAFFE001F8100 /* FloatingLabelTests */,
 				0AE045E01B4FAFFE001F8100 /* Products */,
@@ -344,6 +334,7 @@
 		0AE6D8B31B7A356A00BA9D61 /* 3rd party */ = {
 			isa = PBXGroup;
 			children = (
+				0A4670D01B7B6C770082E098 /* DropDown */,
 				0AE6D8B41B7A356A00BA9D61 /* SZTextView */,
 			);
 			path = "3rd party";
@@ -378,13 +369,10 @@
 				0AE045DB1B4FAFFE001F8100 /* Sources */,
 				0AE045DC1B4FAFFE001F8100 /* Frameworks */,
 				0AE045DD1B4FAFFE001F8100 /* Resources */,
-				0ADFC8A91B7390F10072E63F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0ADFC8A31B738D0F0072E63F /* PBXTargetDependency */,
-				0ADFC8A81B7390F00072E63F /* PBXTargetDependency */,
 			);
 			name = FloatingLabel;
 			productName = FloatingLabel;
@@ -439,12 +427,6 @@
 			mainGroup = 0AE045D61B4FAFFE001F8100;
 			productRefGroup = 0AE045E01B4FAFFE001F8100 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 0ADFC8991B738AA40072E63F /* Products */;
-					ProjectRef = 0ADFC8981B738AA40072E63F /* DropDown.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				0AE045DE1B4FAFFE001F8100 /* FloatingLabel */,
@@ -452,23 +434,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		0ADFC89E1B738AA40072E63F /* DropDown.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DropDown.framework;
-			remoteRef = 0ADFC89D1B738AA40072E63F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0ADFC8A01B738AA40072E63F /* DropDownTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DropDownTests.xctest;
-			remoteRef = 0ADFC89F1B738AA40072E63F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0AE045DD1B4FAFFE001F8100 /* Resources */ = {
@@ -480,6 +445,7 @@
 				0ADFC8E21B74F8960072E63F /* Images.xcassets in Resources */,
 				0ADFC8E51B74F8960072E63F /* arrow@2x.png in Resources */,
 				0ADFC8E41B74F8960072E63F /* arrow.png in Resources */,
+				0A4670E91B7B6C770082E098 /* DropDownCell.xib in Resources */,
 				0ADFC8E61B74F8960072E63F /* arrow@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,18 +470,22 @@
 				0ADFC8F71B74F8960072E63F /* Helpers.swift in Sources */,
 				0ADFC8F81B74F8960072E63F /* PhoneHelper.swift in Sources */,
 				0ADFC8F51B74F8960072E63F /* Constants.swift in Sources */,
+				0A46ED121B7B85E900E7FD13 /* DPDKeyboardListener.swift in Sources */,
+				0A46ED111B7B85E900E7FD13 /* DPDConstants.swift in Sources */,
 				0ADFC8E91B74F8960072E63F /* Validation.swift in Sources */,
 				0ADFC8EF1B74F8960072E63F /* FloatingMultiLineTextField.swift in Sources */,
 				0A6B856E1B788C52006B2C24 /* FloatingFieldCollectionViewCell.swift in Sources */,
+				0A4670EB1B7B6C770082E098 /* DropDownCell.swift in Sources */,
 				0ADFC8F91B74F8960072E63F /* UIImage+RenderingMode.swift in Sources */,
 				0ADFC8EC1B74F8960072E63F /* ComposeFieldsView.swift in Sources */,
 				0ADFC8ED1B74F8960072E63F /* DateFloatingField.swift in Sources */,
-				0ADFC8FA1B74F8960072E63F /* UIView+Constraints.swift in Sources */,
 				0ADFC8F21B74F8960072E63F /* PhoneFloatingField.swift in Sources */,
 				0ADFC8F11B74F8960072E63F /* ListFloatingField.swift in Sources */,
 				0ADFC8EB1B74F8960072E63F /* AutoCompleteFloatingField.swift in Sources */,
 				0ADFC8E31B74F8960072E63F /* ViewController.swift in Sources */,
 				0A6B856C1B788C05006B2C24 /* FloatingFieldTableViewCell.swift in Sources */,
+				0A46ED131B7B85E900E7FD13 /* DPDUIView+Extension.swift in Sources */,
+				0A4670EA1B7B6C770082E098 /* DropDown.swift in Sources */,
 				0AE6D8B01B7A12A400BA9D61 /* UIView+Extension.swift in Sources */,
 				0ADFC8FE1B74F8960072E63F /* InputType.swift in Sources */,
 				0AE6D8BA1B7A356A00BA9D61 /* SZTextView.m in Sources */,
@@ -545,16 +515,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0ADFC8A31B738D0F0072E63F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DropDown;
-			targetProxy = 0ADFC8A21B738D0F0072E63F /* PBXContainerItemProxy */;
-		};
-		0ADFC8A81B7390F00072E63F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DropDown;
-			targetProxy = 0ADFC8A71B7390F00072E63F /* PBXContainerItemProxy */;
-		};
 		0AE045F61B4FAFFE001F8100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0AE045DE1B4FAFFE001F8100 /* FloatingLabel */;

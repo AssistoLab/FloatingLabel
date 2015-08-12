@@ -22,18 +22,18 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="73" translatesAutoresizingMaskIntoConstraints="NO" id="utc-7O-HPS" customClass="PhoneFloatingField" customModule="FloatingLabel" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="172" width="600" height="73"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="73" translatesAutoresizingMaskIntoConstraints="NO" id="utc-7O-HPS" customClass="PhoneFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="166" width="600" height="73"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HGq-PJ-cm6" customClass="ListFloatingField" customModule="FloatingLabel" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="318" width="600" height="73"/>
+                                <rect key="frame" x="0.0" y="312" width="600" height="73"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emP-cN-hqS">
-                                <rect key="frame" x="271" y="400" width="59" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emP-cN-hqS">
+                                <rect key="frame" x="271" y="394" width="59" height="30"/>
                                 <state key="normal" title="Add text">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -41,17 +41,16 @@
                                     <action selector="putText" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mLU-6u-3BB"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="73" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-d8-k4Q" customClass="FloatingTextField" customModule="FloatingLabel" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93" width="600" height="79"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-d8-k4Q" customClass="FloatingTextField" customModule="FloatingLabel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="93" width="600" height="73"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Simple text field"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="Try writing &quot;test warning&quot; to see a warning appear or &quot;test error&quot; to see an error. Then press return"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcL-Pc-L4e" customClass="DateFloatingField" customModule="FloatingLabel" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="245" width="600" height="73"/>
+                                <rect key="frame" x="0.0" y="239" width="600" height="73"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>

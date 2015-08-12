@@ -21,7 +21,6 @@ class ViewController: UIViewController {
 		
 		let greenColor = UIColor(red: 0.1686, green: 0.8471, blue: 0.3961, alpha: 1.0)
 		FloatingField.appearance().activeColor = greenColor
-		FloatingField.appearance().warningColor = UIColor.yellowColor()
 		
 		Validation.messages[.Required] = ("This field is required.", .Error)
 		Validation.messages[.EmailAddress] = ("Incorrect email address (example: john@pinch.eu).", .Error)
@@ -95,7 +94,7 @@ class ViewController: UIViewController {
 			.Custom({ (item) in
 				return item != "Moto"
 			}),
-			message:  "Cannot be a moto",
+			message:  "Warning: Be careful if you have a motorcycle!",
 			level: .Warning)
 		
 	}

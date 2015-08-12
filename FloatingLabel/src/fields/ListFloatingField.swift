@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DropDown
 
 public class ListFloatingField: ActionFloatingField {
 	
