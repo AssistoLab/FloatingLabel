@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TzV-Qc-zGX">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="FloatingLabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fsb-7e-1PJ" customClass="AutoCompleteFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="73"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="73" translatesAutoresizingMaskIntoConstraints="NO" id="utc-7O-HPS" customClass="PhoneFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="172" width="600" height="73"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HGq-PJ-cm6" customClass="ListFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="318" width="600" height="73"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emP-cN-hqS">
+                                <rect key="frame" x="271" y="400" width="59" height="30"/>
+                                <state key="normal" title="Add text">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="putText" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mLU-6u-3BB"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="73" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-d8-k4Q" customClass="FloatingTextField" customModule="FloatingLabel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="93" width="600" height="79"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Simple text field"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="Try writing &quot;test warning&quot; to see a warning appear or &quot;test error&quot; to see an error. Then press return"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcL-Pc-L4e" customClass="DateFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="245" width="600" height="73"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Hsr-d8-k4Q" secondAttribute="trailing" id="Ay8-UY-Rg9"/>
+                            <constraint firstAttribute="trailing" secondItem="bcL-Pc-L4e" secondAttribute="trailing" id="G1a-eN-H4d"/>
+                            <constraint firstAttribute="trailing" secondItem="Fsb-7e-1PJ" secondAttribute="trailing" id="H8s-sV-Zld"/>
+                            <constraint firstItem="emP-cN-hqS" firstAttribute="centerX" secondItem="HGq-PJ-cm6" secondAttribute="centerX" constant="0.5" id="IU4-Zu-dls"/>
+                            <constraint firstAttribute="trailing" secondItem="utc-7O-HPS" secondAttribute="trailing" id="Nda-Ny-cga"/>
+                            <constraint firstItem="emP-cN-hqS" firstAttribute="top" secondItem="HGq-PJ-cm6" secondAttribute="bottom" constant="9" id="SoM-AK-CZN"/>
+                            <constraint firstItem="bcL-Pc-L4e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Tce-oR-N3r"/>
+                            <constraint firstItem="HGq-PJ-cm6" firstAttribute="top" secondItem="bcL-Pc-L4e" secondAttribute="bottom" id="aE9-ve-HyH"/>
+                            <constraint firstItem="bcL-Pc-L4e" firstAttribute="top" secondItem="utc-7O-HPS" secondAttribute="bottom" id="aEr-6j-0Er"/>
+                            <constraint firstItem="utc-7O-HPS" firstAttribute="top" secondItem="Hsr-d8-k4Q" secondAttribute="bottom" id="bnG-o8-Q2H"/>
+                            <constraint firstItem="utc-7O-HPS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dPV-1M-4gC"/>
+                            <constraint firstItem="Fsb-7e-1PJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="ecr-eP-XSl"/>
+                            <constraint firstItem="HGq-PJ-cm6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="m2G-VO-5ge"/>
+                            <constraint firstItem="Hsr-d8-k4Q" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="tdG-M2-B0M"/>
+                            <constraint firstItem="Fsb-7e-1PJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="tjI-Yt-92t"/>
+                            <constraint firstItem="Hsr-d8-k4Q" firstAttribute="top" secondItem="Fsb-7e-1PJ" secondAttribute="bottom" id="uLy-aW-wEI"/>
+                            <constraint firstAttribute="trailing" secondItem="HGq-PJ-cm6" secondAttribute="trailing" id="yUQ-Fe-JAp"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="qvT-tu-uJS" appends="YES" id="JJa-XL-IUV"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="dateField" destination="bcL-Pc-L4e" id="86E-FI-WIN"/>
+                        <outlet property="emailField" destination="Hsr-d8-k4Q" id="444-ML-1jP"/>
+                        <outlet property="field" destination="Fsb-7e-1PJ" id="TZA-s5-xUs"/>
+                        <outlet property="phoneField" destination="utc-7O-HPS" id="hEk-tK-XnZ"/>
+                        <outlet property="vehicleTypeField" destination="HGq-PJ-cm6" id="xDZ-M9-dnu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qvT-tu-uJS">
+                    <connections>
+                        <action selector="resign" destination="vXZ-lx-hvc" id="csb-L0-kqD"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="693" y="402"/>
+        </scene>
+        <!--Floating Fields Demo-->
+        <scene sceneID="OnF-nK-XRX">
+            <objects>
+                <tableViewController id="Af0-dn-Cy9" customClass="TableViewController" customModule="FloatingLabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="zlR-8J-tja">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.19990904879999999" green="1" blue="0.053481233109999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <sections>
+                            <tableViewSection id="HzB-gd-azx">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="115" id="qdw-Zw-E4N">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qdw-Zw-E4N" id="YRz-UR-Tk4">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aoZ-vd-bEA" customClass="FloatingTextField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="115"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Simple text field"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="aoZ-vd-bEA" secondAttribute="bottom" id="ScG-Pd-Fd4"/>
+                                                <constraint firstAttribute="trailing" secondItem="aoZ-vd-bEA" secondAttribute="trailing" id="b8d-W3-Gc7"/>
+                                                <constraint firstItem="aoZ-vd-bEA" firstAttribute="top" secondItem="YRz-UR-Tk4" secondAttribute="top" id="pH5-ml-1ax"/>
+                                                <constraint firstItem="aoZ-vd-bEA" firstAttribute="leading" secondItem="YRz-UR-Tk4" secondAttribute="leading" id="sZ0-TS-NSP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="wHw-uv-MoZ">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wHw-uv-MoZ" id="sbv-Iq-7pN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xF-YY-lka" customClass="FloatingMultiLineTextField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Multi line text field"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="You can do line returns"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="9xF-YY-lka" secondAttribute="trailing" id="UsS-FY-zB0"/>
+                                                <constraint firstAttribute="bottom" secondItem="9xF-YY-lka" secondAttribute="bottom" id="YrC-2k-OiC"/>
+                                                <constraint firstItem="9xF-YY-lka" firstAttribute="leading" secondItem="sbv-Iq-7pN" secondAttribute="leading" id="g0G-Aj-8pS"/>
+                                                <constraint firstItem="9xF-YY-lka" firstAttribute="top" secondItem="sbv-Iq-7pN" secondAttribute="top" id="tS0-Gu-KOI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="aKr-aV-KQh">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aKr-aV-KQh" id="esH-Qe-Icu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TcY-Qb-MtO" customClass="EmailFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="73"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email field (with validation)"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="TcY-Qb-MtO" secondAttribute="trailing" id="ME3-uy-kqd"/>
+                                                <constraint firstItem="TcY-Qb-MtO" firstAttribute="leading" secondItem="esH-Qe-Icu" secondAttribute="leading" id="jLy-lx-O1u"/>
+                                                <constraint firstItem="TcY-Qb-MtO" firstAttribute="top" secondItem="esH-Qe-Icu" secondAttribute="top" id="oHo-Pm-eu9"/>
+                                                <constraint firstAttribute="bottom" secondItem="TcY-Qb-MtO" secondAttribute="bottom" id="vdc-jy-T1M"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="xzJ-1G-FQp">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xzJ-1G-FQp" id="UIm-3e-Wq4">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gad-R3-Frj" customClass="PasswordFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="73"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password field"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gad-R3-Frj" firstAttribute="leading" secondItem="UIm-3e-Wq4" secondAttribute="leading" id="5kK-wH-UVQ"/>
+                                                <constraint firstItem="gad-R3-Frj" firstAttribute="top" secondItem="UIm-3e-Wq4" secondAttribute="top" id="Oqw-eJ-k6J"/>
+                                                <constraint firstAttribute="trailing" secondItem="gad-R3-Frj" secondAttribute="trailing" id="iGh-Fw-yCa"/>
+                                                <constraint firstAttribute="bottom" secondItem="gad-R3-Frj" secondAttribute="bottom" id="yPc-HU-3KS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="115" id="Idy-Oa-YIt">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Idy-Oa-YIt" id="a2R-k2-HyZ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwu-VB-Npd" customClass="ActionFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="115"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Action field"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="helpText">
+                                                            <string key="value">Entering text here is impossible, the field is responding to a touch event with an action. Can be used like field below for choosing the prefix for example.</string>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="pwu-VB-Npd" secondAttribute="bottom" id="9JY-lR-jYr"/>
+                                                <constraint firstItem="pwu-VB-Npd" firstAttribute="top" secondItem="a2R-k2-HyZ" secondAttribute="top" id="I3f-f8-UmA"/>
+                                                <constraint firstAttribute="trailing" secondItem="pwu-VB-Npd" secondAttribute="trailing" id="eu1-so-t4a"/>
+                                                <constraint firstItem="pwu-VB-Npd" firstAttribute="leading" secondItem="a2R-k2-HyZ" secondAttribute="leading" id="fvV-ix-9fQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="UlU-MX-mxT">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UlU-MX-mxT" id="0UW-nA-5Li">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tY7-lo-fm9" customClass="PhoneFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Date field"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="Auto validated international phone number"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="tY7-lo-fm9" secondAttribute="trailing" id="HBZ-OZ-u2K"/>
+                                                <constraint firstItem="tY7-lo-fm9" firstAttribute="leading" secondItem="0UW-nA-5Li" secondAttribute="leading" id="OfG-BW-w5t"/>
+                                                <constraint firstItem="tY7-lo-fm9" firstAttribute="top" secondItem="0UW-nA-5Li" secondAttribute="top" id="WRv-9B-caR"/>
+                                                <constraint firstAttribute="bottom" secondItem="tY7-lo-fm9" secondAttribute="bottom" id="imC-2d-0i9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="bKU-xm-p1U">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bKU-xm-p1U" id="w5d-2t-NRU">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TP-zO-uBR" customClass="SingleChoiceFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Date field"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="value" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                            <color key="value" red="0.19990904879999999" green="1" blue="0.053481233109999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="A single choice field"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="7TP-zO-uBR" secondAttribute="bottom" id="0d9-dy-2mN"/>
+                                                <constraint firstItem="7TP-zO-uBR" firstAttribute="leading" secondItem="w5d-2t-NRU" secondAttribute="leading" id="GTu-s9-ulK"/>
+                                                <constraint firstAttribute="trailing" secondItem="7TP-zO-uBR" secondAttribute="trailing" id="RBN-Wn-UCw"/>
+                                                <constraint firstItem="7TP-zO-uBR" firstAttribute="top" secondItem="w5d-2t-NRU" secondAttribute="top" id="w6V-vO-lyb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="7Pj-1j-V1g">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Pj-1j-V1g" id="lJX-UU-i9X">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHF-Fm-QWt" customClass="PickerFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="73"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="UIPicker field"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gHF-Fm-QWt" secondAttribute="trailing" id="IGx-4P-2R8"/>
+                                                <constraint firstItem="gHF-Fm-QWt" firstAttribute="top" secondItem="lJX-UU-i9X" secondAttribute="top" id="aZE-ha-ELl"/>
+                                                <constraint firstItem="gHF-Fm-QWt" firstAttribute="leading" secondItem="lJX-UU-i9X" secondAttribute="leading" id="fTf-15-H5P"/>
+                                                <constraint firstAttribute="bottom" secondItem="gHF-Fm-QWt" secondAttribute="bottom" id="rfZ-gE-4V5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="Xvm-wM-Ngi">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xvm-wM-Ngi" id="P97-uu-8Lw">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ivm-5g-9T9" customClass="ListFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="List field"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="Same as a picker but with a drop down"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ivm-5g-9T9" firstAttribute="top" secondItem="P97-uu-8Lw" secondAttribute="top" id="9RA-gj-YcT"/>
+                                                <constraint firstItem="Ivm-5g-9T9" firstAttribute="leading" secondItem="P97-uu-8Lw" secondAttribute="leading" id="btd-Uz-Kb6"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ivm-5g-9T9" secondAttribute="bottom" id="deF-lo-XyI"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ivm-5g-9T9" secondAttribute="trailing" id="oSS-jR-swo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="oeT-2w-bcw">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oeT-2w-bcw" id="NfF-QW-0zc">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOP-Oz-ebl" customClass="AutoCompleteFloatingField" customModule="FloatingLabel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Text field with auto completion"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="helpText" value="Try &quot;Mercedes&quot;, &quot;Lotus&quot; or &quot;Ford&quot;"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nOP-Oz-ebl" firstAttribute="top" secondItem="NfF-QW-0zc" secondAttribute="top" id="8eJ-o3-Wyl"/>
+                                                <constraint firstAttribute="trailing" secondItem="nOP-Oz-ebl" secondAttribute="trailing" id="h2P-im-JJc"/>
+                                                <constraint firstItem="nOP-Oz-ebl" firstAttribute="leading" secondItem="NfF-QW-0zc" secondAttribute="leading" id="hSz-7k-0fa"/>
+                                                <constraint firstAttribute="bottom" secondItem="nOP-Oz-ebl" secondAttribute="bottom" id="vlc-yf-ddM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Af0-dn-Cy9" id="XUV-Dj-cqd"/>
+                            <outlet property="delegate" destination="Af0-dn-Cy9" id="dce-tV-QSi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Floating Fields Demo" id="NwS-mr-0HT"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="1000"/>
+                    <connections>
+                        <outlet property="actionField" destination="pwu-VB-Npd" id="uXs-wj-FAU"/>
+                        <outlet property="autoCompletionField" destination="nOP-Oz-ebl" id="qyT-KU-q15"/>
+                        <outlet property="basicTextField" destination="aoZ-vd-bEA" id="dKT-Id-aBj"/>
+                        <outlet property="emailField" destination="TcY-Qb-MtO" id="sPZ-u9-Kl7"/>
+                        <outlet property="listField" destination="Ivm-5g-9T9" id="W9I-d3-Qnz"/>
+                        <outlet property="multilineTextField" destination="9xF-YY-lka" id="XoO-wR-r9h"/>
+                        <outlet property="passwordField" destination="gad-R3-Frj" id="XvD-Z6-POd"/>
+                        <outlet property="phoneField" destination="tY7-lo-fm9" id="Gx0-DC-G0q"/>
+                        <outlet property="pickerField" destination="gHF-Fm-QWt" id="9cP-OP-Hdb"/>
+                        <outlet property="singleChoiceField" destination="7TP-zO-uBR" id="kgS-r0-z4P"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z4a-um-XhN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137" y="402"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kvo-LG-gVa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TzV-Qc-zGX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j21-qr-EZ0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Af0-dn-Cy9" kind="relationship" relationship="rootViewController" id="Jld-bT-dQr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1FQ-Wd-C4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1437" y="402"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.19990904879999999" green="1" blue="0.053481233109999998" alpha="1" colorSpace="calibratedRGB"/>
+</document>
