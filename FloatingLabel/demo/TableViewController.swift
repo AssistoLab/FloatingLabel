@@ -51,13 +51,12 @@ class TableViewController: UITableViewController {
 		setupAutoCompletionField()
     }
 	
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
-		tableView.reloadData()
-	}
+//	override func viewDidAppear(animated: Bool) {
+//		super.viewDidAppear(animated)
+//		tableView.reloadData()
+//	}
 	
 	func setupBasicField() {
-		basicTextField.helpText = "Try writing \"test warning\" to see a warning appear or \"test error\" to see an error. Then press return"
 		basicTextField.validations = [
 			Validation(
 				.Custom({ (text) in
@@ -77,22 +76,7 @@ class TableViewController: UITableViewController {
 	}
 	
 	func setupMultilineField() {
-		multilineTextField.validations = [
-			Validation(
-				.Custom({ (text) in
-					return text != "Test error"
-				}),
-				message: "Error: you wrote \"Test error\"",
-				level: .Error
-			),
-			Validation(
-				.Custom({ (text) in
-					return text != "Test warning"
-				}),
-				message: "Warning: you wrote \"Test warning\"",
-				level: .Warning
-			)
-		]
+		
 	}
 	
 	func setupEmailField() {
