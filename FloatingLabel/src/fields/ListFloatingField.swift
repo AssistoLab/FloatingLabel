@@ -15,8 +15,6 @@ public class ListFloatingField: ActionFloatingField {
 	//MARK: UI
 	private let dropDown = DropDown()
 	
-	private var kvoContext: UInt8 = 1
-	
 	//MARK: Content
 	public var dataSource: [String] {
 		get { return dropDown.dataSource }
