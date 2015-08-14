@@ -74,6 +74,10 @@ public extension FloatingTextField {
 
 public extension FloatingField {
 	
+	override func canBecomeFirstResponder() -> Bool {
+		return input.canBecomeFirstResponder()
+	}
+	
 	override func becomeFirstResponder() -> Bool {
 		return input.becomeFirstResponder()
 	}

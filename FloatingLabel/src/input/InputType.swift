@@ -35,6 +35,7 @@ internal protocol InputType {
 	func intrinsicContentSize() -> CGSize
 	func invalidateIntrinsicContentSize()
 	func sizeToFit()
+	func canBecomeFirstResponder() -> Bool
 	func becomeFirstResponder() -> Bool
 	func resignFirstResponder() -> Bool
 	func isFirstResponder() -> Bool
