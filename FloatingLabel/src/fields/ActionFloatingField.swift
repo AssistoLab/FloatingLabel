@@ -57,4 +57,8 @@ extension ActionFloatingField: UITextFieldDelegate {
 		return false
 	}
 	
+	public override func canBecomeFirstResponder() -> Bool {
+		return false
+	}
+	
 }
