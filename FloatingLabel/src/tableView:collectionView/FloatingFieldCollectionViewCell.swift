@@ -26,7 +26,6 @@ public class FloatingFieldCollectionViewCell: UICollectionViewCell {
 private extension FloatingFieldCollectionViewCell {
 	
 	func setupConstraints() {
-		// Helper label
 		contentView.addSubview(field)
 		field.setTranslatesAutoresizingMaskIntoConstraints(false)
 		

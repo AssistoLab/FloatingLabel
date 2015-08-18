@@ -61,9 +61,6 @@ private extension DateFloatingField {
 		
 		picker.addTarget(self, action: "dateChanged", forControlEvents: .ValueChanged)
 		inputView = picker
-		
-		textField.disableEditionByUser()
-		textField.delegate = self
 	}
 	
 	@objc
