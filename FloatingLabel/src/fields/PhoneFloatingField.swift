@@ -14,8 +14,8 @@ public class PhoneFloatingField: UIView, TextFieldType, Helpable, Validatable {
 	//MARK: - Properties
 	
 	//MARK: UI
-	private let prefixField = ActionFloatingField() // eg. +32
-	private let suffixField = FloatingTextField() // eg. 123 45 67 89
+	public let prefixField = ActionFloatingField() // eg. +32
+	public let suffixField = FloatingTextField() // eg. 123 45 67 89
 	
 	//MARK: Constraints
 	private var prefixWidthConstraint: NSLayoutConstraint!
