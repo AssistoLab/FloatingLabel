@@ -12,21 +12,15 @@ public class FloatingFieldCollectionViewCell: UICollectionViewCell {
 	
 	//MARK: - Properties
 	
-	public var field: UIView = UIView() {
-		didSet {
-			oldValue.removeFromSuperview()
-			setupConstraints()
-		}
-	}
+	public var field: UIView!
 	
 }
 
 //MARK: - UI
 
-private extension FloatingFieldCollectionViewCell {
+public extension FloatingFieldCollectionViewCell {
 	
 	func setupConstraints() {
-		contentView.addSubview(field)
 		field.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
 		addUniversalConstraints(format: "|[field]|", views: ["field": field])
