@@ -17,9 +17,11 @@ public extension FloatingField {
 			return input.__text
 		}
 		set {
-			input.__text = newValue
-			hasBeenEdited = true
-			updateUI(animated: true)
+			if newValue != text {
+				input.__text = newValue
+				hasBeenEdited = true
+				updateUI(animated: true)
+			}
 		}
 	}
 	

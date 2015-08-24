@@ -71,14 +71,13 @@ internal extension FloatingTextField {
 	@objc
 	func textFieldTextDidChangeNotification() {
 		updateUI(animated: true)
+		valueChangedAction?(value)
 	}
 	
 	@objc
 	func textFieldTextDidBeginEditingNotification() {
 		updateUI(animated: true)
-		
 		hasBeenEdited = true
-		valueChangedAction?(value)
 	}
 	
 	@objc
