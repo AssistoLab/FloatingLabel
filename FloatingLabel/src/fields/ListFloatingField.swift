@@ -21,6 +21,14 @@ public class ListFloatingField: ActionFloatingField {
 		set { dropDown.dataSource = newValue }
 	}
 	
+	public var selectedItem: String?
+	public var selectedIndex: Index?
+	
+	public var selectedRow: Index? {
+		get { return dropDown.indexForSelectedRow() }
+		set { dropDown.selectRowAtIndex(newValue ?? -1) }
+	}
+	
 	public override var isEditing: Bool {
 		return editing
 	}
@@ -62,6 +70,9 @@ extension ListFloatingField {
 		
 		dropDown.selectionAction = { [unowned self] (index, item) in
 			self.editing = false
+			
+			self.selectedIndex = index
+			self.selectedItem = item
 			self.text = item
 		}
 		
