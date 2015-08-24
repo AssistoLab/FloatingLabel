@@ -55,11 +55,12 @@ extension AutoCompleteFloatingField {
 		dropDown.selectionAction = { [unowned self] (index, item) in
 			self.text = item
 			self.dropDown.selectRowAtIndex(-1)
+			self.valueChangedAction?(self.value)
 		}
 	}
 	
-	public override func layoutSubviews() {
-		super.layoutSubviews()
+	public override func layoutSublayersOfLayer(layer: CALayer!) {
+		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).maxY
 		dropDown.bottomOffset = CGPoint(x: Constraint.HorizontalPadding, y: separatorLineMaxY)

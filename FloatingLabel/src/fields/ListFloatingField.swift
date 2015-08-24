@@ -81,8 +81,8 @@ extension ListFloatingField {
 
 extension ListFloatingField {
 	
-	public override func layoutSubviews() {
-		super.layoutSubviews()
+	public override func layoutSublayersOfLayer(layer: CALayer!) {
+		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).minY - 1
 		dropDown.bottomOffset = CGPoint(x: Constraint.HorizontalPadding, y: separatorLineMinY)
