@@ -413,12 +413,12 @@ private extension FloatingField {
 	func updateHelper() {
 		let validationCheck = checkValidity(text: text, validations: validations, level: nil)
 		
-		if !isEditing && !validationCheck.isValid,
+		if !isEditing && hasBeenEdited && !validationCheck.isValid,
 			let failedValidation = validationCheck.failedValidation
 		{
 			previousHelperState = helperState
 			helperState = HelperState(level: failedValidation.level)
-		} else if validationCheck.isValid {
+		} else if !hasBeenEdited || validationCheck.isValid {
 			previousHelperState = helperState
 			helperState = baseHelperState(helpText)
 		}
