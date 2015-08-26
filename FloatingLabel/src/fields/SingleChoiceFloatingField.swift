@@ -108,11 +108,11 @@ extension SingleChoiceFloatingField {
 		choiceLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 		choiceSwitch.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
-		let verticalMetrics = ["padding": Constraint.SingleChoiceField.VerticalPadding]
+		let verticalMetrics = ["padding": Constraints.SingleChoiceField.VerticalPadding]
 		
 		addConstraints(
 			format: "H:|-(padding)-[choiceLabel]-(padding)-[choiceSwitch]-(padding)-|",
-			metrics: ["padding": Constraint.HorizontalPadding],
+			metrics: ["padding": Constraints.HorizontalPadding],
 			views: [
 				"choiceLabel": choiceLabel,
 				"choiceSwitch": choiceSwitch
@@ -128,7 +128,7 @@ extension SingleChoiceFloatingField {
 			metrics: verticalMetrics,
 			views: ["choiceSwitch": choiceSwitch])
 		
-		choiceSwitch.setContentCompressionResistancePriority(Constraint.SingleChoiceField.SwitchCompressionResistancePriority, forAxis: .Horizontal)
+		choiceSwitch.setContentCompressionResistancePriority(Constraints.SingleChoiceField.SwitchCompressionResistancePriority, forAxis: .Horizontal)
 	}
 	
 }

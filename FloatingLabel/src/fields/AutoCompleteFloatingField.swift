@@ -63,7 +63,7 @@ extension AutoCompleteFloatingField {
 		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).maxY
-		dropDown.bottomOffset = CGPoint(x: Constraint.HorizontalPadding, y: separatorLineMaxY)
+		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMaxY)
 		dropDown.width = separatorLine.bounds.width
 	}
 	

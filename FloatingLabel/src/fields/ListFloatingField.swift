@@ -66,7 +66,7 @@ extension ListFloatingField {
 		setNeedsUpdateConstraints()
 		
 		dropDown.anchorView = self
-		dropDown.topOffset = CGPoint(x: Constraint.HorizontalPadding, y: -bounds.height)
+		dropDown.topOffset = CGPoint(x: Constraints.HorizontalPadding, y: -bounds.height)
 		
 		dropDown.selectionAction = { [unowned self] (index, item) in
 			self.editing = false
@@ -96,7 +96,7 @@ extension ListFloatingField {
 		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).minY - 1
-		dropDown.bottomOffset = CGPoint(x: Constraint.HorizontalPadding, y: separatorLineMinY)
+		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMinY)
 		dropDown.width = separatorLine.bounds.width
 	}
 	

@@ -65,7 +65,7 @@ private extension ComposeFieldsView {
 		
 		addConstraints(
 			format: "H:|-(padding)-[helperLabel]-(padding)-|",
-			metrics: ["padding": Constraint.HorizontalPadding],
+			metrics: ["padding": Constraints.HorizontalPadding],
 			views: ["helperLabel": helperLabel])
 		
 		helperLabelHeightConstraint = NSLayoutConstraint(
@@ -75,7 +75,7 @@ private extension ComposeFieldsView {
 			toItem: nil,
 			attribute: .NotAnAttribute,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenHeight)
+			constant: Constraints.Helper.HiddenHeight)
 		helperLabel.addConstraint(helperLabelHeightConstraint)
 		
 		helperLabelBottomToSuperviewConstraint = NSLayoutConstraint(item: self,
@@ -84,7 +84,7 @@ private extension ComposeFieldsView {
 			toItem: helperLabel,
 			attribute: .Bottom,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenBottomPadding)
+			constant: Constraints.Helper.HiddenBottomPadding)
 		addConstraint(helperLabelBottomToSuperviewConstraint)
 		
 		// Content view
@@ -98,7 +98,7 @@ private extension ComposeFieldsView {
 		addConstraints(format:"H:|[contentView]|", views: ["contentView": contentView])
 		addConstraints(
 			format: "V:|[contentView][helperLabel]|",
-			metrics: ["padding": Constraint.Separator.BottomPadding],
+			metrics: ["padding": Constraints.Separator.BottomPadding],
 			views: [
 				"helperLabel": helperLabel,
 				"contentView": contentView
@@ -185,7 +185,7 @@ private extension ComposeFieldsView {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 1
 			self.helperLabel.removeConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.DisplayedBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.DisplayedBottomPadding
 		}
 	}
 	
@@ -197,7 +197,7 @@ private extension ComposeFieldsView {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 0
 			self.helperLabel.addConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.HiddenBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.HiddenBottomPadding
 		}
 	}
 	

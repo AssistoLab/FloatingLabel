@@ -42,7 +42,7 @@ internal struct Animation {
 	
 }
 
-internal struct Constraint {
+internal struct Constraints {
 	
 	static let HorizontalPadding: CGFloat = 8
 	

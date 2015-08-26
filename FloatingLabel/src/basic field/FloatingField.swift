@@ -245,7 +245,7 @@ extension FloatingField {
 		let separatorContainer = UIView()
 		separatorContainer.addConstraints(
 			format: "V:[separatorContainer(height)]",
-			metrics: ["height": Constraint.Separator.ActiveHeight],
+			metrics: ["height": Constraints.Separator.ActiveHeight],
 			views: ["separatorContainer": separatorContainer])
 		
 		separatorContainer.addSubview(separatorLine)
@@ -266,7 +266,7 @@ extension FloatingField {
 			toItem: nil,
 			attribute: .NotAnAttribute,
 			multiplier: 1,
-			constant: Constraint.Separator.IdleHeight)
+			constant: Constraints.Separator.IdleHeight)
 		separatorLine.addConstraint(separatorLineHeightConstraint)
 		
 		// Helper label
@@ -278,11 +278,11 @@ extension FloatingField {
 			toItem: nil,
 			attribute: .NotAnAttribute,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenHeight)
+			constant: Constraints.Helper.HiddenHeight)
 		helperLabel.addConstraint(helperLabelHeightConstraint)
 		
 		// Global
-		let metrics = ["padding": Constraint.HorizontalPadding]
+		let metrics = ["padding": Constraints.HorizontalPadding]
 		
 		// Horizontal
 		addSubview(floatingLabelContainer)
@@ -318,10 +318,10 @@ extension FloatingField {
 		addConstraints(
 			format: "V:|-(labelTopPadding)-[label]-(labelBottomPadding)-[inputAsView]-(fieldBottomPadding)-[separator]-(separatorBottomPadding)-[helper]",
 			metrics: [
-				"labelTopPadding": Constraint.FloatingLabel.TopPadding,
-				"labelBottomPadding": Constraint.FloatingLabel.BottomPadding,
-				"fieldBottomPadding": Constraint.TextField.BottomPadding,
-				"separatorBottomPadding": Constraint.Separator.BottomPadding
+				"labelTopPadding": Constraints.FloatingLabel.TopPadding,
+				"labelBottomPadding": Constraints.FloatingLabel.BottomPadding,
+				"fieldBottomPadding": Constraints.TextField.BottomPadding,
+				"separatorBottomPadding": Constraints.Separator.BottomPadding
 			],
 			views: [
 				"label": floatingLabelContainer,
@@ -336,7 +336,7 @@ extension FloatingField {
 			toItem: helperLabel,
 			attribute: .Bottom,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenBottomPadding)
+			constant: Constraints.Helper.HiddenBottomPadding)
 		addConstraint(helperLabelBottomToSuperviewConstraint)
 	}
 	
@@ -377,10 +377,10 @@ private extension FloatingField {
 		let separatorColor: UIColor
 		
 		if isEditing {
-			separatorHeight = Constraint.Separator.ActiveHeight
+			separatorHeight = Constraints.Separator.ActiveHeight
 			separatorColor = activeColor
 		} else {
-			separatorHeight = Constraint.Separator.IdleHeight
+			separatorHeight = Constraints.Separator.IdleHeight
 			separatorColor = idleColor
 		}
 		
@@ -452,16 +452,16 @@ private extension FloatingField {
 			
 			if !isEditing {
 				separatorColor = idleColor
-				separatorHeight = Constraint.Separator.IdleHeight
+				separatorHeight = Constraints.Separator.IdleHeight
 			}
 		case .Error:
 			helperColor = errorColor
 			separatorColor = errorColor
-			separatorHeight = Constraint.Separator.ActiveHeight
+			separatorHeight = Constraints.Separator.ActiveHeight
 		case .Warning:
 			helperColor = warningColor
 			separatorColor = warningColor
-			separatorHeight = Constraint.Separator.ActiveHeight
+			separatorHeight = Constraints.Separator.ActiveHeight
 		case .Hidden:
 			return
 		}
@@ -487,7 +487,7 @@ private extension FloatingField {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 1
 			self.helperLabel.removeConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.DisplayedBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.DisplayedBottomPadding
 		}
 	}
 	
@@ -499,7 +499,7 @@ private extension FloatingField {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 0
 			self.helperLabel.addConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.HiddenBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.HiddenBottomPadding
 		}
 	}
 	
@@ -510,7 +510,7 @@ private extension FloatingField {
 public extension FloatingField {
 	
 	func contentWidth() -> CGFloat {
-		let padding = Constraint.HorizontalPadding * 2
+		let padding = Constraints.HorizontalPadding * 2
 		input.invalidateIntrinsicContentSize()
 		
 		return max(input.intrinsicContentSize().width + padding, 40)
