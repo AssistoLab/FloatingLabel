@@ -572,7 +572,7 @@ public extension FloatingField {
 	
 }
 
-internal func checkValidity(#text: String?, #validations: [Validation], #level: ValidationLevel?) -> (isValid: Bool, failedValidation: Validation?) {
+public func checkValidity(#text: String?, #validations: [Validation], #level: ValidationLevel?) -> (isValid: Bool, failedValidation: Validation?) {
 	for validation in validations {
 		let shouldPassLevelValidation = level == nil
 		let isWantedLevel = validation.level == level

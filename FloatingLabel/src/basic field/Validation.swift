@@ -50,6 +50,10 @@ public struct Validation {
 		self.__level = level
 	}
 	
+	init(_ customClosure: ValidationClosure, message: String? = nil, level: ValidationLevel? = .Error) {
+		self.init(.Custom(customClosure), message: message, level: level)
+	}
+	
 	public func isValid(text: String) -> Bool {
 		if let evaluation = Validation.evaluations[type] {
 			return evaluation(text)

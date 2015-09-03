@@ -15,7 +15,7 @@ public class SingleChoiceFloatingField: UIView, FieldType {
 	
 	//MARK: UI
 	private let choiceLabel = UILabel()
-	private let choiceSwitch = UISwitch()
+	internal let choiceSwitch = UISwitch()
 	
 	//MARK: Appearance
 	@IBInspectable public dynamic var activeColor: UIColor = UIColor.blueColor() {

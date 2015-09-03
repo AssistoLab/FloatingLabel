@@ -155,24 +155,24 @@ extension PhoneFloatingField {
 		prefixField.spellCheckingType = .No
 		prefixField.rightView = UIImageView(image: Icon.Arrow.image().template())
 		prefixField.rightViewMode = .Always
-		prefixField.validation = Validation(.Custom({ [unowned self] text in
+		prefixField.validation = Validation({ [unowned self] text in
 			if !text.isEmpty && !self.suffixField.text.isEmpty {
 				self.suffixField.validate()
 			}
 			
 			return true
-		}))
+		})
 		
 		suffixField.autocorrectionType = .No
 		suffixField.spellCheckingType = .No
 		suffixField.keyboardType = .NumberPad
 		suffixField.valueChangedAction = valueChangedAction
-		suffixField.validation = Validation(.Custom({ [unowned self] text in
+		suffixField.validation = Validation({ [unowned self] text in
 			// We need to update the message at the last moment
 			self.suffixField.validation?.message = self.validation?.message
 			
 			return self.isValid
-		}))
+		})
 		
 		#if TARGET_INTERFACE_BUILDER
 			prefixPlaceholder = "Prefix"
