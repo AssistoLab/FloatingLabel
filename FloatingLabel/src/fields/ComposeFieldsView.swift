@@ -13,11 +13,11 @@ public class ComposeFieldsView: UIView, Validatable {
 	//MARK: - Properties
 	
 	//MARK: UI
-	public var contentView: UIView = UIView() {
+	public var contentView: UIView! {
 		didSet { setupConstraints() }
 	}
 	
-	private var helperLabel: UILabel!
+	private var helperLabel = UILabel()
 	
 	//MARK: Constraints
 	private var helperLabelHeightConstraint: NSLayoutConstraint!
@@ -53,13 +53,12 @@ public class ComposeFieldsView: UIView, Validatable {
 
 private extension ComposeFieldsView {
 	
-	func setupUI() {
-		setupConstraints()
-		updateUI(animated: false)
-	}
-	
 	func setupConstraints() {
 		// Helper label
+		helperLabel.font = FloatingField.appearance().helperFont
+		helperLabel.numberOfLines = HelperLabel.NumberOfLines
+		helperLabel.clipsToBounds = true
+		
 		addSubview(helperLabel)
 		helperLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
@@ -97,7 +96,7 @@ private extension ComposeFieldsView {
 		
 		addConstraints(format:"H:|[contentView]|", views: ["contentView": contentView])
 		addConstraints(
-			format: "V:|[contentView][helperLabel]|",
+			format: "V:|[contentView][helperLabel]",
 			metrics: ["padding": Constraints.Separator.BottomPadding],
 			views: [
 				"helperLabel": helperLabel,
