@@ -77,7 +77,7 @@ internal extension AutoCompleteFloatingField {
 	override func textFieldTextDidChangeNotification() {
 		super.textFieldTextDidChangeNotification()
 		
-		if let newText = text?.lowercaseString where count(newText) > 1 {
+		if let newText = text?.lowercaseString where !newText.isEmpty {
 			let resultsDataSource = dataSource
 				.filter { startsWith($0.lowercaseString, newText) }
 				.sorted { $0.lowercaseString < $1.lowercaseString }
