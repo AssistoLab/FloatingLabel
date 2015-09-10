@@ -17,6 +17,7 @@ public class AutoCompleteFloatingField: FloatingTextField {
 	
 	//MARK: Content
 	public var dataSource = [String]()
+	public var maxDisplayedItems: Int?
 	
 	private var filteredSource: [String] {
 		get { return dropDown.dataSource }
@@ -77,9 +78,17 @@ internal extension AutoCompleteFloatingField {
 		super.textFieldTextDidChangeNotification()
 		
 		if let newText = text?.lowercaseString where count(newText) > 1 {
-			filteredSource = dataSource
+			let resultsDataSource = dataSource
 				.filter { startsWith($0.lowercaseString, newText) }
 				.sorted { $0.lowercaseString < $1.lowercaseString }
+			
+			let endIndex = min(maxDisplayedItems ?? Int.max, resultsDataSource.count)
+			
+			if endIndex == 0 {
+				filteredSource = []
+			} else {
+				filteredSource = Array(resultsDataSource[0..<endIndex])
+			}
 			
 			if dropDown.hidden {
 				dropDown.show()
