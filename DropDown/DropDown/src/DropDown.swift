@@ -58,7 +58,7 @@ public final class DropDown: UIView {
 	private let tableView = UITableView()
 	
 	/// The view to which the drop down will displayed onto.
-	public var anchorView: UIView! {
+	public weak var anchorView: UIView? {
 		didSet { setNeedsUpdateConstraints() }
 	}
 	
@@ -163,7 +163,7 @@ public final class DropDown: UIView {
 	}
 	
 	/// The action to execute when the user selects a cell.
-	public var selectionAction: SelectionClosure!
+	public var selectionAction: SelectionClosure?
 	
 	/// The action to execute when the user cancels/hides the drop down.
 	public var cancelAction: Closure?
@@ -198,43 +198,41 @@ public final class DropDown: UIView {
 	the `anchorView` and the `selectionAction`
 	at least before calling `show()`.
 	*/
-	convenience init() {
+	public convenience init() {
 		self.init(frame: CGRectZero)
 	}
 	
 	/**
 	Creates a new instance of a drop down.
 	
-	:param: dataSource        The data source for the drop down.
 	:param: anchorView        The view to which the drop down will displayed onto.
-	:param: offset            The offset point relative to `anchorView`.
-	:param: cellConfiguration The format for the cells' text.
 	:param: selectionAction   The action to execute when the user selects a cell.
+	:param: dataSource        The data source for the drop down.
+	:param: topOffset         The offset point relative to `anchorView` used when drop down is displayed on above the anchor view.
+	:param: bottomOffset      The offset point relative to `anchorView` used when drop down is displayed on below the anchor view.
+	:param: cellConfiguration The format for the cells' text.
 	:param: cancelAction      The action to execute when the user cancels/hides the drop down.
 	
 	:returns: A new instance of a drop down customized with the above parameters.
 	*/
-	convenience init(dataSource: [String], anchorView: UIView? = nil, topOffset: CGPoint? = nil, bottomOffset: CGPoint? = nil, cellConfiguration: ConfigurationClosure? = nil, selectionAction: SelectionClosure, cancelAction: Closure? = nil) {
-		self.init()
+	public convenience init(anchorView: UIView, selectionAction: SelectionClosure? = nil, dataSource: [String] = [], topOffset: CGPoint? = nil, bottomOffset: CGPoint? = nil, cellConfiguration: ConfigurationClosure? = nil, cancelAction: Closure? = nil) {
+		self.init(frame: CGRectZero)
 		
-		if let anchorView = anchorView {
-			self.anchorView = anchorView
-		}
-		
+		self.anchorView = anchorView
+		self.selectionAction = selectionAction
 		self.dataSource = dataSource
 		self.topOffset = topOffset ?? CGPointZero
 		self.bottomOffset = bottomOffset ?? CGPointZero
-		self.selectionAction = selectionAction
 		self.cellConfiguration = cellConfiguration
 		self.cancelAction = cancelAction
 	}
 	
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		setup()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	public required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
 	}
@@ -644,7 +642,7 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		selectedRowIndex = indexPath.row
-		selectionAction(selectedRowIndex, dataSource[selectedRowIndex])
+		selectionAction?(selectedRowIndex, dataSource[selectedRowIndex])
 		hide()
 	}
 	
