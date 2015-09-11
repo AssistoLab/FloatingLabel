@@ -66,6 +66,8 @@ internal extension FloatingTextField {
 
 //MARK: - TextField
 
+private var textFieldKVOContext = 0
+
 internal extension FloatingTextField {
 	
 	@objc
@@ -105,6 +107,8 @@ internal extension FloatingTextField {
 			selector: "textFieldTextDidEndEditingNotification",
 			name: UITextFieldTextDidEndEditingNotification,
 			object: textField)
+		
+		self.addObserver(self, forKeyPath: "textField.text", options: .New, context: &textFieldKVOContext)
 	}
 	
 	func stopListeningToTextField() {
@@ -122,6 +126,24 @@ internal extension FloatingTextField {
 			self,
 			name: UITextFieldTextDidEndEditingNotification,
 			object: textField)
+		
+		self.removeObserver(self, forKeyPath: "textField.text", context: &textFieldKVOContext)
+	}
+	
+}
+
+//MARK: - KVO
+
+public extension FloatingField {
+	
+	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		if context == &textFieldKVOContext,
+			let newText = change?[NSKeyValueChangeNewKey] as? String
+		{
+			updateUI(animated: true)
+		} else {
+			super.observeValueForKeyPath(keyPath!, ofObject: object!, change: change!, context: context)
+		}
 	}
 	
 }
