@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-public class PhoneFloatingField: UIView, TextFieldType, Helpable, Validatable {
+public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 	
 	//MARK: - Properties
 	

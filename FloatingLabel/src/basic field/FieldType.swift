@@ -14,7 +14,7 @@ public protocol Helpable {
 	
 }
 
-public protocol Validatable: Helpable {
+public protocol Validatable: class, Helpable {
 	
 	var validation: Validation? { get set }
 	var validations: [Validation] { get set }

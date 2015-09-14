@@ -81,11 +81,11 @@ public enum ValidationType {
 			}
 		case .EmailAddress:
 			return { (text) in
-				return DataValidationHelper.isAddressEmailValid(text)
+				return text.isEmpty || DataValidationHelper.isAddressEmailValid(text)
 			}
 		case .PhoneNumber:
 			return { (text) in
-				return DataValidationHelper.isPhoneNumberValid(text)
+				return text.isEmpty || DataValidationHelper.isPhoneNumberValid(text)
 			}
 		case let .Custom(closure):
 			return closure
