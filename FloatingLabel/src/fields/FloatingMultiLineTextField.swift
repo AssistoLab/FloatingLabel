@@ -76,6 +76,8 @@ internal extension FloatingMultiLineTextField {
 
 //MARK: - TextView
 
+private var textViewKVOContext = 0
+
 internal extension FloatingMultiLineTextField {
 	
 	@objc
@@ -118,6 +120,8 @@ internal extension FloatingMultiLineTextField {
 			selector: "textViewTextDidEndEditingNotification",
 			name: UITextViewTextDidEndEditingNotification,
 			object: textView)
+		
+		self.addObserver(self, forKeyPath: "textView.text", options: .New, context: &textViewKVOContext)
 	}
 	
 	func stopListeningToTextView() {
@@ -135,6 +139,24 @@ internal extension FloatingMultiLineTextField {
 			self,
 			name: UITextViewTextDidEndEditingNotification,
 			object: textView)
+
+		self.removeObserver(self, forKeyPath: "textView.text", context: &textViewKVOContext)
+	}
+	
+}
+
+//MARK: - KVO
+
+public extension FloatingMultiLineTextField {
+	
+	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		if context == &textViewKVOContext,
+			let newText = change?[NSKeyValueChangeNewKey] as? String
+		{
+			updateUI(animated: true)
+		} else {
+			super.observeValueForKeyPath(keyPath!, ofObject: object!, change: change!, context: context)
+		}
 	}
 	
 }
