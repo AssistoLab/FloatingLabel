@@ -214,6 +214,7 @@ extension PhoneFloatingField {
 		
 		prefixField.setContentCompressionResistancePriority(Constraints.PhoneField.Prefix.CompressionResistancePriority, forAxis: .Horizontal)
 		prefixField.setContentHuggingPriority(Constraints.PhoneField.Prefix.VerticalHuggingPriority, forAxis: .Vertical)
+		suffixField.setContentHuggingPriority(Constraints.PhoneField.Prefix.VerticalHuggingPriority, forAxis: .Vertical)
 	}
 	
 }

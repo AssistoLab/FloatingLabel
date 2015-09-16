@@ -84,6 +84,12 @@ internal struct Constraints {
 			
 		}
 		
+		struct Suffix {
+			
+			static let VerticalHuggingPriority: Float = 0
+			
+		}
+		
 	}
 	
 	struct SingleChoiceField {

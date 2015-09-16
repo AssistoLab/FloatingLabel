@@ -517,7 +517,16 @@ public extension FloatingField {
 	}
 	
 	override func intrinsicContentSize() -> CGSize {
-		return CGSize(width: UIViewNoIntrinsicMetric, height: 73)
+		let floatingLabelHeight = NSString(string: floatingLabel.text ?? "").boundingRectWithSize(
+			CGSize(width: CGFloat.max, height: CGFloat.max),
+			options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+			attributes: [NSFontAttributeName: floatingLabel.font],
+			context: nil).height
+		let textHeight = input.intrinsicContentSize().height
+		let spaces: CGFloat = 40
+		let height = spaces + floatingLabelHeight + textHeight
+		
+		return CGSize(width: UIViewNoIntrinsicMetric, height: height)
 	}
 	
 	override func contentHuggingPriorityForAxis(axis: UILayoutConstraintAxis) -> UILayoutPriority {
