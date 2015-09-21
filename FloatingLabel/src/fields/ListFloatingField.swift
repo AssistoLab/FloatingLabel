@@ -25,7 +25,15 @@ public class ListFloatingField: ActionFloatingField {
 	
 	public var selectedRow: Index? {
 		get { return dropDown.indexForSelectedRow() }
-		set { dropDown.selectRowAtIndex(newValue ?? -1) }
+		set {
+			if let newValue = newValue
+				where newValue >= 0 && newValue < dataSource.count
+			{
+				dropDown.selectRowAtIndex(newValue)
+			} else {
+				dropDown.deselectRowAtIndexPath(newValue)
+			}
+		}
 	}
 	
 	public override var isEditing: Bool {

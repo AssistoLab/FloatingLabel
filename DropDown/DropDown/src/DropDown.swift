@@ -150,7 +150,7 @@ public final class DropDown: UIView {
 		didSet { reloadAllComponents() }
 	}
 	
-	private var selectedRowIndex: Index = -1
+	private var selectedRowIndex: Index?
 	
 	/**
 	The format for the cells' text.
@@ -581,13 +581,27 @@ extension DropDown {
 	}
 	
 	/// (Pre)selects a row at a certain index.
-	public func selectRowAtIndex(index: Index) {
-		selectedRowIndex = index
+	public func selectRowAtIndex(index: Index?) {
+		if let index = index {
+			tableView.selectRowAtIndexPath(
+				NSIndexPath(forRow: index, inSection: 0),
+				animated: false,
+				scrollPosition: .Middle)
+		} else {
+			deselectRowAtIndexPath(selectedRowIndex)
+		}
 		
-		tableView.selectRowAtIndexPath(
-			NSIndexPath(forRow: index, inSection: 0),
-			animated: false,
-			scrollPosition: .Middle)
+		selectedRowIndex = index
+	}
+	
+	public func deselectRowAtIndexPath(index: Index?) {
+		selectedRowIndex = nil
+		
+		if let index = index,
+			indexPath = NSIndexPath(forRow: index, inSection: 0)
+		{
+			tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		}
 	}
 	
 	/// Returns the index of the selected row.
@@ -642,7 +656,7 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		selectedRowIndex = indexPath.row
-		selectionAction?(selectedRowIndex, dataSource[selectedRowIndex])
+		selectionAction?(selectedRowIndex!, dataSource[selectedRowIndex!])
 		hide()
 	}
 	
