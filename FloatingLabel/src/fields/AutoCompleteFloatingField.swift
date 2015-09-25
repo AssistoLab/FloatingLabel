@@ -55,7 +55,7 @@ extension AutoCompleteFloatingField {
 		dropDown.dismissMode = .Automatic
 		dropDown.selectionAction = { [unowned self] (index, item) in
 			self.text = item
-			self.dropDown.selectRowAtIndex(-1)
+			self.dropDown.selectRowAtIndex(nil)
 			self.valueChangedAction?(self.value)
 		}
 	}
