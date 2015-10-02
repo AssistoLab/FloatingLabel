@@ -30,7 +30,7 @@ private extension FloatingFieldTableViewCell {
 	func setupConstraints() {
 		// Helper label
 		contentView.addSubview(field)
-		field.setTranslatesAutoresizingMaskIntoConstraints(false)
+		field.translatesAutoresizingMaskIntoConstraints = false
 		
 		addUniversalConstraints(format: "|[field]|", views: ["field": field])
 	}

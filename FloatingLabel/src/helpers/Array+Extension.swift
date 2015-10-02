@@ -10,7 +10,7 @@ import UIKit
 
 internal extension Array {
 	
-	mutating func replaceFirstItemBy(item: T?) {
+	mutating func replaceFirstItemBy(item: Element?) {
 		let isEmpty = count <= 0
 		
 		if let item = item {

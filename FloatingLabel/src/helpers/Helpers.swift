@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal func applyChanges(changes: Closure, animated: Bool, completion: Closure? = nil) {
+internal func applyChanges(changes: Closure, _ animated: Bool, _ completion: Closure? = nil) {
 	dispatch_async(dispatch_get_main_queue()) {
 		if animated {
 			UIView.animateWithDuration(

@@ -54,7 +54,7 @@ public class ListFloatingField: ActionFloatingField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -101,7 +101,7 @@ extension ListFloatingField {
 
 extension ListFloatingField {
 	
-	public override func layoutSublayersOfLayer(layer: CALayer!) {
+	public override func layoutSublayersOfLayer(layer: CALayer) {
 		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).minY - 1
@@ -109,7 +109,7 @@ extension ListFloatingField {
 		dropDown.width = separatorLine.bounds.width
 	}
 	
-	override func updateUI(#animated: Bool) {
+	override func updateUI(animated animated: Bool) {
 		super.updateUI(animated: animated)
 		
 		if isFloatingLabelDisplayed {

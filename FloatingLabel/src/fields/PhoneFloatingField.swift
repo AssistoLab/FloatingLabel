@@ -134,7 +134,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		setupUI()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setupUI()
 	}
@@ -194,8 +194,8 @@ extension PhoneFloatingField {
 		addSubview(prefixField)
 		addSubview(suffixField)
 		
-		prefixField.setTranslatesAutoresizingMaskIntoConstraints(false)
-		suffixField.setTranslatesAutoresizingMaskIntoConstraints(false)
+		prefixField.translatesAutoresizingMaskIntoConstraints = false
+		suffixField.translatesAutoresizingMaskIntoConstraints = false
 		
 		addConstraints(format: "H:|[prefixField][suffixField]|", views: ["prefixField": prefixField, "suffixField": suffixField])
 		addConstraints(format: "V:|[prefixField]-(>=0)-|", views: ["prefixField": prefixField])
@@ -269,7 +269,7 @@ public extension PhoneFloatingField {
 
 public extension PhoneFloatingField {
 	
-	override func viewForBaselineLayout() -> UIView? {
+	override func viewForBaselineLayout() -> UIView {
 		return suffixField.viewForBaselineLayout()
 	}
 	

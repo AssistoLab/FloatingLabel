@@ -48,7 +48,7 @@ public class FloatingMultiLineTextField: FloatingField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -149,7 +149,7 @@ internal extension FloatingMultiLineTextField {
 
 public extension FloatingMultiLineTextField {
 	
-	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
 		if context == &textViewKVOContext,
 			let newText = change?[NSKeyValueChangeNewKey] as? String
 		{

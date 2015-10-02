@@ -27,7 +27,7 @@ extension FloatingFieldTextField {
 	}
 	
 	// show/hide cursor
-	override func caretRectForPosition(position: UITextPosition!) -> CGRect {
+	override func caretRectForPosition(position: UITextPosition) -> CGRect {
 		if showCursor {
 			return super.caretRectForPosition(position)
 		} else {

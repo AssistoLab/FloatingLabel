@@ -21,7 +21,7 @@ public class FloatingFieldCollectionViewCell: UICollectionViewCell {
 public extension FloatingFieldCollectionViewCell {
 	
 	func setupConstraints() {
-		field.setTranslatesAutoresizingMaskIntoConstraints(false)
+		field.translatesAutoresizingMaskIntoConstraints = false
 		
 		addUniversalConstraints(format: "|[field]|", views: ["field": field])
 	}
