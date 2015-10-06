@@ -106,7 +106,7 @@ extension ValidationType: Hashable {
 			return 2
 		case .PhoneNumber:
 			return 3
-		case let .Custom(_):
+		case .Custom(_):
 			return 4
 		}
 	}

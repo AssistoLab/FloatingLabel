@@ -174,7 +174,7 @@ public final class DropDown: UIView {
 			if newValue == .OnTap {
 				let gestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissableViewTapped")
 				dismissableView.addGestureRecognizer(gestureRecognizer)
-			} else if let gestureRecognizer = dismissableView.gestureRecognizers?.first as? UIGestureRecognizer {
+			} else if let gestureRecognizer = dismissableView.gestureRecognizers?.first {
 				dismissableView.removeGestureRecognizer(gestureRecognizer)
 			}
 		}
@@ -597,11 +597,11 @@ extension DropDown {
 	public func deselectRowAtIndexPath(index: Index?) {
 		selectedRowIndex = nil
 		
-		if let index = index,
-			indexPath = NSIndexPath(forRow: index, inSection: 0)
-		{
-			tableView.deselectRowAtIndexPath(indexPath, animated: true)
-		}
+		guard let index = index
+			where index > 0 
+			else { return }
+		
+		tableView.deselectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: true)
 	}
 	
 	/// Returns the index of the selected row.
@@ -611,11 +611,9 @@ extension DropDown {
 	
 	/// Returns the selected item.
 	public var selectedItem: String? {
-		if let row = tableView.indexPathForSelectedRow?.row {
-			return dataSource[row]
-		} else {
-			return nil
-		}
+		guard let row = tableView.indexPathForSelectedRow?.row else { return nil }
+		
+		return dataSource[row]
 	}
 	
 	/// Returns the height needed to display all cells.

@@ -28,7 +28,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 	
 	public var valueChangedAction: ((String?) -> Void)?
 	
-	@IBInspectable public var text: String! {
+	@IBInspectable public var text: String? {
 		get {
 			return phoneNumber
 		}
@@ -54,11 +54,21 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	public var phoneNumber: String! {
-		return prefixField.text + suffixField.text
+	public var phoneNumber: String? {
+		var phoneNumber = ""
+		
+		if let prefix = prefixField.text {
+			phoneNumber += prefix
+		}
+		
+		if let suffix = suffixField.text {
+			phoneNumber += suffix
+		}
+		
+		return phoneNumber.isEmpty ? nil : phoneNumber
 	}
 	
-	public var prefix: String! {
+	public var prefix: String? {
 		get {
 			return prefixField.text
 		}
@@ -68,7 +78,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	public var suffix: String! {
+	public var suffix: String? {
 		get { return suffixField.text }
 		set { suffixField.text = newValue }
 	}
@@ -156,7 +166,10 @@ extension PhoneFloatingField {
 		prefixField.rightView = UIImageView(image: Icon.Arrow.image().template())
 		prefixField.rightViewMode = .Always
 		prefixField.validation = Validation({ [unowned self] text in
-			if !text.isEmpty && !self.suffixField.text.isEmpty {
+			if !text.isEmpty,
+				let suffix = self.suffixField.text
+				where !suffix.isEmpty
+			{
 				self.suffixField.validate()
 			}
 			

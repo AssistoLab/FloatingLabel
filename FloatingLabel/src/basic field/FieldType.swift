@@ -35,7 +35,7 @@ public protocol FieldType {
 
 public protocol TextFieldType: FieldType {
 	
-	var text: String! { get set }
+	var text: String? { get set }
 	var isEditing: Bool { get }
 	
 	var value: String? { get set }

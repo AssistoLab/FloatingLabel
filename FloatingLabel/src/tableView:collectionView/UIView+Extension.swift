@@ -19,7 +19,7 @@ internal extension UIView {
 	}
 	
 	private func findSuperviewOfClass(viewClass: AnyClass) -> UIView? {
-		var view = superview
+		var view = self.superview
 		
 		while let superview = view where !superview.isKindOfClass(viewClass) {
 			view = view?.superview

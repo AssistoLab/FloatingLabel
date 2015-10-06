@@ -150,8 +150,8 @@ internal extension FloatingMultiLineTextField {
 public extension FloatingMultiLineTextField {
 	
 	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		if context == &textViewKVOContext,
-			let newText = change?[NSKeyValueChangeNewKey] as? String
+		if context == &textViewKVOContext
+			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
 		{
 			updateUI(animated: true)
 		} else {
