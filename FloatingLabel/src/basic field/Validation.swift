@@ -12,7 +12,7 @@ public typealias ValidationClosure = (String) -> Bool
 
 public struct Validation {
 	
-	public static var messages = [ValidationType: (String, ValidationLevel)]()
+	public static var messages = [ValidationType: (message: String, level: ValidationLevel)]()
 	public static var evaluations = [ValidationType: ValidationClosure]()
 	
 	public let type: ValidationType
