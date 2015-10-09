@@ -24,7 +24,9 @@ public class ListFloatingField: ActionFloatingField {
 	public var selectedItem: String?
 	
 	public var selectedRow: Index? {
-		get { return dropDown.indexForSelectedRow }
+		get {
+			return dropDown.indexForSelectedRow
+		}
 		set {
 			if let newValue = newValue
 				where newValue >= 0 && newValue < dataSource.count
