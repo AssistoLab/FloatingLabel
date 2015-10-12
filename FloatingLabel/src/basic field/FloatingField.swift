@@ -154,10 +154,6 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 		}
 	}
 	
-	public var failedValidation: Validation? {
-		return checkValidity(text: "", validations: validations, level: .Error).failedValidation
-	}
-	
 	private var didSetupConstraints = false
 	
 	//MARK: - Init's
