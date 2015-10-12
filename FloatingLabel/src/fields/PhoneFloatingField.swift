@@ -122,10 +122,6 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	public var failedValidation: Validation? {
-		return checkValidity(text: phoneNumber, validations: validations, level: .Error).failedValidation
-	}
-	
 	public var isEditing: Bool {
 		return suffixField.isEditing
 	}
@@ -183,17 +179,15 @@ extension PhoneFloatingField {
 		suffixField.autocorrectionType = .No
 		suffixField.spellCheckingType = .No
 		suffixField.keyboardType = .NumberPad
-		suffixField.valueChangedAction = valueChangedAction
-		suffixField.validation = Validation({ [unowned self] _ in
-			if self.isValid {
-				return true
-			} else {
-				// We need to update the message at the last moment
-				self.suffixField.validation?.message = self.failedValidation?.message
-				
-				return false
-			}
-		})
+		suffixField.valueChangedAction = { [unowned self] value in
+			print("test")
+			self.valueChangedAction?(value)
+		}
+		suffixField.validation = Validation(
+			{ [unowned self] _ in
+				return DataValidationHelper.isPhoneNumberValid(self.phoneNumber ?? "")
+			},
+			message: validation?.message ?? Validation.messages[.PhoneNumber]?.message ?? "")
 		
 		#if TARGET_INTERFACE_BUILDER
 			prefixPlaceholder = "Prefix"
@@ -269,6 +263,8 @@ public extension PhoneFloatingField {
 			},
 			message: Validation.messages[.Required]?.message),
 			atIndex: 0)
+		
+		suffixField.validations.insert(Validation(.Required), atIndex: 0)
 	}
 	
 }
