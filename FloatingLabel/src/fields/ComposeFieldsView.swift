@@ -14,7 +14,10 @@ public class ComposeFieldsView: UIView, Validatable {
 	
 	//MARK: UI
 	public var contentView: UIView! {
-		didSet { setupConstraints() }
+		didSet {
+			setupConstraints()
+			updateUI(animated: false)
+		}
 	}
 	
 	private var helperLabel = UILabel()
