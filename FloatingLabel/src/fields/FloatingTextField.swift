@@ -55,8 +55,8 @@ internal extension FloatingTextField {
 	override func updateUI(animated animated: Bool) {
 		super.updateUI(animated: animated)
 		
-		let changes: Closure = {
-			rightView?.tintColor = separatorLine.backgroundColor
+		let changes: Closure = { [unowned self] in
+			self.rightView?.tintColor = self.separatorLine.backgroundColor
 		}
 		
 		applyChanges(changes, animated)
