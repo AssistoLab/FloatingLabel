@@ -180,7 +180,6 @@ extension PhoneFloatingField {
 		suffixField.spellCheckingType = .No
 		suffixField.keyboardType = .NumberPad
 		suffixField.valueChangedAction = { [unowned self] value in
-			print("test")
 			self.valueChangedAction?(value)
 		}
 		suffixField.validation = Validation(
