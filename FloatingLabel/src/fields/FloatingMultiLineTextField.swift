@@ -82,8 +82,8 @@ internal extension FloatingMultiLineTextField {
 	
 	@objc
 	func textViewTextDidChangeNotification() {
-		textView.setContentOffset(CGPointZero, animated: true)
 		updateUI(animated: true)
+		textView.setContentOffset(CGPointZero, animated: true)
 		
 		valueChangedAction?(value)
 	}
