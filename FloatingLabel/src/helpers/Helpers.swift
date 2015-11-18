@@ -23,10 +23,13 @@ internal func applyChanges(changes: Closure, _ animated: Bool, _ completion: Clo
 					}
 			})
 		} else {
-			changes()
-			
-			if let completion = completion {
-				completion()
+			// Animation of 0 seconds to cancel previous animations
+			UIView.animateWithDuration(0) {
+				changes()
+				
+				if let completion = completion {
+					completion()
+				}
 			}
 		}
 	}
