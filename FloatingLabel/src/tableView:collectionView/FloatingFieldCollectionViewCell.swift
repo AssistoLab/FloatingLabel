@@ -23,7 +23,9 @@ public extension FloatingFieldCollectionViewCell {
 	func setupConstraints() {
 		field.translatesAutoresizingMaskIntoConstraints = false
 		
-		addUniversalConstraints(format: "|[field]|", views: ["field": field])
+		// Not constraint to the bottom of the cell to avoid glitch when animating cell to show/hide helper text
+		addConstraints(format: "H:|[field]|", views: ["field": field])
+		addConstraints(format: "V:|[field]", views: ["field": field])
 	}
 	
 }
