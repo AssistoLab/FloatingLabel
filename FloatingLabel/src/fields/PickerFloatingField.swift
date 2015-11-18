@@ -35,7 +35,7 @@ public class PickerFloatingField: FloatingTextField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -90,7 +90,7 @@ extension PickerFloatingField: UIPickerViewDataSource, UIPickerViewDelegate {
 		return dataSource.count
 	}
 	
-	public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+	public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 		return dataSource[row]
 	}
 	

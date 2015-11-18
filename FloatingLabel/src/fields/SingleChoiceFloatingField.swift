@@ -56,7 +56,7 @@ public class SingleChoiceFloatingField: UIView, FieldType {
 		setup()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
 	}
@@ -105,8 +105,8 @@ extension SingleChoiceFloatingField {
 		addSubview(choiceLabel)
 		addSubview(choiceSwitch)
 		
-		choiceLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-		choiceSwitch.setTranslatesAutoresizingMaskIntoConstraints(false)
+		choiceLabel.translatesAutoresizingMaskIntoConstraints = false
+		choiceSwitch.translatesAutoresizingMaskIntoConstraints = false
 		
 		let verticalMetrics = ["padding": Constraints.SingleChoiceField.VerticalPadding]
 		

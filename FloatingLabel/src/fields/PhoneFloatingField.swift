@@ -28,7 +28,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 	
 	public var valueChangedAction: ((String?) -> Void)?
 	
-	@IBInspectable public var text: String! {
+	@IBInspectable public var text: String? {
 		get {
 			return phoneNumber
 		}
@@ -54,11 +54,21 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	public var phoneNumber: String! {
-		return prefixField.text + suffixField.text
+	public var phoneNumber: String? {
+		var phoneNumber = ""
+		
+		if let prefix = prefixField.text {
+			phoneNumber += prefix
+		}
+		
+		if let suffix = suffixField.text {
+			phoneNumber += suffix
+		}
+		
+		return phoneNumber.isEmpty ? nil : phoneNumber
 	}
 	
-	public var prefix: String! {
+	public var prefix: String? {
 		get {
 			return prefixField.text
 		}
@@ -68,7 +78,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	public var suffix: String! {
+	public var suffix: String? {
 		get { return suffixField.text }
 		set { suffixField.text = newValue }
 	}
@@ -134,7 +144,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		setupUI()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setupUI()
 	}
@@ -156,7 +166,10 @@ extension PhoneFloatingField {
 		prefixField.rightView = UIImageView(image: Icon.Arrow.image().template())
 		prefixField.rightViewMode = .Always
 		prefixField.validation = Validation({ [unowned self] text in
-			if !text.isEmpty && !self.suffixField.text.isEmpty {
+			if !text.isEmpty,
+				let suffix = self.suffixField.text
+				where !suffix.isEmpty
+			{
 				self.suffixField.validate()
 			}
 			
@@ -166,13 +179,14 @@ extension PhoneFloatingField {
 		suffixField.autocorrectionType = .No
 		suffixField.spellCheckingType = .No
 		suffixField.keyboardType = .NumberPad
-		suffixField.valueChangedAction = valueChangedAction
-		suffixField.validation = Validation({ [unowned self] text in
-			// We need to update the message at the last moment
-			self.suffixField.validation?.message = self.validation?.message
-			
-			return self.isValid
-		})
+		suffixField.valueChangedAction = { [unowned self] value in
+			self.valueChangedAction?(value)
+		}
+		suffixField.validation = Validation(
+			{ [unowned self] _ in
+				return DataValidationHelper.isPhoneNumberValid(self.phoneNumber ?? "")
+			},
+			message: validation?.message ?? Validation.messages[.PhoneNumber]?.message ?? "")
 		
 		#if TARGET_INTERFACE_BUILDER
 			prefixPlaceholder = "Prefix"
@@ -194,8 +208,8 @@ extension PhoneFloatingField {
 		addSubview(prefixField)
 		addSubview(suffixField)
 		
-		prefixField.setTranslatesAutoresizingMaskIntoConstraints(false)
-		suffixField.setTranslatesAutoresizingMaskIntoConstraints(false)
+		prefixField.translatesAutoresizingMaskIntoConstraints = false
+		suffixField.translatesAutoresizingMaskIntoConstraints = false
 		
 		addConstraints(format: "H:|[prefixField][suffixField]|", views: ["prefixField": prefixField, "suffixField": suffixField])
 		addConstraints(format: "V:|[prefixField]-(>=0)-|", views: ["prefixField": prefixField])
@@ -237,6 +251,21 @@ public extension PhoneFloatingField {
 		suffixField.validate()
 	}
 	
+	public func makeSuffixRequired() {
+		validations.insert(Validation(
+			{ [unowned self] value in
+				if let text = self.suffixField.text {
+					return !text.isEmpty
+				} else {
+					return false
+				}
+			},
+			message: Validation.messages[.Required]?.message),
+			atIndex: 0)
+		
+		suffixField.validations.insert(Validation(.Required), atIndex: 0)
+	}
+	
 }
 
 //MARK: - Responder
@@ -269,7 +298,7 @@ public extension PhoneFloatingField {
 
 public extension PhoneFloatingField {
 	
-	override func viewForBaselineLayout() -> UIView? {
+	override func viewForBaselineLayout() -> UIView {
 		return suffixField.viewForBaselineLayout()
 	}
 	

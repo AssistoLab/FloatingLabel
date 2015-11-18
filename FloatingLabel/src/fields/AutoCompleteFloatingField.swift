@@ -34,7 +34,7 @@ public class AutoCompleteFloatingField: FloatingTextField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -60,7 +60,7 @@ extension AutoCompleteFloatingField {
 		}
 	}
 	
-	public override func layoutSublayersOfLayer(layer: CALayer!) {
+	public override func layoutSublayersOfLayer(layer: CALayer) {
 		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).maxY
@@ -79,8 +79,8 @@ internal extension AutoCompleteFloatingField {
 		
 		if let newText = text?.lowercaseString where !newText.isEmpty {
 			let resultsDataSource = dataSource
-				.filter { startsWith($0.lowercaseString, newText) }
-				.sorted { $0.lowercaseString < $1.lowercaseString }
+				.filter { $0.lowercaseString.characters.startsWith(newText.characters) }
+				.sort { $0.lowercaseString < $1.lowercaseString }
 			
 			let endIndex = min(maxDisplayedItems ?? Int.max, resultsDataSource.count)
 			

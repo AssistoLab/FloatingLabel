@@ -14,7 +14,10 @@ public class ComposeFieldsView: UIView, Validatable {
 	
 	//MARK: UI
 	public var contentView: UIView! {
-		didSet { setupConstraints() }
+		didSet {
+			setupConstraints()
+			updateUI(animated: false)
+		}
 	}
 	
 	private var helperLabel = UILabel()
@@ -60,7 +63,7 @@ private extension ComposeFieldsView {
 		helperLabel.clipsToBounds = true
 		
 		addSubview(helperLabel)
-		helperLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		helperLabel.translatesAutoresizingMaskIntoConstraints = false
 		
 		addConstraints(
 			format: "H:|-(padding)-[helperLabel]-(padding)-|",
@@ -92,7 +95,7 @@ private extension ComposeFieldsView {
 	
 	func setupContentViewConstraints() {
 		addSubview(contentView)
-		contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		contentView.translatesAutoresizingMaskIntoConstraints = false
 		
 		addConstraints(format:"H:|[contentView]|", views: ["contentView": contentView])
 		addConstraints(
@@ -110,7 +113,7 @@ private extension ComposeFieldsView {
 
 internal extension ComposeFieldsView {
 	
-	func updateUI(#animated: Bool) {
+	func updateUI(animated animated: Bool) {
 		let changes: Closure = { [unowned self] in
 			self.updateHelper()
 			
@@ -174,7 +177,7 @@ private extension ComposeFieldsView {
 		}
 	}
 	
-	func showHelper(#text: String) {
+	func showHelper(text text: String) {
 		helperLabel.text = text
 		
 		if helperState == previousHelperState {

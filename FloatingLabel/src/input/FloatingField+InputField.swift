@@ -12,7 +12,7 @@ import UIKit
 
 public extension FloatingField {
 	
-	@IBInspectable var text: String! {
+	@IBInspectable var text: String? {
 		get {
 			return input.__text
 		}

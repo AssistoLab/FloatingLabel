@@ -24,7 +24,9 @@ public class ListFloatingField: ActionFloatingField {
 	public var selectedItem: String?
 	
 	public var selectedRow: Index? {
-		get { return dropDown.indexForSelectedRow() }
+		get {
+			return dropDown.indexForSelectedRow
+		}
 		set {
 			if let newValue = newValue
 				where newValue >= 0 && newValue < dataSource.count
@@ -54,7 +56,7 @@ public class ListFloatingField: ActionFloatingField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -101,7 +103,7 @@ extension ListFloatingField {
 
 extension ListFloatingField {
 	
-	public override func layoutSublayersOfLayer(layer: CALayer!) {
+	public override func layoutSublayersOfLayer(layer: CALayer) {
 		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).minY - 1
@@ -109,7 +111,7 @@ extension ListFloatingField {
 		dropDown.width = separatorLine.bounds.width
 	}
 	
-	override func updateUI(#animated: Bool) {
+	override func updateUI(animated animated: Bool) {
 		super.updateUI(animated: animated)
 		
 		if isFloatingLabelDisplayed {

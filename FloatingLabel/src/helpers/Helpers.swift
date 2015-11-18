@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal func applyChanges(changes: Closure, animated: Bool, completion: Closure? = nil) {
+internal func applyChanges(changes: Closure, _ animated: Bool, _ completion: Closure? = nil) {
 	dispatch_async(dispatch_get_main_queue()) {
 		if animated {
 			UIView.animateWithDuration(
@@ -23,10 +23,13 @@ internal func applyChanges(changes: Closure, animated: Bool, completion: Closure
 					}
 			})
 		} else {
-			changes()
-			
-			if let completion = completion {
-				completion()
+			// Animation of 0 seconds to cancel previous animations
+			UIView.animateWithDuration(0) {
+				changes()
+				
+				if let completion = completion {
+					completion()
+				}
 			}
 		}
 	}

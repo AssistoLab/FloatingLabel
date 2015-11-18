@@ -37,7 +37,7 @@ internal struct HelperLabel {
 internal struct Animation {
 	
 	static let Duration: NSTimeInterval = 0.3
-	static let Options: UIViewAnimationOptions = .BeginFromCurrentState | .AllowUserInteraction | .LayoutSubviews
+	static let Options: UIViewAnimationOptions = [.BeginFromCurrentState, .AllowUserInteraction, .LayoutSubviews]
 	static let FloatingLabelTransform: CGAffineTransform = CGAffineTransformMakeTranslation(0, 10)
 	
 }

@@ -52,11 +52,11 @@ internal extension FloatingTextField {
 
 internal extension FloatingTextField {
 	
-	override func updateUI(#animated: Bool) {
+	override func updateUI(animated animated: Bool) {
 		super.updateUI(animated: animated)
 		
 		let changes: Closure = { [unowned self] in
-			rightView?.tintColor = separatorLine.backgroundColor
+			self.rightView?.tintColor = self.separatorLine.backgroundColor
 		}
 		
 		applyChanges(changes, animated)
@@ -136,9 +136,9 @@ internal extension FloatingTextField {
 
 public extension FloatingField {
 	
-	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-		if context == &textFieldKVOContext,
-			let newText = change?[NSKeyValueChangeNewKey] as? String
+	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		if context == &textFieldKVOContext
+			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
 		{
 			updateUI(animated: true)
 		} else {
