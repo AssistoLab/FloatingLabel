@@ -33,12 +33,17 @@ public protocol FieldType {
 	
 }
 
-public protocol TextFieldType: FieldType {
+public protocol TextFieldType: FieldType, Editable {
 	
 	var text: String? { get set }
-	var isEditing: Bool { get }
 	
 	var value: String? { get set }
 	var valueChangedAction: ((String?) -> Void)? { get set }
+	
+}
+
+public protocol Editable {
+	
+	var isEditing: Bool { get }
 	
 }
