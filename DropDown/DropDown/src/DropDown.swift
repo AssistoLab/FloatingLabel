@@ -150,6 +150,19 @@ public final class DropDown: UIView {
 		didSet { reloadAllComponents() }
 	}
 	
+	/**
+	The localization keys for the data source for the drop down.
+	
+	Changing this value automatically reloads the drop down.
+	This has uses for setting accibility identifiers on the drop down cells (same ones as the localization keys).
+	*/
+	public var localizationKeysDataSource = [String]() {
+		didSet {
+			dataSource = localizationKeysDataSource.map { localized($0) }
+		}
+	}
+	
+	/// The index of the row after its seleciton.
 	private var selectedRowIndex: Index?
 	
 	/**
@@ -255,6 +268,8 @@ private extension DropDown {
 		tableView.registerNib(DropDownCell.Nib, forCellReuseIdentifier: DPDConstant.ReusableIdentifier.DropDownCell)
 		
 		startListeningToKeyboard()
+		
+		accessibilityIdentifier = "drop_down"
 	}
 	
 	func setupUI() {
@@ -633,16 +648,20 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	
 	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier(DPDConstant.ReusableIdentifier.DropDownCell, forIndexPath: indexPath) as! DropDownCell
+		let index = indexPath.row
 		
+		if index >= 0 && index < localizationKeysDataSource.count {
+			cell.accessibilityIdentifier = localizationKeysDataSource[index]
+		}
+	
 		cell.optionLabel.textColor = textColor
 		cell.optionLabel.font = textFont
 		cell.selectedBackgroundColor = selectionBackgroundColor
 		
 		if let cellConfiguration = cellConfiguration {
-			let index = indexPath.row
 			cell.optionLabel.text = cellConfiguration(index, dataSource[index])
 		} else {
-			cell.optionLabel.text = dataSource[indexPath.row]
+			cell.optionLabel.text = dataSource[index]
 		}
 		
 		return cell
