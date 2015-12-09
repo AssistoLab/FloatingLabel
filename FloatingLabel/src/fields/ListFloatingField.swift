@@ -21,6 +21,17 @@ public class ListFloatingField: ActionFloatingField {
 		set { dropDown.dataSource = newValue }
 	}
 	
+	/**
+	The localization keys for the data source for the drop down.
+	
+	Changing this value automatically reloads the drop down.
+	This has uses for setting accibility identifiers on the drop down cells (same ones as the localization keys).
+	*/
+	public var localizationKeysDataSource: [String] {
+		get { return dropDown.localizationKeysDataSource }
+		set { dropDown.localizationKeysDataSource = newValue }
+	}
+	
 	public var selectedItem: String?
 	
 	public var selectedRow: Index? {
