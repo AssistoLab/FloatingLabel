@@ -41,6 +41,7 @@ extension FloatingFieldTextView {
 		
 		if shouldUpdateSizeIfNeeded && bounds.size != intrinsicContentSize() {
 			invalidateIntrinsicContentSize()
+			parentCollectionView()?.collectionViewLayout.invalidateLayout()
 		}
 	}
 	
@@ -61,15 +62,23 @@ extension FloatingFieldTextView {
 	private func listenToTextView() {
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidEndEditingNotification",
-			name: UITextViewTextDidEndEditingNotification,
+			selector: "textViewTextDidBeginEditingNotification",
+			name: UITextViewTextDidBeginEditingNotification,
 			object: self)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidBeginEditingNotification",
-			name: UITextViewTextDidBeginEditingNotification,
+			selector: "textViewTextDidChangeNotification",
+			name: UITextViewTextDidChangeNotification,
 			object: self)
+		
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: "textViewTextDidEndEditingNotification",
+			name: UITextViewTextDidEndEditingNotification,
+			object: self)
+		
+		self.addObserver(self, forKeyPath: "text", options: .New, context: &textKVOContext)
 	}
 	
 	func stopListeningToTextView() {
@@ -80,18 +89,50 @@ extension FloatingFieldTextView {
 		
 		NSNotificationCenter.defaultCenter().removeObserver(
 			self,
+			name: UITextViewTextDidChangeNotification,
+			object: self)
+		
+		NSNotificationCenter.defaultCenter().removeObserver(
+			self,
 			name: UITextViewTextDidEndEditingNotification,
 			object: self)
+		
+		self.removeObserver(self, forKeyPath: "text", context: &textKVOContext)
 	}
 	
 	@objc
 	func textViewTextDidEndEditingNotification() {
 		shouldUpdateSizeIfNeeded = false
+		parentCollectionView()?.collectionViewLayout.invalidateLayout()
 	}
 	
 	@objc
 	func textViewTextDidBeginEditingNotification() {
 		shouldUpdateSizeIfNeeded = true
+	}
+	
+	@objc
+	func textViewTextDidChangeNotification() {
+		shouldUpdateSizeIfNeeded = true
+		parentCollectionView()?.collectionViewLayout.invalidateLayout()
+	}
+	
+}
+
+//MARK: - KVO
+
+private var textKVOContext = 0
+
+extension FloatingFieldTextView {
+	
+	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		if context == &textKVOContext
+			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
+		{
+			parentCollectionView()?.collectionViewLayout.invalidateLayout()
+		}
+		
+		super.observeValueForKeyPath(keyPath!, ofObject: object!, change: change!, context: context)
 	}
 	
 }
