@@ -104,3 +104,21 @@ internal extension AutoCompleteFloatingField {
 	}
 	
 }
+
+//MARK: - DropDown
+
+internal extension AutoCompleteFloatingField {
+	
+	var maxHeightForDisplay: CGFloat {
+		return DPDConstant.UI.RowHeight * CGFloat(maxDisplayedItems!)
+	}
+	
+	func showDropDown() {
+		dropDown.show()
+	}
+	
+	func hideDropDown() {
+		dropDown.hide()
+	}
+	
+}
