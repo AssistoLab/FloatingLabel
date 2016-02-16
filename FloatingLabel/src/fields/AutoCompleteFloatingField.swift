@@ -110,7 +110,7 @@ internal extension AutoCompleteFloatingField {
 internal extension AutoCompleteFloatingField {
 	
 	var maxHeightForDisplay: CGFloat {
-		return DPDConstant.UI.RowHeight * CGFloat(maxDisplayedItems!)
+		return (DPDConstant.UI.RowHeight * CGFloat(maxDisplayedItems!)) + DPDConstant.UI.HeightPadding
 	}
 	
 	func showDropDown() {
