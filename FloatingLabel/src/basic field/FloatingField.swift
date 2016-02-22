@@ -516,7 +516,7 @@ public extension FloatingField {
 		let floatingLabelHeight = NSString(string: floatingLabel.text ?? "").boundingRectWithSize(
 			CGSize(width: CGFloat.max, height: CGFloat.max),
 			options: NSStringDrawingOptions.UsesLineFragmentOrigin,
-			attributes: [NSFontAttributeName: floatingLabel.font],
+			attributes: [NSFontAttributeName: floatingLabelFont],
 			context: nil).height
 		let textHeight = input.intrinsicContentSize().height
 		let spaces: CGFloat = 40
