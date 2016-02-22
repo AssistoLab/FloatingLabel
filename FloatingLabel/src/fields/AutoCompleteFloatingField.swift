@@ -63,9 +63,7 @@ extension AutoCompleteFloatingField {
 	public override func layoutSublayersOfLayer(layer: CALayer) {
 		super.layoutSublayersOfLayer(layer)
 		
-		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).maxY
-		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMaxY)
-		dropDown.width = separatorLine.bounds.width
+		updateDropDownWidth()
 	}
 	
 }
@@ -121,4 +119,9 @@ internal extension AutoCompleteFloatingField {
 		dropDown.hide()
 	}
 	
+	func updateDropDownWidth() {
+		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).maxY
+		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMaxY)
+		dropDown.width = separatorLine.bounds.width
+	}
 }
