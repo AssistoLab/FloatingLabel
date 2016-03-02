@@ -351,12 +351,12 @@ internal extension FloatingField {
 		layoutIfNeeded()
 		/* END HACK */
 		
-		let changes: Closure = { [weak self] in
-			self?.updateGlobalUI()
-			self?.updateFloatingLabel()
-			self?.updateHelper()
+		let changes: Closure = {
+			self.updateGlobalUI()
+			self.updateFloatingLabel()
+			self.updateHelper()
 			
-			self?.layoutIfNeeded()
+			self.layoutIfNeeded()
 		}
 		
 		applyChanges(changes, animated)

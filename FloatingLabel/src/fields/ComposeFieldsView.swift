@@ -114,7 +114,7 @@ private extension ComposeFieldsView {
 internal extension ComposeFieldsView {
 	
 	func updateUI(animated animated: Bool) {
-		let changes: Closure = { [unowned self] in
+		let changes: Closure = {
 			self.updateHelper()
 			
 			self.layoutIfNeeded()
