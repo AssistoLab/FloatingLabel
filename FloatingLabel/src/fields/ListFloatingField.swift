@@ -57,6 +57,12 @@ public class ListFloatingField: ActionFloatingField {
 		didSet { updateUI(animated: true) }
 	}
 	
+	public var willShowAction: Closure? {
+		willSet {
+			dropDown.willShowAction = newValue
+		}
+	}
+	
 	//MARK: - Init's
 	
 	convenience init() {

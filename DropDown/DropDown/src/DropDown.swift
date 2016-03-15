@@ -178,6 +178,9 @@ public final class DropDown: UIView {
 	/// The action to execute when the user selects a cell.
 	public var selectionAction: SelectionClosure?
 	
+	/// The action to execute when the drop down will show.
+	public var willShowAction: Closure?
+	
 	/// The action to execute when the user cancels/hides the drop down.
 	public var cancelAction: Closure?
 	
@@ -500,6 +503,8 @@ extension DropDown {
 			visibleDropDown.cancel()
 		}
 		
+		willShowAction?()
+		
 		DropDown.VisibleDropDown = self
 		
 		setNeedsUpdateConstraints()
@@ -719,12 +724,12 @@ extension DropDown {
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
 			selector: "keyboardUpdate",
-			name: UIKeyboardDidShowNotification,
+			name: UIKeyboardWillShowNotification,
 			object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
 			selector: "keyboardUpdate",
-			name: UIKeyboardDidHideNotification,
+			name: UIKeyboardWillHideNotification,
 			object: nil)
 	}
 	
