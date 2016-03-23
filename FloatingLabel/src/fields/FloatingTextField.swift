@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 public class FloatingTextField: FloatingField {
 	
@@ -52,11 +53,11 @@ internal extension FloatingTextField {
 
 internal extension FloatingTextField {
 	
-	override func updateUI(#animated: Bool) {
+	override func updateUI(animated animated: Bool) {
 		super.updateUI(animated: animated)
 		
-		let changes: Closure = { [unowned self] in
-			rightView?.tintColor = separatorLine.backgroundColor
+		let changes: Closure = {
+			self.rightView?.tintColor = self.separatorLine.backgroundColor
 		}
 		
 		applyChanges(changes, animated)
@@ -66,19 +67,20 @@ internal extension FloatingTextField {
 
 //MARK: - TextField
 
+private var textFieldKVOContext = 0
+
 internal extension FloatingTextField {
 	
 	@objc
 	func textFieldTextDidChangeNotification() {
 		updateUI(animated: true)
+		valueChangedAction?(value)
 	}
 	
 	@objc
 	func textFieldTextDidBeginEditingNotification() {
 		updateUI(animated: true)
-		
 		hasBeenEdited = true
-		valueChangedAction?(value)
 	}
 	
 	@objc
@@ -91,21 +93,23 @@ internal extension FloatingTextField {
 	func listenToTextField() {
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textFieldTextDidBeginEditingNotification",
+			selector: #selector(textFieldTextDidBeginEditingNotification),
 			name: UITextFieldTextDidBeginEditingNotification,
 			object: textField)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textFieldTextDidChangeNotification",
+			selector: #selector(textFieldTextDidChangeNotification),
 			name: UITextFieldTextDidChangeNotification,
 			object: textField)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textFieldTextDidEndEditingNotification",
+			selector: #selector(textFieldTextDidEndEditingNotification),
 			name: UITextFieldTextDidEndEditingNotification,
 			object: textField)
+		
+		self.addObserver(self, forKeyPath: "textField.text", options: .New, context: &textFieldKVOContext)
 	}
 	
 	func stopListeningToTextField() {
@@ -123,6 +127,24 @@ internal extension FloatingTextField {
 			self,
 			name: UITextFieldTextDidEndEditingNotification,
 			object: textField)
+		
+		self.removeObserver(self, forKeyPath: "textField.text", context: &textFieldKVOContext)
+	}
+	
+}
+
+//MARK: - KVO
+
+public extension FloatingField {
+	
+	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		if context == &textFieldKVOContext
+			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
+		{
+			updateUI(animated: true)
+		} else {
+			super.observeValueForKeyPath(keyPath!, ofObject: object!, change: change!, context: context)
+		}
 	}
 	
 }

@@ -1,7 +1,6 @@
 
 import UIKit
-
-public typealias Closure = () -> Void
+import DropDown
 
 internal enum HelperState {
 	
@@ -156,10 +155,6 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 		}
 	}
 	
-	public var failedValidation: Validation? {
-		return checkValidity(text: "", validations: validations, level: .Error).failedValidation
-	}
-	
 	private var didSetupConstraints = false
 	
 	//MARK: - Init's
@@ -173,7 +168,7 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 		setup()
 	}
 
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 	    super.init(coder: aDecoder)
 		setup()
 	}
@@ -232,14 +227,14 @@ extension FloatingField {
 	}
 	
 	private func setupConstraints() {
-		setTranslatesAutoresizingMaskIntoConstraints(false)
+		translatesAutoresizingMaskIntoConstraints = false
 		
 		// Floating label
 		let floatingLabelContainer = UIView()
 		let views = ["floatingLabel": floatingLabel]
 		
 		floatingLabelContainer.addSubview(floatingLabel)
-		floatingLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		floatingLabel.translatesAutoresizingMaskIntoConstraints = false
 		floatingLabelContainer.addConstraints(format: "V:|[floatingLabel]|", views: views)
 		floatingLabelContainer.addConstraints(format: "H:|[floatingLabel]|", views: views)
 		
@@ -247,11 +242,11 @@ extension FloatingField {
 		let separatorContainer = UIView()
 		separatorContainer.addConstraints(
 			format: "V:[separatorContainer(height)]",
-			metrics: ["height": Constraint.Separator.ActiveHeight],
+			metrics: ["height": Constraints.Separator.ActiveHeight],
 			views: ["separatorContainer": separatorContainer])
 		
 		separatorContainer.addSubview(separatorLine)
-		separatorLine.setTranslatesAutoresizingMaskIntoConstraints(false)
+		separatorLine.translatesAutoresizingMaskIntoConstraints = false
 		separatorContainer.addConstraints(format: "H:|[separatorLine]|", views: ["separatorLine": separatorLine])
 		separatorContainer.addConstraint(NSLayoutConstraint(
 			item: separatorLine,
@@ -268,11 +263,11 @@ extension FloatingField {
 			toItem: nil,
 			attribute: .NotAnAttribute,
 			multiplier: 1,
-			constant: Constraint.Separator.IdleHeight)
+			constant: Constraints.Separator.IdleHeight)
 		separatorLine.addConstraint(separatorLineHeightConstraint)
 		
 		// Helper label
-		helperLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		helperLabel.translatesAutoresizingMaskIntoConstraints = false
 		helperLabelHeightConstraint = NSLayoutConstraint(
 			item: helperLabel,
 			attribute: .Height,
@@ -280,15 +275,15 @@ extension FloatingField {
 			toItem: nil,
 			attribute: .NotAnAttribute,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenHeight)
+			constant: Constraints.Helper.HiddenHeight)
 		helperLabel.addConstraint(helperLabelHeightConstraint)
 		
 		// Global
-		let metrics = ["padding": Constraint.HorizontalPadding]
+		let metrics = ["padding": Constraints.HorizontalPadding]
 		
 		// Horizontal
 		addSubview(floatingLabelContainer)
-		floatingLabelContainer.setTranslatesAutoresizingMaskIntoConstraints(false)
+		floatingLabelContainer.translatesAutoresizingMaskIntoConstraints = false
 		addConstraints(
 			format: "H:|-(padding)-[floatingLabelContainer]-(padding)-|",
 			metrics: metrics,
@@ -297,14 +292,14 @@ extension FloatingField {
 		let inputAsView = input as! UIView
 		
 		addSubview(inputAsView)
-		inputAsView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		inputAsView.translatesAutoresizingMaskIntoConstraints = false
 		addConstraints(
 			format: "H:|-(padding)-[inputAsView]-(padding)-|",
 			metrics: metrics,
 			views: ["inputAsView": inputAsView])
 		
 		addSubview(separatorContainer)
-		separatorContainer.setTranslatesAutoresizingMaskIntoConstraints(false)
+		separatorContainer.translatesAutoresizingMaskIntoConstraints = false
 		addConstraints(
 			format: "H:|-(padding)-[separatorContainer]-(padding)-|",
 			metrics: metrics,
@@ -320,10 +315,10 @@ extension FloatingField {
 		addConstraints(
 			format: "V:|-(labelTopPadding)-[label]-(labelBottomPadding)-[inputAsView]-(fieldBottomPadding)-[separator]-(separatorBottomPadding)-[helper]",
 			metrics: [
-				"labelTopPadding": Constraint.FloatingLabel.TopPadding,
-				"labelBottomPadding": Constraint.FloatingLabel.BottomPadding,
-				"fieldBottomPadding": Constraint.TextField.BottomPadding,
-				"separatorBottomPadding": Constraint.Separator.BottomPadding
+				"labelTopPadding": Constraints.FloatingLabel.TopPadding,
+				"labelBottomPadding": Constraints.FloatingLabel.BottomPadding,
+				"fieldBottomPadding": Constraints.TextField.BottomPadding,
+				"separatorBottomPadding": Constraints.Separator.BottomPadding
 			],
 			views: [
 				"label": floatingLabelContainer,
@@ -338,7 +333,7 @@ extension FloatingField {
 			toItem: helperLabel,
 			attribute: .Bottom,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenBottomPadding)
+			constant: Constraints.Helper.HiddenBottomPadding)
 		addConstraint(helperLabelBottomToSuperviewConstraint)
 	}
 	
@@ -348,7 +343,7 @@ extension FloatingField {
 
 internal extension FloatingField {
 	
-	func updateUI(#animated: Bool) {
+	func updateUI(animated animated: Bool) {
 		/* BEGIN HACK:
 		 * Avoid text in the textfield to jump when edition did finished 
 		 * (Happened only the first time)
@@ -357,7 +352,7 @@ internal extension FloatingField {
 		layoutIfNeeded()
 		/* END HACK */
 		
-		let changes: Closure = { [unowned self] in
+		let changes: Closure = {
 			self.updateGlobalUI()
 			self.updateFloatingLabel()
 			self.updateHelper()
@@ -379,10 +374,10 @@ private extension FloatingField {
 		let separatorColor: UIColor
 		
 		if isEditing {
-			separatorHeight = Constraint.Separator.ActiveHeight
+			separatorHeight = Constraints.Separator.ActiveHeight
 			separatorColor = activeColor
 		} else {
-			separatorHeight = Constraint.Separator.IdleHeight
+			separatorHeight = Constraints.Separator.IdleHeight
 			separatorColor = idleColor
 		}
 		
@@ -415,12 +410,12 @@ private extension FloatingField {
 	func updateHelper() {
 		let validationCheck = checkValidity(text: text, validations: validations, level: nil)
 		
-		if !isEditing && !validationCheck.isValid,
+		if !isEditing && hasBeenEdited && !validationCheck.isValid,
 			let failedValidation = validationCheck.failedValidation
 		{
 			previousHelperState = helperState
 			helperState = HelperState(level: failedValidation.level)
-		} else if validationCheck.isValid {
+		} else if !hasBeenEdited || validationCheck.isValid {
 			previousHelperState = helperState
 			helperState = baseHelperState(helpText)
 		}
@@ -454,16 +449,16 @@ private extension FloatingField {
 			
 			if !isEditing {
 				separatorColor = idleColor
-				separatorHeight = Constraint.Separator.IdleHeight
+				separatorHeight = Constraints.Separator.IdleHeight
 			}
 		case .Error:
 			helperColor = errorColor
 			separatorColor = errorColor
-			separatorHeight = Constraint.Separator.ActiveHeight
+			separatorHeight = Constraints.Separator.ActiveHeight
 		case .Warning:
 			helperColor = warningColor
 			separatorColor = warningColor
-			separatorHeight = Constraint.Separator.ActiveHeight
+			separatorHeight = Constraints.Separator.ActiveHeight
 		case .Hidden:
 			return
 		}
@@ -479,7 +474,7 @@ private extension FloatingField {
 		}
 	}
 	
-	func showHelper(#text: String) {
+	func showHelper(text text: String) {
 		helperLabel.text = text
 		
 		if helperState == previousHelperState {
@@ -489,7 +484,7 @@ private extension FloatingField {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 1
 			self.helperLabel.removeConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.DisplayedBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.DisplayedBottomPadding
 		}
 	}
 	
@@ -501,7 +496,7 @@ private extension FloatingField {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 0
 			self.helperLabel.addConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.HiddenBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.HiddenBottomPadding
 		}
 	}
 	
@@ -512,14 +507,23 @@ private extension FloatingField {
 public extension FloatingField {
 	
 	func contentWidth() -> CGFloat {
-		let padding = Constraint.HorizontalPadding * 2
+		let padding = Constraints.HorizontalPadding * 2
 		input.invalidateIntrinsicContentSize()
 		
 		return max(input.intrinsicContentSize().width + padding, 40)
 	}
 	
 	override func intrinsicContentSize() -> CGSize {
-		return CGSize(width: UIViewNoIntrinsicMetric, height: 73)
+		let floatingLabelHeight = NSString(string: floatingLabel.text ?? "").boundingRectWithSize(
+			CGSize(width: CGFloat.max, height: CGFloat.max),
+			options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+			attributes: [NSFontAttributeName: floatingLabelFont],
+			context: nil).height
+		let textHeight = input.intrinsicContentSize().height
+		let spaces: CGFloat = 40
+		let height = spaces + floatingLabelHeight + textHeight
+		
+		return CGSize(width: UIViewNoIntrinsicMetric, height: height)
 	}
 	
 	override func contentHuggingPriorityForAxis(axis: UILayoutConstraintAxis) -> UILayoutPriority {
@@ -540,7 +544,7 @@ public extension FloatingField {
 		}
 	}
 	
-	override func viewForBaselineLayout() -> UIView? {
+	override func viewForBaselineLayout() -> UIView {
 		return input.viewForBaselineLayout()
 	}
 	
@@ -574,7 +578,7 @@ public extension FloatingField {
 	
 }
 
-internal func checkValidity(#text: String?, #validations: [Validation], #level: ValidationLevel?) -> (isValid: Bool, failedValidation: Validation?) {
+public func checkValidity(text text: String?, validations: [Validation], level: ValidationLevel?) -> (isValid: Bool, failedValidation: Validation?) {
 	for validation in validations {
 		let shouldPassLevelValidation = level == nil
 		let isWantedLevel = validation.level == level
@@ -599,7 +603,7 @@ func baseHelperState(helpText: String?) -> HelperState {
 	}
 }
 
-func helperText(text: String?, helperText: String?, previousHelperState: HelperState) -> String? {
+func helperText(text: String?, _ helperText: String?, _ previousHelperState: HelperState) -> String? {
 	if text != helperText || previousHelperState == .Hidden,
 		let text = text where !text.isEmpty
 	{

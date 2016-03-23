@@ -7,17 +7,21 @@
 //
 
 import UIKit
+import DropDown
 
 public class ComposeFieldsView: UIView, Validatable {
 	
 	//MARK: - Properties
 	
 	//MARK: UI
-	public var contentView: UIView = UIView() {
-		didSet { setupConstraints() }
+	public var contentView: UIView! {
+		didSet {
+			setupConstraints()
+			updateUI(animated: false)
+		}
 	}
 	
-	private var helperLabel: UILabel!
+	private var helperLabel = UILabel()
 	
 	//MARK: Constraints
 	private var helperLabelHeightConstraint: NSLayoutConstraint!
@@ -53,19 +57,18 @@ public class ComposeFieldsView: UIView, Validatable {
 
 private extension ComposeFieldsView {
 	
-	func setupUI() {
-		setupConstraints()
-		updateUI(animated: false)
-	}
-	
 	func setupConstraints() {
 		// Helper label
+		helperLabel.font = FloatingField.appearance().helperFont
+		helperLabel.numberOfLines = HelperLabel.NumberOfLines
+		helperLabel.clipsToBounds = true
+		
 		addSubview(helperLabel)
-		helperLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		helperLabel.translatesAutoresizingMaskIntoConstraints = false
 		
 		addConstraints(
 			format: "H:|-(padding)-[helperLabel]-(padding)-|",
-			metrics: ["padding": Constraint.HorizontalPadding],
+			metrics: ["padding": Constraints.HorizontalPadding],
 			views: ["helperLabel": helperLabel])
 		
 		helperLabelHeightConstraint = NSLayoutConstraint(
@@ -75,7 +78,7 @@ private extension ComposeFieldsView {
 			toItem: nil,
 			attribute: .NotAnAttribute,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenHeight)
+			constant: Constraints.Helper.HiddenHeight)
 		helperLabel.addConstraint(helperLabelHeightConstraint)
 		
 		helperLabelBottomToSuperviewConstraint = NSLayoutConstraint(item: self,
@@ -84,7 +87,7 @@ private extension ComposeFieldsView {
 			toItem: helperLabel,
 			attribute: .Bottom,
 			multiplier: 1,
-			constant: Constraint.Helper.HiddenBottomPadding)
+			constant: Constraints.Helper.HiddenBottomPadding)
 		addConstraint(helperLabelBottomToSuperviewConstraint)
 		
 		// Content view
@@ -93,12 +96,12 @@ private extension ComposeFieldsView {
 	
 	func setupContentViewConstraints() {
 		addSubview(contentView)
-		contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		contentView.translatesAutoresizingMaskIntoConstraints = false
 		
 		addConstraints(format:"H:|[contentView]|", views: ["contentView": contentView])
 		addConstraints(
-			format: "V:|[contentView][helperLabel]|",
-			metrics: ["padding": Constraint.Separator.BottomPadding],
+			format: "V:|[contentView][helperLabel]",
+			metrics: ["padding": Constraints.Separator.BottomPadding],
 			views: [
 				"helperLabel": helperLabel,
 				"contentView": contentView
@@ -111,8 +114,8 @@ private extension ComposeFieldsView {
 
 internal extension ComposeFieldsView {
 	
-	func updateUI(#animated: Bool) {
-		let changes: Closure = { [unowned self] in
+	func updateUI(animated animated: Bool) {
+		let changes: Closure = {
 			self.updateHelper()
 			
 			self.layoutIfNeeded()
@@ -175,7 +178,7 @@ private extension ComposeFieldsView {
 		}
 	}
 	
-	func showHelper(#text: String) {
+	func showHelper(text text: String) {
 		helperLabel.text = text
 		
 		if helperState == previousHelperState {
@@ -185,7 +188,7 @@ private extension ComposeFieldsView {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 1
 			self.helperLabel.removeConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.DisplayedBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.DisplayedBottomPadding
 		}
 	}
 	
@@ -197,7 +200,7 @@ private extension ComposeFieldsView {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 0
 			self.helperLabel.addConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraint.Helper.HiddenBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.HiddenBottomPadding
 		}
 	}
 	

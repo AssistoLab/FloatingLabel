@@ -12,14 +12,16 @@ import UIKit
 
 public extension FloatingField {
 	
-	@IBInspectable var text: String! {
+	@IBInspectable var text: String? {
 		get {
 			return input.__text
 		}
 		set {
-			input.__text = newValue
-			hasBeenEdited = true
-			updateUI(animated: true)
+			if newValue != text {
+				input.__text = newValue
+				hasBeenEdited = true
+				updateUI(animated: true)
+			}
 		}
 	}
 	
@@ -73,6 +75,10 @@ public extension FloatingTextField {
 //MARK: - Responder
 
 public extension FloatingField {
+	
+	override func canBecomeFirstResponder() -> Bool {
+		return input.canBecomeFirstResponder()
+	}
 	
 	override func becomeFirstResponder() -> Bool {
 		return input.becomeFirstResponder()

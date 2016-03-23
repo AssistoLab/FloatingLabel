@@ -14,7 +14,7 @@ public protocol Helpable {
 	
 }
 
-public protocol Validatable: Helpable {
+public protocol Validatable: class, Helpable {
 	
 	var validation: Validation? { get set }
 	var validations: [Validation] { get set }
@@ -26,19 +26,24 @@ public protocol Validatable: Helpable {
 
 public protocol FieldType {
 	
-	typealias T
+	associatedtype T
 	
 	var value: T { get set }
 	var valueChangedAction: ((T) -> Void)? { get set }
 	
 }
 
-public protocol TextFieldType: FieldType {
+public protocol TextFieldType: FieldType, Editable {
 	
-	var text: String! { get set }
-	var isEditing: Bool { get }
+	var text: String? { get set }
 	
 	var value: String? { get set }
 	var valueChangedAction: ((String?) -> Void)? { get set }
+	
+}
+
+public protocol Editable {
+	
+	var isEditing: Bool { get }
 	
 }

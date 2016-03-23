@@ -37,14 +37,14 @@ internal struct HelperLabel {
 internal struct Animation {
 	
 	static let Duration: NSTimeInterval = 0.3
-	static let Options: UIViewAnimationOptions = .BeginFromCurrentState | .AllowUserInteraction | .LayoutSubviews
+	static let Options: UIViewAnimationOptions = [.BeginFromCurrentState, .AllowUserInteraction, .LayoutSubviews]
 	static let FloatingLabelTransform: CGAffineTransform = CGAffineTransformMakeTranslation(0, 10)
 	
 }
 
-internal struct Constraint {
+internal struct Constraints {
 	
-	static let HorizontalPadding: CGFloat = 8
+	static let HorizontalPadding: CGFloat = 10
 	
 	struct FloatingLabel {
 		
@@ -80,6 +80,12 @@ internal struct Constraint {
 		struct Prefix {
 			
 			static let CompressionResistancePriority: Float = 1000
+			static let VerticalHuggingPriority: Float = 0
+			
+		}
+		
+		struct Suffix {
+			
 			static let VerticalHuggingPriority: Float = 0
 			
 		}

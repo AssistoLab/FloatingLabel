@@ -36,13 +36,13 @@ public final class DropDown: UIView {
 	/// The direction where the drop down will show from the `anchorView`.
 	public enum Direction {
 		
-		/// The drop down will show at bottom when possible, otherwise at top if there is more place than at bottom.
+		/// The drop down will show below the anchor view when possible, otherwise above if there is more place than below.
 		case Any
 		
-		/// The drop down will show at top or will not be showed if not enough space at top.
+		/// The drop down will show above the anchor view or will not be showed if not enough space.
 		case Top
 		
-		/// The drop down will show at bottom or will not be showed if not enough space at bottom.
+		/// The drop down will show below or will not be showed if not enough space.
 		case Bottom
 		
 	}
@@ -58,7 +58,7 @@ public final class DropDown: UIView {
 	private let tableView = UITableView()
 	
 	/// The view to which the drop down will displayed onto.
-	public var anchorView: UIView! {
+	public weak var anchorView: UIView? {
 		didSet { setNeedsUpdateConstraints() }
 	}
 	
@@ -117,7 +117,7 @@ public final class DropDown: UIView {
 	
 	Changing the background color automatically reloads the drop down.
 	*/
-	public dynamic var selectionBackgroundColor = UI.SelectionBackgroundColor {
+	public dynamic var selectionBackgroundColor = DPDConstant.UI.SelectionBackgroundColor {
 		didSet { reloadAllComponents() }
 	}
 	
@@ -150,7 +150,20 @@ public final class DropDown: UIView {
 		didSet { reloadAllComponents() }
 	}
 	
-	private var selectedRowIndex: Index = -1
+	/**
+	The localization keys for the data source for the drop down.
+	
+	Changing this value automatically reloads the drop down.
+	This has uses for setting accibility identifiers on the drop down cells (same ones as the localization keys).
+	*/
+	public var localizationKeysDataSource = [String]() {
+		didSet {
+			dataSource = localizationKeysDataSource
+		}
+	}
+	
+	/// The index of the row after its seleciton.
+	private var selectedRowIndex: Index?
 	
 	/**
 	The format for the cells' text.
@@ -163,7 +176,10 @@ public final class DropDown: UIView {
 	}
 	
 	/// The action to execute when the user selects a cell.
-	public var selectionAction: SelectionClosure!
+	public var selectionAction: SelectionClosure?
+	
+	/// The action to execute when the drop down will show.
+	public var willShowAction: Closure?
 	
 	/// The action to execute when the user cancels/hides the drop down.
 	public var cancelAction: Closure?
@@ -172,9 +188,9 @@ public final class DropDown: UIView {
 	public var dismissMode = DismissMode.OnTap {
 		willSet {
 			if newValue == .OnTap {
-				let gestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissableViewTapped")
+				let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissableViewTapped))
 				dismissableView.addGestureRecognizer(gestureRecognizer)
-			} else if let gestureRecognizer = dismissableView.gestureRecognizers?.first as? UIGestureRecognizer {
+			} else if let gestureRecognizer = dismissableView.gestureRecognizers?.first {
 				dismissableView.removeGestureRecognizer(gestureRecognizer)
 			}
 		}
@@ -194,47 +210,45 @@ public final class DropDown: UIView {
 	
 	/**
 	Creates a new instance of a drop down.
-	Don't forget to setup the `dataSource`, 
-	the `anchorView` and the `selectionAction` 
+	Don't forget to setup the `dataSource`,
+	the `anchorView` and the `selectionAction`
 	at least before calling `show()`.
 	*/
-	convenience init() {
+	public convenience init() {
 		self.init(frame: CGRectZero)
 	}
 	
 	/**
 	Creates a new instance of a drop down.
 	
-	:param: dataSource        The data source for the drop down.
-	:param: anchorView        The view to which the drop down will displayed onto.
-	:param: offset            The offset point relative to `anchorView`.
-	:param: cellConfiguration The format for the cells' text.
-	:param: selectionAction   The action to execute when the user selects a cell.
-	:param: cancelAction      The action to execute when the user cancels/hides the drop down.
+	- parameter anchorView:        The view to which the drop down will displayed onto.
+	- parameter selectionAction:   The action to execute when the user selects a cell.
+	- parameter dataSource:        The data source for the drop down.
+	- parameter topOffset:         The offset point relative to `anchorView` used when drop down is displayed on above the anchor view.
+	- parameter bottomOffset:      The offset point relative to `anchorView` used when drop down is displayed on below the anchor view.
+	- parameter cellConfiguration: The format for the cells' text.
+	- parameter cancelAction:      The action to execute when the user cancels/hides the drop down.
 	
-	:returns: A new instance of a drop down customized with the above parameters.
+	- returns: A new instance of a drop down customized with the above parameters.
 	*/
-	convenience init(dataSource: [String], anchorView: UIView? = nil, topOffset: CGPoint? = nil, bottomOffset: CGPoint? = nil, cellConfiguration: ConfigurationClosure? = nil, selectionAction: SelectionClosure, cancelAction: Closure? = nil) {
-		self.init()
+	public convenience init(anchorView: UIView, selectionAction: SelectionClosure? = nil, dataSource: [String] = [], topOffset: CGPoint? = nil, bottomOffset: CGPoint? = nil, cellConfiguration: ConfigurationClosure? = nil, cancelAction: Closure? = nil) {
+		self.init(frame: CGRectZero)
 		
-		if let anchorView = anchorView {
-			self.anchorView = anchorView
-		}
-		
+		self.anchorView = anchorView
+		self.selectionAction = selectionAction
 		self.dataSource = dataSource
 		self.topOffset = topOffset ?? CGPointZero
 		self.bottomOffset = bottomOffset ?? CGPointZero
-		self.selectionAction = selectionAction
 		self.cellConfiguration = cellConfiguration
 		self.cancelAction = cancelAction
 	}
 	
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		setup()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
 	}
@@ -254,25 +268,27 @@ private extension DropDown {
 		tableView.delegate = self
 		tableView.dataSource = self
 		
-		tableView.registerNib(DropDownCell.Nib, forCellReuseIdentifier: ReusableIdentifier.DropDownCell)
+		tableView.registerNib(DropDownCell.Nib, forCellReuseIdentifier: DPDConstant.ReusableIdentifier.DropDownCell)
 		
 		startListeningToKeyboard()
+		
+		accessibilityIdentifier = "drop_down"
 	}
 	
 	func setupUI() {
 		super.backgroundColor = UIColor.clearColor()
 		
 		tableViewContainer.layer.masksToBounds = false
-		tableViewContainer.layer.cornerRadius = UI.CornerRadius
-		tableViewContainer.layer.shadowColor = UI.Shadow.Color
-		tableViewContainer.layer.shadowOffset = UI.Shadow.Offset
-		tableViewContainer.layer.shadowOpacity = UI.Shadow.Opacity
-		tableViewContainer.layer.shadowRadius = UI.Shadow.Radius
+		tableViewContainer.layer.cornerRadius = DPDConstant.UI.CornerRadius
+		tableViewContainer.layer.shadowColor = DPDConstant.UI.Shadow.Color
+		tableViewContainer.layer.shadowOffset = DPDConstant.UI.Shadow.Offset
+		tableViewContainer.layer.shadowOpacity = DPDConstant.UI.Shadow.Opacity
+		tableViewContainer.layer.shadowRadius = DPDConstant.UI.Shadow.Radius
 		
-		backgroundColor = UI.BackgroundColor
-		tableView.rowHeight = UI.RowHeight
-		tableView.separatorColor = UI.SeparatorColor
-		tableView.layer.cornerRadius = UI.CornerRadius
+		backgroundColor = DPDConstant.UI.BackgroundColor
+		tableView.rowHeight = DPDConstant.UI.RowHeight
+		tableView.separatorColor = DPDConstant.UI.SeparatorColor
+		tableView.layer.cornerRadius = DPDConstant.UI.CornerRadius
 		tableView.layer.masksToBounds = true
 		
 		setHiddentState()
@@ -316,18 +332,18 @@ extension DropDown {
 	}
 	
 	private func setupConstraints() {
-		setTranslatesAutoresizingMaskIntoConstraints(false)
+		translatesAutoresizingMaskIntoConstraints = false
 		
 		// Dismissable view
 		addSubview(dismissableView)
-		dismissableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		dismissableView.translatesAutoresizingMaskIntoConstraints = false
 		
 		addUniversalConstraints(format: "|[dismissableView]|", views: ["dismissableView": dismissableView])
 		
 		
 		// Table view container
 		addSubview(tableViewContainer)
-		tableViewContainer.setTranslatesAutoresizingMaskIntoConstraints(false)
+		tableViewContainer.translatesAutoresizingMaskIntoConstraints = false
 		
 		xConstraint = NSLayoutConstraint(
 			item: tableViewContainer,
@@ -371,7 +387,7 @@ extension DropDown {
 		
 		// Table view
 		tableViewContainer.addSubview(tableView)
-		tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		tableView.translatesAutoresizingMaskIntoConstraints = false
 		
 		tableViewContainer.addUniversalConstraints(format: "|[tableView]|", views: ["tableView": tableView])
 	}
@@ -420,7 +436,7 @@ extension DropDown {
 		return (layout.x, layout.y, layout.width, layout.offscreenHeight, visibleHeight, canBeDisplayed, direction)
 	}
 	
-	private func computeLayoutBottomDisplay(#window: UIWindow) -> ComputeLayoutTuple {
+	private func computeLayoutBottomDisplay(window window: UIWindow) -> ComputeLayoutTuple {
 		var offscreenHeight: CGFloat = 0
 		
 		let anchorViewX = (anchorView?.windowFrame?.minX ?? 0)
@@ -430,10 +446,10 @@ extension DropDown {
 		let y = anchorViewY + bottomOffset.y
 		
 		let maxY = y + tableHeight
-		let windowMaxY = window.bounds.maxY - UI.HeightPadding
+		let windowMaxY = window.bounds.maxY - DPDConstant.UI.HeightPadding
 		
 		let keyboardListener = KeyboardListener.sharedInstance
-		let keyboardMinY = keyboardListener.keyboardFrame.minY - UI.HeightPadding
+		let keyboardMinY = keyboardListener.keyboardFrame.minY - DPDConstant.UI.HeightPadding
 		
 		if keyboardListener.isVisible && maxY > keyboardMinY {
 			offscreenHeight = abs(maxY - keyboardMinY)
@@ -446,19 +462,20 @@ extension DropDown {
 		return (x, y, width, offscreenHeight)
 	}
 	
-	private func computeLayoutForTopDisplay(#window: UIWindow) -> ComputeLayoutTuple {
+	private func computeLayoutForTopDisplay(window window: UIWindow) -> ComputeLayoutTuple {
 		var offscreenHeight: CGFloat = 0
 		
 		let anchorViewX = (anchorView?.windowFrame?.minX ?? 0)
 		let anchorViewMaxY = (anchorView?.windowFrame?.maxY ?? 0)
 		
 		let x = anchorViewX + topOffset.x
-		let y = (anchorViewMaxY + topOffset.y) - tableHeight
+		var y = (anchorViewMaxY + topOffset.y) - tableHeight
 		
-		let windowY = window.bounds.minY + UI.HeightPadding
+		let windowY = window.bounds.minY + DPDConstant.UI.HeightPadding
 		
 		if y < windowY {
 			offscreenHeight = abs(y - windowY)
+			y = windowY
 		}
 		
 		let width = self.width ?? (anchorView?.bounds.width ?? 0) - topOffset.x
@@ -475,7 +492,7 @@ extension DropDown {
 	/**
 	Shows the drop down if enough height.
 	
-	:returns: Wether it succeed and how much height is needed to display all cells at once.
+	- returns: Wether it succeed and how much height is needed to display all cells at once.
 	*/
 	public func show() -> (canBeDisplayed: Bool, offscreenHeight: CGFloat?) {
 		if self == DropDown.VisibleDropDown {
@@ -486,6 +503,8 @@ extension DropDown {
 			visibleDropDown.cancel()
 		}
 		
+		willShowAction?()
+		
 		DropDown.VisibleDropDown = self
 		
 		setNeedsUpdateConstraints()
@@ -494,7 +513,7 @@ extension DropDown {
 		visibleWindow?.addSubview(self)
 		visibleWindow?.bringSubviewToFront(self)
 		
-		self.setTranslatesAutoresizingMaskIntoConstraints(false)
+		self.translatesAutoresizingMaskIntoConstraints = false
 		visibleWindow?.addUniversalConstraints(format: "|[dropDown]|", views: ["dropDown": self])
 		
 		let layout = computeLayout()
@@ -505,12 +524,12 @@ extension DropDown {
 		}
 		
 		hidden = false
-		tableViewContainer.transform = Animation.DownScaleTransform
+		tableViewContainer.transform = DPDConstant.Animation.DownScaleTransform
 		
 		UIView.animateWithDuration(
-			Animation.Duration,
+			DPDConstant.Animation.Duration,
 			delay: 0,
-			options: Animation.EntranceOptions,
+			options: DPDConstant.Animation.EntranceOptions,
 			animations: { [unowned self] in
 				self.setShowedState()
 			},
@@ -525,8 +544,8 @@ extension DropDown {
 	public func hide() {
 		if self == DropDown.VisibleDropDown {
 			/*
-			If one drop down is showed and another one is not 
-			but we call `hide()` on the hidden one: 
+			If one drop down is showed and another one is not
+			but we call `hide()` on the hidden one:
 			we don't want it to set the `VisibleDropDown` to nil.
 			*/
 			DropDown.VisibleDropDown = nil
@@ -537,9 +556,9 @@ extension DropDown {
 		}
 		
 		UIView.animateWithDuration(
-			Animation.Duration,
+			DPDConstant.Animation.Duration,
 			delay: 0,
-			options: Animation.ExitOptions,
+			options: DPDConstant.Animation.ExitOptions,
 			animations: { [unowned self] in
 				self.setHiddentState()
 			},
@@ -582,27 +601,39 @@ extension DropDown {
 	}
 	
 	/// (Pre)selects a row at a certain index.
-	public func selectRowAtIndex(index: Index) {
-		selectedRowIndex = index
+	public func selectRowAtIndex(index: Index?) {
+		if let index = index {
+			tableView.selectRowAtIndexPath(
+				NSIndexPath(forRow: index, inSection: 0),
+				animated: false,
+				scrollPosition: .Middle)
+		} else {
+			deselectRowAtIndexPath(selectedRowIndex)
+		}
 		
-		tableView.selectRowAtIndexPath(
-			NSIndexPath(forRow: index, inSection: 0),
-			animated: false,
-			scrollPosition: .Middle)
+		selectedRowIndex = index
+	}
+	
+	public func deselectRowAtIndexPath(index: Index?) {
+		selectedRowIndex = nil
+		
+		guard let index = index
+			where index > 0 
+			else { return }
+		
+		tableView.deselectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: true)
 	}
 	
 	/// Returns the index of the selected row.
-	public func indexForSelectedRow() -> Index? {
-		return tableView.indexPathForSelectedRow()?.row
+	public var indexForSelectedRow: Index? {
+		return tableView.indexPathForSelectedRow?.row
 	}
 	
 	/// Returns the selected item.
-	public func selectedItem() -> String? {
-		if let row = tableView.indexPathForSelectedRow()?.row {
-			return dataSource[row]
-		} else {
-			return nil
-		}
+	public var selectedItem: String? {
+		guard let row = tableView.indexPathForSelectedRow?.row else { return nil }
+		
+		return dataSource[row]
 	}
 	
 	/// Returns the height needed to display all cells.
@@ -621,17 +652,21 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(ReusableIdentifier.DropDownCell, forIndexPath: indexPath) as! DropDownCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(DPDConstant.ReusableIdentifier.DropDownCell, forIndexPath: indexPath) as! DropDownCell
+		let index = indexPath.row
 		
+		if index >= 0 && index < localizationKeysDataSource.count {
+			cell.accessibilityIdentifier = localizationKeysDataSource[index]
+		}
+	
 		cell.optionLabel.textColor = textColor
 		cell.optionLabel.font = textFont
 		cell.selectedBackgroundColor = selectionBackgroundColor
 		
 		if let cellConfiguration = cellConfiguration {
-			let index = indexPath.row
 			cell.optionLabel.text = cellConfiguration(index, dataSource[index])
 		} else {
-			cell.optionLabel.text = dataSource[indexPath.row]
+			cell.optionLabel.text = dataSource[index]
 		}
 		
 		return cell
@@ -643,7 +678,7 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		selectedRowIndex = indexPath.row
-		selectionAction(selectedRowIndex, dataSource[selectedRowIndex])
+		selectionAction?(selectedRowIndex!, dataSource[selectedRowIndex!])
 		hide()
 	}
 	
@@ -688,13 +723,13 @@ extension DropDown {
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "keyboardUpdate",
-			name: UIKeyboardDidShowNotification,
+			selector: #selector(keyboardUpdate),
+			name: UIKeyboardWillShowNotification,
 			object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "keyboardUpdate",
-			name: UIKeyboardDidHideNotification,
+			selector: #selector(keyboardUpdate),
+			name: UIKeyboardWillHideNotification,
 			object: nil)
 	}
 	

@@ -7,30 +7,26 @@
 //
 
 import UIKit
+import DropDown
 
 public class FloatingFieldCollectionViewCell: UICollectionViewCell {
 	
 	//MARK: - Properties
 	
-	public var field: UIView = UIView() {
-		didSet {
-			oldValue.removeFromSuperview()
-			setupConstraints()
-		}
-	}
+	public var field: UIView!
 	
 }
 
 //MARK: - UI
 
-private extension FloatingFieldCollectionViewCell {
+public extension FloatingFieldCollectionViewCell {
 	
 	func setupConstraints() {
-		// Helper label
-		contentView.addSubview(field)
-		field.setTranslatesAutoresizingMaskIntoConstraints(false)
+		field.translatesAutoresizingMaskIntoConstraints = false
 		
-		addUniversalConstraints(format: "|[field]|", views: ["field": field])
+		// Not constraint to the bottom of the cell to avoid glitch when animating cell to show/hide helper text
+		addConstraints(format: "H:|[field]|", views: ["field": field])
+		addConstraints(format: "V:|[field]", views: ["field": field])
 	}
 	
 }

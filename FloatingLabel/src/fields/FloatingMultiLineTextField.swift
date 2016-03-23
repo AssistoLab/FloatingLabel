@@ -48,7 +48,7 @@ public class FloatingMultiLineTextField: FloatingField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -76,12 +76,16 @@ internal extension FloatingMultiLineTextField {
 
 //MARK: - TextView
 
+private var textViewKVOContext = 0
+
 internal extension FloatingMultiLineTextField {
 	
 	@objc
 	func textViewTextDidChangeNotification() {
-		textView.setContentOffset(CGPointZero, animated: true)
 		updateUI(animated: true)
+		textView.setContentOffset(CGPointZero, animated: true)
+		
+		valueChangedAction?(value)
 	}
 	
 	@objc
@@ -89,7 +93,6 @@ internal extension FloatingMultiLineTextField {
 		updateUI(animated: true)
 		
 		hasBeenEdited = true
-		valueChangedAction?(value)
 	}
 	
 	@objc
@@ -102,21 +105,23 @@ internal extension FloatingMultiLineTextField {
 	func listenToTextView() {
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidBeginEditingNotification",
+			selector: #selector(textViewTextDidBeginEditingNotification),
 			name: UITextViewTextDidBeginEditingNotification,
 			object: textView)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidChangeNotification",
+			selector: #selector(textViewTextDidChangeNotification),
 			name: UITextViewTextDidChangeNotification,
 			object: textView)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidEndEditingNotification",
+			selector: #selector(textViewTextDidEndEditingNotification),
 			name: UITextViewTextDidEndEditingNotification,
 			object: textView)
+		
+		self.addObserver(self, forKeyPath: "textView.text", options: .New, context: &textViewKVOContext)
 	}
 	
 	func stopListeningToTextView() {
@@ -134,6 +139,24 @@ internal extension FloatingMultiLineTextField {
 			self,
 			name: UITextViewTextDidEndEditingNotification,
 			object: textView)
+
+		self.removeObserver(self, forKeyPath: "textView.text", context: &textViewKVOContext)
+	}
+	
+}
+
+//MARK: - KVO
+
+public extension FloatingMultiLineTextField {
+	
+	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		if context == &textViewKVOContext
+			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
+		{
+			updateUI(animated: true)
+		} else {
+			super.observeValueForKeyPath(keyPath!, ofObject: object!, change: change!, context: context)
+		}
 	}
 	
 }

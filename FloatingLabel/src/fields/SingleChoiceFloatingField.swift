@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 @IBDesignable
 public class SingleChoiceFloatingField: UIView, FieldType {
@@ -15,7 +16,7 @@ public class SingleChoiceFloatingField: UIView, FieldType {
 	
 	//MARK: UI
 	private let choiceLabel = UILabel()
-	private let choiceSwitch = UISwitch()
+	internal let choiceSwitch = UISwitch()
 	
 	//MARK: Appearance
 	@IBInspectable public dynamic var activeColor: UIColor = UIColor.blueColor() {
@@ -56,7 +57,7 @@ public class SingleChoiceFloatingField: UIView, FieldType {
 		setup()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
 	}
@@ -69,7 +70,7 @@ private extension SingleChoiceFloatingField {
 	
 	func setup() {
 		setupUI()
-		choiceSwitch.addTarget(self, action: "switchValueChanged", forControlEvents: .ValueChanged)
+		choiceSwitch.addTarget(self, action: #selector(switchValueChanged), forControlEvents: .ValueChanged)
 	}
 	
 }
@@ -105,14 +106,14 @@ extension SingleChoiceFloatingField {
 		addSubview(choiceLabel)
 		addSubview(choiceSwitch)
 		
-		choiceLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-		choiceSwitch.setTranslatesAutoresizingMaskIntoConstraints(false)
+		choiceLabel.translatesAutoresizingMaskIntoConstraints = false
+		choiceSwitch.translatesAutoresizingMaskIntoConstraints = false
 		
-		let verticalMetrics = ["padding": Constraint.SingleChoiceField.VerticalPadding]
+		let verticalMetrics = ["padding": Constraints.SingleChoiceField.VerticalPadding]
 		
 		addConstraints(
 			format: "H:|-(padding)-[choiceLabel]-(padding)-[choiceSwitch]-(padding)-|",
-			metrics: ["padding": Constraint.HorizontalPadding],
+			metrics: ["padding": Constraints.HorizontalPadding],
 			views: [
 				"choiceLabel": choiceLabel,
 				"choiceSwitch": choiceSwitch
@@ -128,7 +129,7 @@ extension SingleChoiceFloatingField {
 			metrics: verticalMetrics,
 			views: ["choiceSwitch": choiceSwitch])
 		
-		choiceSwitch.setContentCompressionResistancePriority(Constraint.SingleChoiceField.SwitchCompressionResistancePriority, forAxis: .Horizontal)
+		choiceSwitch.setContentCompressionResistancePriority(Constraints.SingleChoiceField.SwitchCompressionResistancePriority, forAxis: .Horizontal)
 	}
 	
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 public class ActionFloatingField: FloatingTextField {
 	
@@ -29,7 +30,7 @@ public class ActionFloatingField: FloatingTextField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -54,6 +55,14 @@ extension ActionFloatingField: UITextFieldDelegate {
 	
 	public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
 		action()
+		return false
+	}
+	
+	public override func canBecomeFirstResponder() -> Bool {
+		return false
+	}
+	
+	public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
 		return false
 	}
 	

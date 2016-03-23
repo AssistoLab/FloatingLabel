@@ -33,7 +33,7 @@ public class DateFloatingField: FloatingTextField {
 		setupUI()
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setupUI()
 	}
@@ -59,11 +59,8 @@ private extension DateFloatingField {
 		rightView = UIImageView(image: Icon.Arrow.image().template())
 		rightViewMode = .Always
 		
-		picker.addTarget(self, action: "dateChanged", forControlEvents: .ValueChanged)
+		picker.addTarget(self, action: #selector(dateChanged), forControlEvents: .ValueChanged)
 		inputView = picker
-		
-		textField.disableEditionByUser()
-		textField.delegate = self
 	}
 	
 	@objc

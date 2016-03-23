@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 internal extension UIView {
 	
@@ -19,7 +20,7 @@ internal extension UIView {
 	}
 	
 	private func findSuperviewOfClass(viewClass: AnyClass) -> UIView? {
-		var view = superview
+		var view = self.superview
 		
 		while let superview = view where !superview.isKindOfClass(viewClass) {
 			view = view?.superview
@@ -43,6 +44,21 @@ internal extension UIView {
 		} else {
 			batchUpdates()
 		}
+	}
+	
+}
+
+//MARK: - Constraints
+
+internal extension UIView {
+	
+	func addConstraints(format format: String, options: NSLayoutFormatOptions = [], metrics: [String: AnyObject]? = nil, views: [String: UIView]) {
+		addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: options, metrics: metrics, views: views))
+	}
+	
+	func addUniversalConstraints(format format: String, options: NSLayoutFormatOptions = [], metrics: [String: AnyObject]? = nil, views: [String: UIView]) {
+		addConstraints(format: "H:\(format)", options: options, metrics: metrics, views: views)
+		addConstraints(format: "V:\(format)", options: options, metrics: metrics, views: views)
 	}
 	
 }

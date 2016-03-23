@@ -12,7 +12,7 @@ public typealias ValidationClosure = (String) -> Bool
 
 public struct Validation {
 	
-	public static var messages = [ValidationType: (String, ValidationLevel)]()
+	public static var messages = [ValidationType: (message: String, level: ValidationLevel)]()
 	public static var evaluations = [ValidationType: ValidationClosure]()
 	
 	public let type: ValidationType
@@ -50,6 +50,10 @@ public struct Validation {
 		self.__level = level
 	}
 	
+	init(_ customClosure: ValidationClosure, message: String? = nil, level: ValidationLevel? = .Error) {
+		self.init(.Custom(customClosure), message: message, level: level)
+	}
+	
 	public func isValid(text: String) -> Bool {
 		if let evaluation = Validation.evaluations[type] {
 			return evaluation(text)
@@ -77,11 +81,11 @@ public enum ValidationType {
 			}
 		case .EmailAddress:
 			return { (text) in
-				return DataValidationHelper.isAddressEmailValid(text)
+				return text.isEmpty || DataValidationHelper.isAddressEmailValid(text)
 			}
 		case .PhoneNumber:
 			return { (text) in
-				return DataValidationHelper.isPhoneNumberValid(text)
+				return text.isEmpty || DataValidationHelper.isPhoneNumberValid(text)
 			}
 		case let .Custom(closure):
 			return closure
@@ -102,7 +106,7 @@ extension ValidationType: Hashable {
 			return 2
 		case .PhoneNumber:
 			return 3
-		case let .Custom(_):
+		case .Custom(_):
 			return 4
 		}
 	}

@@ -93,7 +93,7 @@ class TableViewController: UITableViewController {
 		}
 		
 		actionField.action = { [unowned self] in
-			self.actionField.text = "Click count: \(++Static.counter)"
+			self.actionField.text = "Click count: \(Static.counter + 1)"
 		}
 	}
 	
@@ -105,7 +105,8 @@ class TableViewController: UITableViewController {
 		}
 		
 		phoneField.prefixHandler = { [unowned self] in
-			self.phoneField.prefix = "+\(Static.counter++)"
+			self.phoneField.prefix = "+\(Static.counter)"
+			Static.counter += 1
 		}
 	}
 	

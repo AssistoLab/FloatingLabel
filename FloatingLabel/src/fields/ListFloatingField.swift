@@ -16,12 +16,38 @@ public class ListFloatingField: ActionFloatingField {
 	//MARK: UI
 	private let dropDown = DropDown()
 	
-	private var kvoContext: UInt8 = 1
-	
 	//MARK: Content
 	public var dataSource: [String] {
 		get { return dropDown.dataSource }
 		set { dropDown.dataSource = newValue }
+	}
+	
+	/**
+	The localization keys for the data source for the drop down.
+	
+	Changing this value automatically reloads the drop down.
+	This has uses for setting accibility identifiers on the drop down cells (same ones as the localization keys).
+	*/
+	public var localizationKeysDataSource: [String] {
+		get { return dropDown.localizationKeysDataSource }
+		set { dropDown.localizationKeysDataSource = newValue }
+	}
+	
+	public var selectedItem: String?
+	
+	public var selectedRow: Index? {
+		get {
+			return dropDown.indexForSelectedRow
+		}
+		set {
+			if let newValue = newValue
+				where newValue >= 0 && newValue < dataSource.count
+			{
+				dropDown.selectRowAtIndex(newValue)
+			} else {
+				dropDown.deselectRowAtIndexPath(newValue)
+			}
+		}
 	}
 	
 	public override var isEditing: Bool {
@@ -30,6 +56,12 @@ public class ListFloatingField: ActionFloatingField {
 	
 	private var editing = false {
 		didSet { updateUI(animated: true) }
+	}
+	
+	public var willShowAction: Closure? {
+		willSet {
+			dropDown.willShowAction = newValue
+		}
 	}
 	
 	//MARK: - Init's
@@ -42,7 +74,7 @@ public class ListFloatingField: ActionFloatingField {
 		super.init(frame: frame)
 	}
 	
-	required public init(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
@@ -61,11 +93,16 @@ extension ListFloatingField {
 		setNeedsUpdateConstraints()
 		
 		dropDown.anchorView = self
-		dropDown.topOffset = CGPoint(x: Constraint.HorizontalPadding, y: -bounds.height)
+		dropDown.topOffset = CGPoint(x: Constraints.HorizontalPadding, y: -bounds.height)
 		
 		dropDown.selectionAction = { [unowned self] (index, item) in
 			self.editing = false
+			
+			self.selectedItem = item
+			self.selectedRow = index
 			self.text = item
+			
+			self.valueChangedAction?(item)
 		}
 		
 		dropDown.cancelAction = { [unowned self] in
@@ -84,15 +121,15 @@ extension ListFloatingField {
 
 extension ListFloatingField {
 	
-	public override func layoutSubviews() {
-		super.layoutSubviews()
+	public override func layoutSublayersOfLayer(layer: CALayer) {
+		super.layoutSublayersOfLayer(layer)
 		
 		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).minY - 1
-		dropDown.bottomOffset = CGPoint(x: Constraint.HorizontalPadding, y: separatorLineMinY)
+		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMinY)
 		dropDown.width = separatorLine.bounds.width
 	}
 	
-	override func updateUI(#animated: Bool) {
+	override func updateUI(animated animated: Bool) {
 		super.updateUI(animated: animated)
 		
 		if isFloatingLabelDisplayed {

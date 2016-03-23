@@ -31,11 +31,15 @@ internal extension DropDownCell {
 	}
 	
 	override var selected: Bool {
-		willSet { setSelected(newValue, animated: false) }
+		willSet {
+			setSelected(newValue, animated: false)
+		}
 	}
 	
 	override var highlighted: Bool {
-		willSet { setSelected(newValue, animated: false) }
+		willSet {
+			setSelected(newValue, animated: false)
+		}
 	}
 	
 	override func setHighlighted(highlighted: Bool, animated: Bool) {

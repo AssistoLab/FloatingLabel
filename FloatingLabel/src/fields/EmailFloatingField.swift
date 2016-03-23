@@ -13,10 +13,10 @@ public class EmailFloatingField: FloatingTextField {
 	override internal func setup() {
 		super.setup()
 		
-		textField.keyboardType = .EmailAddress
-		textField.autocapitalizationType = .None
-		textField.autocorrectionType = .No
-		textField.spellCheckingType = .No
+		keyboardType = .EmailAddress
+		autocapitalizationType = .None
+		autocorrectionType = .No
+		spellCheckingType = .No
 		
 		validation = Validation(.EmailAddress)
 	}

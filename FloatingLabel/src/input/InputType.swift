@@ -12,7 +12,7 @@ internal protocol InputType {
 	
 	//HACK: doesn't work without the leadings "__". It's a weird compilator bug.
 	
-	var __text: String! { get set }
+	var __text: String? { get set }
 	var __placeholder: String? { get set }
 	var __editing: Bool { get }
 	var __isEmpty: Bool { get }
@@ -31,10 +31,11 @@ internal protocol InputType {
 	var __enablesReturnKeyAutomatically: Bool { get set }
 	var __secureTextEntry: Bool { get set }
 	
-	func viewForBaselineLayout() -> UIView?
+	func viewForBaselineLayout() -> UIView
 	func intrinsicContentSize() -> CGSize
 	func invalidateIntrinsicContentSize()
 	func sizeToFit()
+	func canBecomeFirstResponder() -> Bool
 	func becomeFirstResponder() -> Bool
 	func resignFirstResponder() -> Bool
 	func isFirstResponder() -> Bool
@@ -44,7 +45,7 @@ internal protocol InputType {
 
 extension FloatingFieldTextField: InputType {
 	
-	var __text: String! {
+	var __text: String? {
 		get { return text }
 		set { text = newValue }
 	}
@@ -131,7 +132,7 @@ extension FloatingFieldTextField: InputType {
 
 extension FloatingFieldTextView: InputType {
 	
-	var __text: String! {
+	var __text: String? {
 		get { return text }
 		set { text = newValue }
 	}
