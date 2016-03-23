@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 internal func applyChanges(changes: Closure, _ animated: Bool, _ completion: Closure? = nil) {
 	dispatch_async(dispatch_get_main_queue()) {

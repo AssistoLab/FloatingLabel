@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 public class FloatingFieldCollectionViewCell: UICollectionViewCell {
 	

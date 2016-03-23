@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DropDown
 
 @IBDesignable
 public class PhoneFloatingField: UIView, TextFieldType, Validatable {

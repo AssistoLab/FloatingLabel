@@ -1,0 +1,10 @@
+PODS:
+  - DropDown (0.1.5)
+
+DEPENDENCIES:
+  - DropDown
+
+SPEC CHECKSUMS:
+  DropDown: addffd49f2a014e079ed854adcb3c5473c1ebdf2
+
+COCOAPODS: 0.39.0

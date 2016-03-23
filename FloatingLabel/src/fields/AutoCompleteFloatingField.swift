@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import DropDown
+
+private let HeightPadding: CGFloat = 20
+private let RowHeight: CGFloat = 44
 
 public class AutoCompleteFloatingField: FloatingTextField {
 	
@@ -108,7 +112,7 @@ internal extension AutoCompleteFloatingField {
 internal extension AutoCompleteFloatingField {
 	
 	var maxHeightForDisplay: CGFloat {
-		return (DPDConstant.UI.RowHeight * CGFloat(maxDisplayedItems!)) + DPDConstant.UI.HeightPadding
+		return (RowHeight * CGFloat(maxDisplayedItems!)) + HeightPadding
 	}
 	
 	func showDropDown() {
