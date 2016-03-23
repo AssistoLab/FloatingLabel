@@ -85,7 +85,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/DropDown.framework"
+  install_framework "Pods/SZTextView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/DropDown.framework"
+  install_framework "Pods/SZTextView.framework"
 fi

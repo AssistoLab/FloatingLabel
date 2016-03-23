@@ -41,7 +41,6 @@
 		0ADFC9011B74F95D0072E63F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE045ED1B4FAFFE001F8100 /* LaunchScreen.xib */; };
 		0AE6D8AD1B7A0BA500BA9D61 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8AC1B7A0BA500BA9D61 /* Array+Extension.swift */; };
 		0AE6D8B01B7A12A400BA9D61 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8AF1B7A12A400BA9D61 /* UIView+Extension.swift */; };
-		0AE6D8BA1B7A356A00BA9D61 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8B71B7A356A00BA9D61 /* SZTextView.m */; };
 		0AE6D8C01B7AA25200BA9D61 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8BF1B7AA25200BA9D61 /* TableViewController.swift */; };
 		39A980554197CBC5439C603B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AC830D706F9246F82C1846 /* Pods.framework */; };
 		E8B0A8041CA2EAEA0068C662 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8B0A8031CA2EAEA0068C662 /* Images.xcassets */; };
@@ -87,7 +86,6 @@
 		0ADFC8DB1B74F8960072E63F /* FloatingFieldTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingFieldTextField.swift; sourceTree = "<group>"; };
 		0ADFC8DC1B74F8960072E63F /* FloatingFieldTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingFieldTextView.swift; sourceTree = "<group>"; };
 		0ADFC8DD1B74F8960072E63F /* InputType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputType.swift; sourceTree = "<group>"; };
-		0ADFC8DF1B74F8960072E63F /* FloatingLabel-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FloatingLabel-Bridging-Header.h"; sourceTree = "<group>"; };
 		0ADFC8E01B74F8960072E63F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AE045DF1B4FAFFE001F8100 /* FloatingLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AE045E91B4FAFFE001F8100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,10 +95,6 @@
 		0AE045FA1B4FAFFE001F8100 /* FloatingLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingLabelTests.swift; sourceTree = "<group>"; };
 		0AE6D8AC1B7A0BA500BA9D61 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		0AE6D8AF1B7A12A400BA9D61 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		0AE6D8B61B7A356A00BA9D61 /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTextView.h; sourceTree = "<group>"; };
-		0AE6D8B71B7A356A00BA9D61 /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTextView.m; sourceTree = "<group>"; };
-		0AE6D8B81B7A356A00BA9D61 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		0AE6D8B91B7A356A00BA9D61 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0AE6D8BF1B7AA25200BA9D61 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		579A3D9C86E6213EBDE7672B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		73AC830D706F9246F82C1846 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,7 +212,6 @@
 		0ADFC8DE1B74F8960072E63F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0ADFC8DF1B74F8960072E63F /* FloatingLabel-Bridging-Header.h */,
 				0ADFC8E01B74F8960072E63F /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -248,7 +241,6 @@
 		0AE045E11B4FAFFE001F8100 /* FloatingLabel */ = {
 			isa = PBXGroup;
 			children = (
-				0AE6D8B31B7A356A00BA9D61 /* 3rd party */,
 				0ADFC8B91B74F8960072E63F /* demo */,
 				0ADFC8C11B74F8960072E63F /* src */,
 				0ADFC8DE1B74F8960072E63F /* Supporting Files */,
@@ -271,33 +263,6 @@
 				0AE045F91B4FAFFE001F8100 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		0AE6D8B31B7A356A00BA9D61 /* 3rd party */ = {
-			isa = PBXGroup;
-			children = (
-				0AE6D8B41B7A356A00BA9D61 /* SZTextView */,
-			);
-			path = "3rd party";
-			sourceTree = "<group>";
-		};
-		0AE6D8B41B7A356A00BA9D61 /* SZTextView */ = {
-			isa = PBXGroup;
-			children = (
-				0AE6D8B51B7A356A00BA9D61 /* Classes */,
-				0AE6D8B81B7A356A00BA9D61 /* LICENSE */,
-				0AE6D8B91B7A356A00BA9D61 /* README.md */,
-			);
-			path = SZTextView;
-			sourceTree = "<group>";
-		};
-		0AE6D8B51B7A356A00BA9D61 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				0AE6D8B61B7A356A00BA9D61 /* SZTextView.h */,
-				0AE6D8B71B7A356A00BA9D61 /* SZTextView.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		3DAEB452ABEAA700740454C7 /* Frameworks */ = {
@@ -489,7 +454,6 @@
 				0A6B856C1B788C05006B2C24 /* FloatingFieldTableViewCell.swift in Sources */,
 				0AE6D8B01B7A12A400BA9D61 /* UIView+Extension.swift in Sources */,
 				0ADFC8FE1B74F8960072E63F /* InputType.swift in Sources */,
-				0AE6D8BA1B7A356A00BA9D61 /* SZTextView.m in Sources */,
 				0ADFC8F01B74F8960072E63F /* FloatingTextField.swift in Sources */,
 				0ADFC8E11B74F8960072E63F /* AppDelegate.swift in Sources */,
 				0AE6D8AD1B7A0BA500BA9D61 /* Array+Extension.swift in Sources */,
@@ -636,7 +600,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FloatingLabel/Supporting Files/FloatingLabel-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -650,7 +613,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FloatingLabel/Supporting Files/FloatingLabel-Bridging-Header.h";
 			};
 			name = Release;
 		};
