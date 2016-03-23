@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SZTextView
 
 internal class FloatingFieldTextView: SZTextView {
 	
