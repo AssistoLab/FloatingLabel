@@ -105,19 +105,19 @@ internal extension FloatingMultiLineTextField {
 	func listenToTextView() {
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidBeginEditingNotification",
+			selector: #selector(textViewTextDidBeginEditingNotification),
 			name: UITextViewTextDidBeginEditingNotification,
 			object: textView)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidChangeNotification",
+			selector: #selector(textViewTextDidChangeNotification),
 			name: UITextViewTextDidChangeNotification,
 			object: textView)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textViewTextDidEndEditingNotification",
+			selector: #selector(textViewTextDidEndEditingNotification),
 			name: UITextViewTextDidEndEditingNotification,
 			object: textView)
 		

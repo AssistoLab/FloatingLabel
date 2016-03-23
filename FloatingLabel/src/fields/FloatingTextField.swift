@@ -93,19 +93,19 @@ internal extension FloatingTextField {
 	func listenToTextField() {
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textFieldTextDidBeginEditingNotification",
+			selector: #selector(textFieldTextDidBeginEditingNotification),
 			name: UITextFieldTextDidBeginEditingNotification,
 			object: textField)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textFieldTextDidChangeNotification",
+			selector: #selector(textFieldTextDidChangeNotification),
 			name: UITextFieldTextDidChangeNotification,
 			object: textField)
 		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: "textFieldTextDidEndEditingNotification",
+			selector: #selector(textFieldTextDidEndEditingNotification),
 			name: UITextFieldTextDidEndEditingNotification,
 			object: textField)
 		

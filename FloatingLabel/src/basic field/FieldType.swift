@@ -26,7 +26,7 @@ public protocol Validatable: class, Helpable {
 
 public protocol FieldType {
 	
-	typealias T
+	associatedtype T
 	
 	var value: T { get set }
 	var valueChangedAction: ((T) -> Void)? { get set }

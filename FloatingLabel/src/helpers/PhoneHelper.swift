@@ -32,13 +32,13 @@ internal final class PhoneHelper {
 		var undecoratedNumber = number.stringByReplacingOccurrencesOfString(
 			"+",
 			withString: "",
-			range: Range(start: number.startIndex, end: number.startIndex.advancedBy(1)))
+			range: number.startIndex..<number.startIndex.advancedBy(1))
 		
 		// Remove leading "00"
 		undecoratedNumber = undecoratedNumber.stringByReplacingOccurrencesOfString(
 			"00",
 			withString: "",
-			range: Range(start: undecoratedNumber.startIndex, end: undecoratedNumber.startIndex.advancedBy(2)))
+			range: undecoratedNumber.startIndex..<undecoratedNumber.startIndex.advancedBy(2))
 		
 		// Remove spaces
 		undecoratedNumber = undecoratedNumber.stringByReplacingOccurrencesOfString(" ", withString: "")

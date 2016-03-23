@@ -59,7 +59,7 @@ private extension DateFloatingField {
 		rightView = UIImageView(image: Icon.Arrow.image().template())
 		rightViewMode = .Always
 		
-		picker.addTarget(self, action: "dateChanged", forControlEvents: .ValueChanged)
+		picker.addTarget(self, action: #selector(dateChanged), forControlEvents: .ValueChanged)
 		inputView = picker
 	}
 	

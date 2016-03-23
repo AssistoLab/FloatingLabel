@@ -70,7 +70,7 @@ private extension SingleChoiceFloatingField {
 	
 	func setup() {
 		setupUI()
-		choiceSwitch.addTarget(self, action: "switchValueChanged", forControlEvents: .ValueChanged)
+		choiceSwitch.addTarget(self, action: #selector(switchValueChanged), forControlEvents: .ValueChanged)
 	}
 	
 }
