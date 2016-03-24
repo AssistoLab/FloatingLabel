@@ -105,8 +105,6 @@ internal enum Icon: String {
 	case Arrow = "ic_floating_arrowdown"
  
 	func image() -> UIImage {
-		let classBundle = NSBundle(forClass: FloatingField.self)
-	
-		return UIImage(named: self.rawValue, inBundle: classBundle, compatibleWithTraitCollection: nil)!
+		return UIImage(named: self.rawValue)!
 	}
 }
