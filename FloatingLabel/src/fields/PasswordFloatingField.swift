@@ -10,7 +10,7 @@ import UIKit
 
 public class PasswordFloatingField: FloatingTextField {
 	
-	override internal func setup() {
+	override public func setup() {
 		super.setup()
 		passwordModeEnabled = true
 	}

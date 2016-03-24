@@ -44,7 +44,7 @@ public class DateFloatingField: FloatingTextField {
 
 internal extension DateFloatingField {
 	
-	override func setup() {
+	override public func setup() {
 		super.setup()
 		setupUI()
 	}

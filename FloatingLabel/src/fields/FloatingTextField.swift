@@ -22,7 +22,7 @@ public class FloatingTextField: FloatingField {
 		}
 	}
 	
-	internal var textField = FloatingFieldTextField()
+	public var textField = FloatingFieldTextField()
 	
 	public weak var delegate: UITextFieldDelegate? {
 		get { return textField.delegate }
@@ -39,7 +39,7 @@ public class FloatingTextField: FloatingField {
 
 //MARK: - Initialization
 
-internal extension FloatingTextField {
+public extension FloatingTextField {
 	
 	override func setup() {
 		super.setup()
@@ -69,22 +69,22 @@ public extension FloatingTextField {
 
 private var textFieldKVOContext = 0
 
-internal extension FloatingTextField {
+extension FloatingTextField {
 	
 	@objc
-	func textFieldTextDidChangeNotification() {
+	public func textFieldTextDidChangeNotification() {
 		updateUI(animated: true)
 		valueChangedAction?(value)
 	}
 	
 	@objc
-	func textFieldTextDidBeginEditingNotification() {
+	public func textFieldTextDidBeginEditingNotification() {
 		updateUI(animated: true)
 		hasBeenEdited = true
 	}
 	
 	@objc
-	func textFieldTextDidEndEditingNotification() {
+	public func textFieldTextDidEndEditingNotification() {
 		updateUI(animated: true)
 	}
 	

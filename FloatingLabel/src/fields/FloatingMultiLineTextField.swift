@@ -24,7 +24,7 @@ public class FloatingMultiLineTextField: FloatingField {
 		}
 	}
 	
-	internal var textView = FloatingFieldTextView()
+	public var textView = FloatingFieldTextView()
 	
 	//MARK: Content
 	public weak var delegate: UITextViewDelegate? {
@@ -139,7 +139,7 @@ internal extension FloatingMultiLineTextField {
 			self,
 			name: UITextViewTextDidEndEditingNotification,
 			object: textView)
-
+		
 		self.removeObserver(self, forKeyPath: "textView.text", context: &textViewKVOContext)
 	}
 	
