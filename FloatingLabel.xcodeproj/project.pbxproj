@@ -44,6 +44,10 @@
 		0AE6D8C01B7AA25200BA9D61 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8BF1B7AA25200BA9D61 /* TableViewController.swift */; };
 		39A980554197CBC5439C603B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AC830D706F9246F82C1846 /* Pods.framework */; };
 		E8B0A8041CA2EAEA0068C662 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8B0A8031CA2EAEA0068C662 /* Images.xcassets */; };
+		E8E285401CA3FDA600AA7192 /* FloatingLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8E285381CA3FC6900AA7192 /* FloatingLabel.bundle */; };
+		E8E285441CA3FEC900AA7192 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E285411CA3FEC900AA7192 /* arrow.png */; };
+		E8E285451CA3FEC900AA7192 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E285421CA3FEC900AA7192 /* arrow@2x.png */; };
+		E8E285461CA3FEC900AA7192 /* arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E285431CA3FEC900AA7192 /* arrow@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0AE045DE1B4FAFFE001F8100;
 			remoteInfo = FloatingLabel;
+		};
+		E8E2853E1CA3FD3E00AA7192 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0AE045D71B4FAFFE001F8100 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8E285371CA3FC6900AA7192;
+			remoteInfo = FloatingLabelResources;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -100,6 +111,10 @@
 		73AC830D706F9246F82C1846 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E0B0B7383A40D6E2CB4CF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B0A8031CA2EAEA0068C662 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E8E285381CA3FC6900AA7192 /* FloatingLabel.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloatingLabel.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8E285411CA3FEC900AA7192 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		E8E285421CA3FEC900AA7192 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		E8E285431CA3FEC900AA7192 /* arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +127,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0AE045F11B4FAFFE001F8100 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8E285351CA3FC6900AA7192 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -223,6 +245,7 @@
 				0AE045E11B4FAFFE001F8100 /* FloatingLabel */,
 				0AE045F71B4FAFFE001F8100 /* FloatingLabelTests */,
 				E8B0A8031CA2EAEA0068C662 /* Images.xcassets */,
+				E8E285391CA3FC6900AA7192 /* FloatingLabelResources */,
 				0AE045E01B4FAFFE001F8100 /* Products */,
 				B2AE5972F70F4126C0441293 /* Pods */,
 				3DAEB452ABEAA700740454C7 /* Frameworks */,
@@ -234,6 +257,7 @@
 			children = (
 				0AE045DF1B4FAFFE001F8100 /* FloatingLabel.app */,
 				0AE045F41B4FAFFE001F8100 /* FloatingLabelTests.xctest */,
+				E8E285381CA3FC6900AA7192 /* FloatingLabel.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -282,6 +306,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E8E285391CA3FC6900AA7192 /* FloatingLabelResources */ = {
+			isa = PBXGroup;
+			children = (
+				E8E285411CA3FEC900AA7192 /* arrow.png */,
+				E8E285421CA3FEC900AA7192 /* arrow@2x.png */,
+				E8E285431CA3FEC900AA7192 /* arrow@3x.png */,
+			);
+			path = FloatingLabelResources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,6 +333,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E8E2853F1CA3FD3E00AA7192 /* PBXTargetDependency */,
 			);
 			name = FloatingLabel;
 			productName = FloatingLabel;
@@ -323,6 +358,23 @@
 			productReference = 0AE045F41B4FAFFE001F8100 /* FloatingLabelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E8E285371CA3FC6900AA7192 /* FloatingLabelResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8E2853B1CA3FC6900AA7192 /* Build configuration list for PBXNativeTarget "FloatingLabelResources" */;
+			buildPhases = (
+				E8E285341CA3FC6900AA7192 /* Sources */,
+				E8E285351CA3FC6900AA7192 /* Frameworks */,
+				E8E285361CA3FC6900AA7192 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FloatingLabelResources;
+			productName = FloatingLabelResources;
+			productReference = E8E285381CA3FC6900AA7192 /* FloatingLabel.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -339,6 +391,9 @@
 					0AE045F31B4FAFFE001F8100 = {
 						CreatedOnToolsVersion = 6.4;
 						TestTargetID = 0AE045DE1B4FAFFE001F8100;
+					};
+					E8E285371CA3FC6900AA7192 = {
+						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
@@ -357,6 +412,7 @@
 			targets = (
 				0AE045DE1B4FAFFE001F8100 /* FloatingLabel */,
 				0AE045F31B4FAFFE001F8100 /* FloatingLabelTests */,
+				E8E285371CA3FC6900AA7192 /* FloatingLabelResources */,
 			);
 		};
 /* End PBXProject section */
@@ -370,6 +426,7 @@
 				0ADFC9011B74F95D0072E63F /* LaunchScreen.xib in Resources */,
 				E8B0A8041CA2EAEA0068C662 /* Images.xcassets in Resources */,
 				0ADFC8E21B74F8960072E63F /* Images.xcassets in Resources */,
+				E8E285401CA3FDA600AA7192 /* FloatingLabel.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +434,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8E285361CA3FC6900AA7192 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8E285451CA3FEC900AA7192 /* arrow@2x.png in Resources */,
+				E8E285441CA3FEC900AA7192 /* arrow.png in Resources */,
+				E8E285461CA3FEC900AA7192 /* arrow@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +544,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8E285341CA3FC6900AA7192 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -484,6 +558,11 @@
 			isa = PBXTargetDependency;
 			target = 0AE045DE1B4FAFFE001F8100 /* FloatingLabel */;
 			targetProxy = 0AE045F51B4FAFFE001F8100 /* PBXContainerItemProxy */;
+		};
+		E8E2853F1CA3FD3E00AA7192 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8E285371CA3FC6900AA7192 /* FloatingLabelResources */;
+			targetProxy = E8E2853E1CA3FD3E00AA7192 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -650,6 +729,40 @@
 			};
 			name = Release;
 		};
+		E8E2853C1CA3FC6900AA7192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = FloatingLabelResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = none.FloatingLabelResources;
+				PRODUCT_NAME = FloatingLabel;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		E8E2853D1CA3FC6900AA7192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = NO;
+				INFOPLIST_FILE = FloatingLabelResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = none.FloatingLabelResources;
+				PRODUCT_NAME = FloatingLabel;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -679,6 +792,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E8E2853B1CA3FC6900AA7192 /* Build configuration list for PBXNativeTarget "FloatingLabelResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8E2853C1CA3FC6900AA7192 /* Debug */,
+				E8E2853D1CA3FC6900AA7192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -105,8 +105,6 @@ internal enum Icon: String {
 	case Arrow = "arrow"
  
 	func image() -> UIImage {
-		let bundle = NSBundle(identifier: "com.kevin.hirsch.FloatingLabel")!
-		
-		return UIImage(named: self.rawValue, inBundle: bundle, compatibleWithTraitCollection: nil)!
+		return UIImage(named:"FloatingLabel.bundle/\(self.rawValue)")!
 	}
 }
