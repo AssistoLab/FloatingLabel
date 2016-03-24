@@ -105,6 +105,9 @@ internal enum Icon: String {
 	case Arrow = "arrow"
  
 	func image() -> UIImage {
+		let classBundle = NSBundle(forClass: FloatingField.self)
+		let ressourceBundle = NSBundle(path: classBundle.bundlePath)
+		
 		return UIImage(named:"FloatingLabel.bundle/\(self.rawValue)")!
 	}
 }

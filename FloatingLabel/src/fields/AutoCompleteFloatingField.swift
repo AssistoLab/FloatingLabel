@@ -74,7 +74,7 @@ extension AutoCompleteFloatingField {
 
 //MARK: - TextField
 
-internal extension AutoCompleteFloatingField {
+extension AutoCompleteFloatingField {
 	
 	override public func textFieldTextDidChangeNotification() {
 		super.textFieldTextDidChangeNotification()

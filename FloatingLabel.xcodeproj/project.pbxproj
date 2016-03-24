@@ -48,6 +48,7 @@
 		E8E285441CA3FEC900AA7192 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E285411CA3FEC900AA7192 /* arrow.png */; };
 		E8E285451CA3FEC900AA7192 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E285421CA3FEC900AA7192 /* arrow@2x.png */; };
 		E8E285461CA3FEC900AA7192 /* arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E285431CA3FEC900AA7192 /* arrow@3x.png */; };
+		E8E285491CA4151900AA7192 /* FloatingLabel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8E285481CA4151900AA7192 /* FloatingLabel.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		E8E285411CA3FEC900AA7192 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		E8E285421CA3FEC900AA7192 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		E8E285431CA3FEC900AA7192 /* arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@3x.png"; sourceTree = "<group>"; };
+		E8E285481CA4151900AA7192 /* FloatingLabel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FloatingLabel.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 		0AE045E11B4FAFFE001F8100 /* FloatingLabel */ = {
 			isa = PBXGroup;
 			children = (
+				E8E285471CA4151900AA7192 /* Resources */,
 				0ADFC8B91B74F8960072E63F /* demo */,
 				0ADFC8C11B74F8960072E63F /* src */,
 				0ADFC8DE1B74F8960072E63F /* Supporting Files */,
@@ -314,6 +317,14 @@
 				E8E285431CA3FEC900AA7192 /* arrow@3x.png */,
 			);
 			path = FloatingLabelResources;
+			sourceTree = "<group>";
+		};
+		E8E285471CA4151900AA7192 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E8E285481CA4151900AA7192 /* FloatingLabel.bundle */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8E285491CA4151900AA7192 /* FloatingLabel.bundle in Resources */,
 				0ADFC9001B74F95D0072E63F /* Main.storyboard in Resources */,
 				0ADFC9011B74F95D0072E63F /* LaunchScreen.xib in Resources */,
 				E8B0A8041CA2EAEA0068C662 /* Images.xcassets in Resources */,
