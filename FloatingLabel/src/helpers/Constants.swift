@@ -102,7 +102,7 @@ internal struct Constraints {
 }
 
 internal enum Icon: String {
-	case Arrow = "arrow"
+	case Arrow = "ic_floating_arrowdown"
  
 	func image() -> UIImage {
 		let classBundle = NSBundle(forClass: FloatingField.self)
