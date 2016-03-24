@@ -163,7 +163,7 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 		self.init(frame: Frame.InitialFrame)
 	}
 	
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		setup()
 	}

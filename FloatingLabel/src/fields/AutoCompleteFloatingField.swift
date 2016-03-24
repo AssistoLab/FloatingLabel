@@ -74,6 +74,7 @@ extension AutoCompleteFloatingField {
 
 //MARK: - TextField
 
+
 extension AutoCompleteFloatingField {
 	
 	override public func textFieldTextDidChangeNotification() {
@@ -109,7 +110,7 @@ extension AutoCompleteFloatingField {
 
 //MARK: - DropDown
 
-internal extension AutoCompleteFloatingField {
+public extension AutoCompleteFloatingField {
 	
 	var maxHeightForDisplay: CGFloat {
 		return (RowHeight * CGFloat(maxDisplayedItems!)) + HeightPadding

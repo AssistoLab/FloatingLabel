@@ -43,9 +43,9 @@ public class PickerFloatingField: FloatingTextField {
 
 //MARK: - Initialization
 
-internal extension PickerFloatingField {
+public extension PickerFloatingField {
 	
-	override public func setup() {
+	override func setup() {
 		rightView = UIImageView(image: Icon.Arrow.image().template())
 		rightViewMode = .Always
 		
