@@ -106,8 +106,7 @@ internal enum Icon: String {
  
 	func image() -> UIImage {
 		let classBundle = NSBundle(forClass: FloatingField.self)
-		let ressourceBundle = NSBundle(path: "\(classBundle.bundlePath)/FloatingField.bundle")
-		
-		return UIImage(named:"\(self.rawValue)", inBundle: ressourceBundle, compatibleWithTraitCollection: nil)!
+	
+		return UIImage(named: self.rawValue, inBundle: classBundle, compatibleWithTraitCollection: nil)!
 	}
 }
