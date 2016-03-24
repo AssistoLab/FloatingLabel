@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal class FloatingFieldTextField: UITextField {
+public class FloatingFieldTextField: UITextField {
 	
 	var showCursor = true
 	var enableContextMenu = true
@@ -18,7 +18,7 @@ internal class FloatingFieldTextField: UITextField {
 
 //MARK: - Customization
 
-extension FloatingFieldTextField {
+public extension FloatingFieldTextField {
 	
 	internal func disableEditionByUser() {
 		showCursor = false

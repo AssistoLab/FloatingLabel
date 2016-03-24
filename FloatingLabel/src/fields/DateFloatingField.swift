@@ -42,7 +42,7 @@ public class DateFloatingField: FloatingTextField {
 
 //MARK: - Initialization
 
-internal extension DateFloatingField {
+public extension DateFloatingField {
 	
 	override func setup() {
 		super.setup()

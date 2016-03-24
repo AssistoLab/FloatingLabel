@@ -26,7 +26,7 @@ public class ActionFloatingField: FloatingTextField {
 		self.init(frame: Frame.InitialFrame)
 	}
 	
-	override init(frame: CGRect) {
+	public override init(frame: CGRect) {
 		super.init(frame: frame)
 	}
 	
@@ -38,7 +38,7 @@ public class ActionFloatingField: FloatingTextField {
 
 //MARK: - Setup
 
-internal extension ActionFloatingField {
+public extension ActionFloatingField {
 	
 	override func setup() {
 		super.setup()

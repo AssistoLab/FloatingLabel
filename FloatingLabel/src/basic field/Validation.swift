@@ -44,13 +44,13 @@ public struct Validation {
 		}
 	}
 
-	init(_ type: ValidationType, message: String? = nil, level: ValidationLevel? = .Error) {
+	public init(_ type: ValidationType, message: String? = nil, level: ValidationLevel? = .Error) {
 		self.type = type
 		self.__message = message
 		self.__level = level
 	}
 	
-	init(_ customClosure: ValidationClosure, message: String? = nil, level: ValidationLevel? = .Error) {
+	public init(_ customClosure: ValidationClosure, message: String? = nil, level: ValidationLevel? = .Error) {
 		self.init(.Custom(customClosure), message: message, level: level)
 	}
 	

@@ -140,7 +140,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		self.init(frame: Frame.InitialFrame)
 	}
 	
-	override init(frame: CGRect) {
+	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		setupUI()
 	}

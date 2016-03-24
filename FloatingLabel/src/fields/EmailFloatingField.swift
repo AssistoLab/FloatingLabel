@@ -10,7 +10,7 @@ import UIKit
 
 public class EmailFloatingField: FloatingTextField {
 	
-	override internal func setup() {
+	override public func setup() {
 		super.setup()
 		
 		keyboardType = .EmailAddress

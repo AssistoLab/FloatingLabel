@@ -9,7 +9,7 @@
 import UIKit
 import SZTextView
 
-internal class FloatingFieldTextView: SZTextView {
+public class FloatingFieldTextView: SZTextView {
 	
 	//MARK: - Init's
 	
@@ -17,8 +17,8 @@ internal class FloatingFieldTextView: SZTextView {
 		super.init(frame: CGRectZero, textContainer: nil)
 		listenToTextView()
 	}
-
-	required init?(coder aDecoder: NSCoder) {
+	
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		listenToTextView()
 	}
@@ -35,7 +35,7 @@ internal class FloatingFieldTextView: SZTextView {
 
 //MARK: - UIView
 
-extension FloatingFieldTextView {
+public extension FloatingFieldTextView {
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
@@ -126,7 +126,7 @@ private var textKVOContext = 0
 
 extension FloatingFieldTextView {
 	
-	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
 		if context == &textKVOContext
 			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
 		{
