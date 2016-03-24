@@ -51,7 +51,7 @@ internal extension FloatingTextField {
 
 //MARK: - Update UI
 
-internal extension FloatingTextField {
+public extension FloatingTextField {
 	
 	override func updateUI(animated animated: Bool) {
 		super.updateUI(animated: animated)
