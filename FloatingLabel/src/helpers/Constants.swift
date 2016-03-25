@@ -102,9 +102,17 @@ internal struct Constraints {
 }
 
 internal enum Icon: String {
-	case Arrow = "ic_floating_arrowdown"
+	case Arrow = "arrow"
  
 	func image() -> UIImage {
-		return UIImage(named: self.rawValue)!
+		let bundle = NSBundle(forClass: FloatingField.self)
+		
+		guard let bundleURL = bundle.URLForResource("FloatingLabel", withExtension: "bundle") else {
+			return UIImage(named: self.rawValue)!
+		}
+		
+		let resourceBundle = NSBundle(URL: bundleURL)
+		
+		return UIImage(named: self.rawValue, inBundle: resourceBundle, compatibleWithTraitCollection: nil)!
 	}
 }
