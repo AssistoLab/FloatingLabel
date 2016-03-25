@@ -43,7 +43,9 @@
 		0AE6D8B01B7A12A400BA9D61 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8AF1B7A12A400BA9D61 /* UIView+Extension.swift */; };
 		0AE6D8C01B7AA25200BA9D61 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8BF1B7AA25200BA9D61 /* TableViewController.swift */; };
 		39A980554197CBC5439C603B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AC830D706F9246F82C1846 /* Pods.framework */; };
-		E894ABA91CA421DB0003AD94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E894ABA81CA421DB0003AD94 /* Images.xcassets */; };
+		E82F81941CA52C4B000F3F29 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E82F81911CA52C4B000F3F29 /* arrow.png */; };
+		E82F81951CA52C4B000F3F29 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82F81921CA52C4B000F3F29 /* arrow@2x.png */; };
+		E82F81961CA52C4B000F3F29 /* arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82F81931CA52C4B000F3F29 /* arrow@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +101,9 @@
 		579A3D9C86E6213EBDE7672B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		73AC830D706F9246F82C1846 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1E0B0B7383A40D6E2CB4CF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E894ABA81CA421DB0003AD94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E82F81911CA52C4B000F3F29 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		E82F81921CA52C4B000F3F29 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		E82F81931CA52C4B000F3F29 /* arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				0AE045E11B4FAFFE001F8100 /* FloatingLabel */,
-				E894ABA81CA421DB0003AD94 /* Images.xcassets */,
 				0AE045F71B4FAFFE001F8100 /* FloatingLabelTests */,
 				0AE045E01B4FAFFE001F8100 /* Products */,
 				B2AE5972F70F4126C0441293 /* Pods */,
@@ -241,6 +244,7 @@
 		0AE045E11B4FAFFE001F8100 /* FloatingLabel */ = {
 			isa = PBXGroup;
 			children = (
+				E82F81901CA52C4B000F3F29 /* Resources */,
 				0ADFC8B91B74F8960072E63F /* demo */,
 				0ADFC8C11B74F8960072E63F /* src */,
 				0ADFC8DE1B74F8960072E63F /* Supporting Files */,
@@ -280,6 +284,16 @@
 				579A3D9C86E6213EBDE7672B /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E82F81901CA52C4B000F3F29 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E82F81911CA52C4B000F3F29 /* arrow.png */,
+				E82F81921CA52C4B000F3F29 /* arrow@2x.png */,
+				E82F81931CA52C4B000F3F29 /* arrow@3x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,10 +380,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E894ABA91CA421DB0003AD94 /* Images.xcassets in Resources */,
 				0ADFC9001B74F95D0072E63F /* Main.storyboard in Resources */,
+				E82F81951CA52C4B000F3F29 /* arrow@2x.png in Resources */,
 				0ADFC9011B74F95D0072E63F /* LaunchScreen.xib in Resources */,
 				0ADFC8E21B74F8960072E63F /* Images.xcassets in Resources */,
+				E82F81941CA52C4B000F3F29 /* arrow.png in Resources */,
+				E82F81961CA52C4B000F3F29 /* arrow@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
