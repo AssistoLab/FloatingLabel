@@ -134,6 +134,7 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 	internal var helperState = HelperState.Hidden
 	private var previousHelperState = HelperState.Hidden
 	internal var hasBeenEdited = false
+	public var forceValidation = false
 	
 	private var isEmpty: Bool {
 		return input.__text?.isEmpty ?? false
@@ -410,7 +411,7 @@ private extension FloatingField {
 	func updateHelper() {
 		let validationCheck = checkValidity(text: text, validations: validations, level: nil)
 		
-		if !isEditing && hasBeenEdited && !validationCheck.isValid,
+		if (!isEditing || forceValidation) && hasBeenEdited && !validationCheck.isValid,
 			let failedValidation = validationCheck.failedValidation
 		{
 			previousHelperState = helperState
@@ -419,6 +420,8 @@ private extension FloatingField {
 			previousHelperState = helperState
 			helperState = baseHelperState(helpText)
 		}
+		
+		forceValidation = false
 		
 		updateHelperUI()
 		
@@ -573,6 +576,14 @@ public extension FloatingField {
 		// Avoid skipping validation because text was not edited yet
 		hasBeenEdited = true
 		
+		updateUI(animated: true)
+	}
+	
+	public func validate(force: Bool) {
+		// Avoid skipping validation because text was not edited yet
+		hasBeenEdited = true
+		
+		forceValidation = force
 		updateUI(animated: true)
 	}
 	
