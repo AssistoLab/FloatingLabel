@@ -61,6 +61,8 @@ private extension DateFloatingField {
 		
 		picker.addTarget(self, action: #selector(dateChanged), forControlEvents: .ValueChanged)
 		inputView = picker
+		
+		textField.delegate = self
 	}
 	
 	@objc
@@ -75,6 +77,10 @@ private extension DateFloatingField {
 extension DateFloatingField: UITextFieldDelegate {
 	
 	public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+		guard let dateFormat = formatter.dateFormat where !dateFormat.isEmpty else {
+			fatalError("Oops! You forgot to provide a date format for the formatter property.")
+		}
+		
 		dateChanged()
 		return true
 	}
