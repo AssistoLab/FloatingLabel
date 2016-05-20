@@ -123,7 +123,7 @@ extension ListFloatingField {
 	public override func layoutSublayersOfLayer(layer: CALayer) {
 		super.layoutSublayersOfLayer(layer)
 
-		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView?.plainView).minY - 1
+		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).minY - 1
 		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMinY)
 		dropDown.width = separatorLine.bounds.width
 	}
@@ -134,7 +134,7 @@ extension ListFloatingField {
 		if isFloatingLabelDisplayed {
 			dropDown.topOffset.y = -bounds.height
 		} else {
-			let floatingLabelMinY = floatingLabel.superview!.convertRect(floatingLabel.frame, toView: dropDown.anchorView?.plainView).minY
+			let floatingLabelMinY = floatingLabel.superview!.convertRect(floatingLabel.frame, toView: dropDown.anchorView).minY
 			dropDown.topOffset.y = -bounds.height + floatingLabelMinY
 		}
 	}
