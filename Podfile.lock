@@ -3,8 +3,18 @@ PODS:
   - SZTextView (1.2.2)
 
 DEPENDENCIES:
-  - DropDown
+  - DropDown (from `https://github.com/AssistoLab/DropDown.git`, commit `7d9d335`)
   - SZTextView
+
+EXTERNAL SOURCES:
+  DropDown:
+    :commit: 7d9d335
+    :git: https://github.com/AssistoLab/DropDown.git
+
+CHECKOUT OPTIONS:
+  DropDown:
+    :commit: 7d9d335
+    :git: https://github.com/AssistoLab/DropDown.git
 
 SPEC CHECKSUMS:
   DropDown: addffd49f2a014e079ed854adcb3c5473c1ebdf2
