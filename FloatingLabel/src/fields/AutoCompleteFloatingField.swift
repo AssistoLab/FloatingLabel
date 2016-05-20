@@ -13,47 +13,47 @@ private let HeightPadding: CGFloat = 20
 private let RowHeight: CGFloat = 44
 
 public class AutoCompleteFloatingField: FloatingTextField {
-
+	
 	//MARK: - Properties
-
+	
 	//MARK: UI
 	private let dropDown = DropDown()
-
+	
 	//MARK: Content
 	public var dataSource = [String]()
 	public var maxDisplayedItems: Int?
-
+	
 	private var filteredSource: [String] {
 		get { return dropDown.dataSource }
 		set { dropDown.dataSource = newValue }
 	}
-
+	
 	//MARK: - Init's
-
+	
 	convenience init() {
 		self.init(frame: Frame.InitialFrame)
 	}
-
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 	}
-
+	
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
-
+	
 }
 
 //MARK: - Initialization
 
 extension AutoCompleteFloatingField {
-
+	
 	public override func setup() {
 		super.setup()
-
+		
 		textField.autocorrectionType = .No
 		textField.spellCheckingType = .No
-
+		
 		dropDown.anchorView = self
 		dropDown.direction = .Bottom
 		dropDown.dismissMode = .Automatic
@@ -63,36 +63,36 @@ extension AutoCompleteFloatingField {
 			self.valueChangedAction?(self.value)
 		}
 	}
-
+	
 	public override func layoutSublayersOfLayer(layer: CALayer) {
 		super.layoutSublayersOfLayer(layer)
-
+		
 		updateDropDownWidth()
 	}
-
+	
 }
 
 //MARK: - TextField
 
 
 extension AutoCompleteFloatingField {
-
+	
 	override public func textFieldTextDidChangeNotification() {
 		super.textFieldTextDidChangeNotification()
-
+		
 		if let newText = text?.lowercaseString where !newText.isEmpty {
 			let resultsDataSource = dataSource
 				.filter { $0.lowercaseString.characters.startsWith(newText.characters) }
 				.sort { $0.lowercaseString < $1.lowercaseString }
-
+			
 			let endIndex = min(maxDisplayedItems ?? Int.max, resultsDataSource.count)
-
+			
 			if endIndex == 0 {
 				filteredSource = []
 			} else {
 				filteredSource = Array(resultsDataSource[0..<endIndex])
 			}
-
+			
 			if dropDown.hidden {
 				dropDown.show()
 			}
@@ -100,32 +100,32 @@ extension AutoCompleteFloatingField {
 			dropDown.hide()
 		}
 	}
-
+	
 	override public func textFieldTextDidEndEditingNotification() {
 		super.textFieldTextDidEndEditingNotification()
 		dropDown.hide()
 	}
-
+	
 }
 
 //MARK: - DropDown
 
 public extension AutoCompleteFloatingField {
-
+	
 	var maxHeightForDisplay: CGFloat {
 		return (RowHeight * CGFloat(maxDisplayedItems!)) + HeightPadding
 	}
-
+	
 	func showDropDown() {
 		dropDown.show()
 	}
-
+	
 	func hideDropDown() {
 		dropDown.hide()
 	}
-
+	
 	func updateDropDownWidth() {
-		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView?.plainView).maxY
+		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).maxY
 		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMaxY)
 		dropDown.width = separatorLine.bounds.width
 	}
