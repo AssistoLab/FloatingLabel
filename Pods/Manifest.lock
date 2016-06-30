@@ -1,5 +1,5 @@
 PODS:
-  - DropDown (0.1.5)
+  - DropDown (1.0.1)
   - SZTextView (1.2.2)
 
 DEPENDENCIES:
@@ -7,7 +7,7 @@ DEPENDENCIES:
   - SZTextView
 
 SPEC CHECKSUMS:
-  DropDown: addffd49f2a014e079ed854adcb3c5473c1ebdf2
+  DropDown: 335df9e9547e97a861a60aed8448821e239d3513
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
 
 COCOAPODS: 0.39.0

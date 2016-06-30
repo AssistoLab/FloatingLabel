@@ -125,7 +125,7 @@ public extension AutoCompleteFloatingField {
 	}
 	
 	func updateDropDownWidth() {
-		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView).maxY
+		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView?.plainView).maxY
 		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMaxY)
 		dropDown.width = separatorLine.bounds.width
 	}
