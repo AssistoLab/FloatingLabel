@@ -44,7 +44,7 @@ internal struct Animation {
 
 public struct Constraints {
 	
-	static var HorizontalPadding: CGFloat = 15
+	public static var HorizontalPadding: CGFloat = 15
 	
 	struct FloatingLabel {
 		
