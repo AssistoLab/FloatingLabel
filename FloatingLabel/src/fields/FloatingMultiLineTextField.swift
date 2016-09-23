@@ -147,7 +147,7 @@ internal extension FloatingMultiLineTextField {
 
 //MARK: - KVO
 
-public extension FloatingMultiLineTextField {
+extension FloatingMultiLineTextField {
 	
 	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if context == &textViewKVOContext

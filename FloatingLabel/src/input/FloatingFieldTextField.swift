@@ -18,7 +18,7 @@ open class FloatingFieldTextField: UITextField {
 
 //MARK: - Customization
 
-public extension FloatingFieldTextField {
+extension FloatingFieldTextField {
 	
 	internal func disableEditionByUser() {
 		showCursor = false

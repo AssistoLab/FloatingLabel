@@ -135,7 +135,7 @@ extension FloatingTextField {
 
 //MARK: - KVO
 
-public extension FloatingField {
+extension FloatingField {
 	
 	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if context == &textFieldKVOContext

@@ -298,7 +298,7 @@ extension PhoneFloatingField {
 
 //MARK: - UIView (UIConstraintBasedLayoutLayering)
 
-public extension PhoneFloatingField {
+extension PhoneFloatingField {
 	
 	override open func forBaselineLayout() -> UIView {
 		return suffixField.forBaselineLayout()
