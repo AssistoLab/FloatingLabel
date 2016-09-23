@@ -10,68 +10,68 @@ import UIKit
 
 internal struct Frame {
 	
-	static let InitialFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 70)
+	static let initialFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 70)
 	
 }
 
 internal struct FLoatingLabel {
 	
-	static let MinimumScaleFactor: CGFloat = 0.8
-	static let NumberOfLines = 1
-	static let AdjustsFontSizeToFitWidth = true
+	static let minimumScaleFactor: CGFloat = 0.8
+	static let numberOfLines = 1
+	static let adjustsFontSizeToFitWidth = true
 	
 }
 
 internal struct SingleChoiceText {
 	
-	static let NumberOfLines = 0
+	static let numberOfLines = 0
 	
 }
 
 internal struct HelperLabel {
 	
-	static let NumberOfLines = 0
+	static let numberOfLines = 0
 	
 }
 
 internal struct Animation {
 	
-	static let Duration: NSTimeInterval = 0.3
-	static let Options: UIViewAnimationOptions = [.BeginFromCurrentState, .AllowUserInteraction, .LayoutSubviews]
-	static let FloatingLabelTransform: CGAffineTransform = CGAffineTransformMakeTranslation(0, 10)
+	static let duration: TimeInterval = 0.3
+	static let options: UIViewAnimationOptions = [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews]
+	static let floatingLabelTransform = CGAffineTransform(translationX: 0, y: 10)
 	
 }
 
 public struct Constraints {
 	
-	public static var HorizontalPadding: CGFloat = 15
+	public static var horizontalPadding: CGFloat = 15
 	
 	struct FloatingLabel {
 		
-		static let TopPadding: CGFloat = 15
-		static let BottomPadding: CGFloat = 8
+		static let topPadding: Float = 15
+		static let bottomPadding: Float = 8
 		
 	}
 	
 	struct TextField {
 		
-		static let BottomPadding: CGFloat = 8
+		static let bottomPadding: CGFloat = 8
 		
 	}
 	
 	struct Separator {
 		
-		static let ActiveHeight: CGFloat = 1
-		static let IdleHeight: CGFloat = 0.5
-		static let BottomPadding: CGFloat = 8
+		static let activeHeight: CGFloat = 1
+		static let idleHeight: CGFloat = 0.5
+		static let bottomPadding: CGFloat = 8
 		
 	}
 	
 	struct Helper {
 		
-		static let HiddenHeight: CGFloat = 0
-		static let HiddenBottomPadding: CGFloat = 0
-		static let DisplayedBottomPadding: CGFloat = 8
+		static let hiddenHeight: CGFloat = 0
+		static let hiddenBottomPadding: CGFloat = 0
+		static let displayedBottomPadding: CGFloat = 8
 		
 	}
 	
@@ -79,14 +79,14 @@ public struct Constraints {
 		
 		struct Prefix {
 			
-			static let CompressionResistancePriority: Float = 1000
-			static let VerticalHuggingPriority: Float = 0
+			static let compressionResistancePriority: Float = 1000
+			static let verticalHuggingPriority: Float = 0
 			
 		}
 		
 		struct Suffix {
 			
-			static let VerticalHuggingPriority: Float = 0
+			static let verticalHuggingPriority: Float = 0
 			
 		}
 		
@@ -94,8 +94,8 @@ public struct Constraints {
 	
 	struct SingleChoiceField {
 		
-		static let VerticalPadding: CGFloat = 8
-		static let SwitchCompressionResistancePriority: Float = 1000
+		static let verticalPadding: Float = 8
+		static let switchCompressionResistancePriority: Float = 1000
 		
 	}
 	
@@ -105,14 +105,14 @@ internal enum Icon: String {
 	case Arrow = "arrow"
  
 	func image() -> UIImage {
-		let bundle = NSBundle(forClass: FloatingField.self)
+		let bundle = Bundle(for: FloatingField.self)
 		
-		guard let bundleURL = bundle.URLForResource("FloatingLabel", withExtension: "bundle") else {
+		guard let bundleURL = bundle.url(forResource: "FloatingLabel", withExtension: "bundle") else {
 			return UIImage(named: self.rawValue)!
 		}
 		
-		let resourceBundle = NSBundle(URL: bundleURL)
+		let resourceBundle = Bundle(url: bundleURL)
 		
-		return UIImage(named: self.rawValue, inBundle: resourceBundle, compatibleWithTraitCollection: nil)!
+		return UIImage(named: self.rawValue, in: resourceBundle, compatibleWith: nil)!
 	}
 }

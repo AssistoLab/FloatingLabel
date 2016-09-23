@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class EmailFloatingField: FloatingTextField {
+open class EmailFloatingField: FloatingTextField {
 	
-	override public func setup() {
+	override open func setup() {
 		super.setup()
 		
-		keyboardType = .EmailAddress
-		autocapitalizationType = .None
-		autocorrectionType = .No
-		spellCheckingType = .No
+		keyboardType = .emailAddress
+		autocapitalizationType = .none
+		autocorrectionType = .no
+		spellCheckingType = .no
 		
-		validation = Validation(.EmailAddress)
+		validation = Validation(.emailAddress)
 	}
 	
 }

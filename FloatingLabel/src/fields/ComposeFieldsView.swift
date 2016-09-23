@@ -9,46 +9,46 @@
 import UIKit
 import DropDown
 
-public class ComposeFieldsView: UIView, Validatable {
+open class ComposeFieldsView: UIView, Validatable {
 	
 	//MARK: - Properties
 	
 	//MARK: UI
-	public var contentView: UIView! {
+	open var contentView: UIView! {
 		didSet {
 			setupConstraints()
 			updateUI(animated: false)
 		}
 	}
 	
-	private var helperLabel = UILabel()
+	fileprivate var helperLabel = UILabel()
 	
 	//MARK: Constraints
-	private var helperLabelHeightConstraint: NSLayoutConstraint!
-	private weak var helperLabelBottomToSuperviewConstraint: NSLayoutConstraint!
+	fileprivate var helperLabelHeightConstraint: NSLayoutConstraint!
+	fileprivate weak var helperLabelBottomToSuperviewConstraint: NSLayoutConstraint!
 	
 	//MARK: Content
-	public var helpText: String? {
+	open var helpText: String? {
 		didSet { updateUI(animated: false) }
 	}
 	
 	//FIXME: change validation
-	public var validations = [Validation]()
+	open var validations = [Validation]()
 	
-	public var validation: Validation? {
+	open var validation: Validation? {
 		get { return validations.first }
 		set { validations.replaceFirstItemBy(newValue) }
 	}
 	
-	internal var helperState = HelperState.Hidden
-	private var previousHelperState = HelperState.Hidden
+	internal var helperState = HelperState.hidden
+	fileprivate var previousHelperState = HelperState.hidden
 	
-	public var isValid: Bool {
-		return checkValidity(text: "", validations: validations, level: .Error).isValid
+	open var isValid: Bool {
+		return checkValidity(text: "", validations: validations, level: .error).isValid
 	}
 	
-	private var failedValidation: Validation? {
-		return checkValidity(text: "", validations: validations, level: .Error).failedValidation
+	fileprivate var failedValidation: Validation? {
+		return checkValidity(text: "", validations: validations, level: .error).failedValidation
 	}
 	
 }
@@ -60,7 +60,7 @@ private extension ComposeFieldsView {
 	func setupConstraints() {
 		// Helper label
 		helperLabel.font = FloatingField.appearance().helperFont
-		helperLabel.numberOfLines = HelperLabel.NumberOfLines
+		helperLabel.numberOfLines = HelperLabel.numberOfLines
 		helperLabel.clipsToBounds = true
 		
 		addSubview(helperLabel)
@@ -68,26 +68,26 @@ private extension ComposeFieldsView {
 		
 		addConstraints(
 			format: "H:|-(padding)-[helperLabel]-(padding)-|",
-			metrics: ["padding": Constraints.HorizontalPadding],
+			metrics: ["padding": Constraints.horizontalPadding],
 			views: ["helperLabel": helperLabel])
 		
 		helperLabelHeightConstraint = NSLayoutConstraint(
 			item: helperLabel,
-			attribute: .Height,
-			relatedBy: .Equal,
+			attribute: .height,
+			relatedBy: .equal,
 			toItem: nil,
-			attribute: .NotAnAttribute,
+			attribute: .notAnAttribute,
 			multiplier: 1,
-			constant: Constraints.Helper.HiddenHeight)
+			constant: Constraints.Helper.hiddenHeight)
 		helperLabel.addConstraint(helperLabelHeightConstraint)
 		
 		helperLabelBottomToSuperviewConstraint = NSLayoutConstraint(item: self,
-			attribute: .Bottom,
-			relatedBy: .Equal,
+			attribute: .bottom,
+			relatedBy: .equal,
 			toItem: helperLabel,
-			attribute: .Bottom,
+			attribute: .bottom,
 			multiplier: 1,
-			constant: Constraints.Helper.HiddenBottomPadding)
+			constant: Constraints.Helper.hiddenBottomPadding)
 		addConstraint(helperLabelBottomToSuperviewConstraint)
 		
 		// Content view
@@ -101,7 +101,7 @@ private extension ComposeFieldsView {
 		addConstraints(format:"H:|[contentView]|", views: ["contentView": contentView])
 		addConstraints(
 			format: "V:|[contentView][helperLabel]",
-			metrics: ["padding": Constraints.Separator.BottomPadding],
+			metrics: ["padding": Constraints.Separator.bottomPadding],
 			views: [
 				"helperLabel": helperLabel,
 				"contentView": contentView
@@ -114,7 +114,7 @@ private extension ComposeFieldsView {
 
 internal extension ComposeFieldsView {
 	
-	func updateUI(animated animated: Bool) {
+	func updateUI(animated: Bool) {
 		let changes: Closure = {
 			self.updateHelper()
 			
@@ -144,17 +144,17 @@ private extension ComposeFieldsView {
 		updateHelperUI()
 		
 		switch helperState {
-		case .Help:
+		case .help:
 			if let text = helperText(helpText, helperLabel.text, previousHelperState) {
 				showHelper(text: text)
 			}
-		case .Error, .Warning:
+		case .error, .warning:
 			let errorText = validationCheck.failedValidation?.message
 			
 			if let text = helperText(errorText, helperLabel.text, previousHelperState) {
 				showHelper(text: text)
 			}
-		case .Hidden:
+		case .hidden:
 			hideHelper()
 		}
 	}
@@ -163,13 +163,13 @@ private extension ComposeFieldsView {
 		let helperColor: UIColor?
 		
 		switch helperState {
-		case .Help:
+		case .help:
 			helperColor = FloatingField.appearance().helpColor
-		case .Error:
+		case .error:
 			helperColor = FloatingField.appearance().errorColor
-		case .Warning:
+		case .warning:
 			helperColor = FloatingField.appearance().warningColor
-		case .Hidden:
+		case .hidden:
 			return
 		}
 		
@@ -178,7 +178,7 @@ private extension ComposeFieldsView {
 		}
 	}
 	
-	func showHelper(text text: String) {
+	func showHelper(text: String) {
 		helperLabel.text = text
 		
 		if helperState == previousHelperState {
@@ -188,19 +188,19 @@ private extension ComposeFieldsView {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 1
 			self.helperLabel.removeConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.DisplayedBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.displayedBottomPadding
 		}
 	}
 	
 	func hideHelper() {
-		if previousHelperState == .Hidden {
+		if previousHelperState == .hidden {
 			return
 		}
 		
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 0
 			self.helperLabel.addConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.HiddenBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.hiddenBottomPadding
 		}
 	}
 	

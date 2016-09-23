@@ -10,16 +10,16 @@ import Foundation
 
 internal final class PhoneHelper {
 	
-	static func componentsFromNumber(number: String) -> (String?, String?) {
+	static func componentsFromNumber(_ number: String) -> (String?, String?) {
 		let undecoratedNumber = undecorateNumberString(number)
 		let prefix = prefixes()
-			.filter { undecoratedNumber.characters.startsWith($0.characters) }
-			.sort { $0.characters.count > $1.characters.count }.first
+			.filter { undecoratedNumber.characters.starts(with: $0.characters) }
+			.sorted { $0.characters.count > $1.characters.count }.first
 		
 		let suffix: String?
 		
 		if let prefix = prefix {
-			suffix = undecoratedNumber.substringFromIndex(undecoratedNumber.startIndex.advancedBy(prefix.characters.count))
+			suffix = undecoratedNumber.substring(from: undecoratedNumber.characters.index(undecoratedNumber.startIndex, offsetBy: prefix.characters.count))
 		} else {
 			suffix = undecoratedNumber
 		}
@@ -27,27 +27,27 @@ internal final class PhoneHelper {
 		return (prefix, suffix)
 	}
 	
-	private static func undecorateNumberString(number: String) -> String {
+	private static func undecorateNumberString(_ number: String) -> String {
 		// Remove leading "+"
-		var undecoratedNumber = number.stringByReplacingOccurrencesOfString(
-			"+",
-			withString: "",
-			range: number.startIndex..<number.startIndex.advancedBy(1))
+		var undecoratedNumber = number.replacingOccurrences(
+			of: "+",
+			with: "",
+			range: number.startIndex..<number.characters.index(number.startIndex, offsetBy: 1))
 		
 		// Remove leading "00"
-		undecoratedNumber = undecoratedNumber.stringByReplacingOccurrencesOfString(
-			"00",
-			withString: "",
-			range: undecoratedNumber.startIndex..<undecoratedNumber.startIndex.advancedBy(2))
+		undecoratedNumber = undecoratedNumber.replacingOccurrences(
+			of: "00",
+			with: "",
+			range: undecoratedNumber.startIndex..<undecoratedNumber.characters.index(undecoratedNumber.startIndex, offsetBy: 2))
 		
 		// Remove spaces
-		undecoratedNumber = undecoratedNumber.stringByReplacingOccurrencesOfString(" ", withString: "")
+		undecoratedNumber = undecoratedNumber.replacingOccurrences(of: " ", with: "")
 		
 		// Remove spaces
-		undecoratedNumber = undecoratedNumber.stringByReplacingOccurrencesOfString(".", withString: "")
+		undecoratedNumber = undecoratedNumber.replacingOccurrences(of: ".", with: "")
 		
 		// Remove spaces
-		undecoratedNumber = undecoratedNumber.stringByReplacingOccurrencesOfString("/", withString: "")
+		undecoratedNumber = undecoratedNumber.replacingOccurrences(of: "/", with: "")
 		
 		return undecoratedNumber
 	}

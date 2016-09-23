@@ -9,13 +9,13 @@
 import UIKit
 import DropDown
 
-internal func applyChanges(changes: Closure, _ animated: Bool, _ completion: Closure? = nil) {
-	dispatch_async(dispatch_get_main_queue()) {
+internal func applyChanges(_ changes: @escaping Closure, _ animated: Bool, _ completion: Closure? = nil) {
+	DispatchQueue.main.async {
 		if animated {
-			UIView.animateWithDuration(
-				Animation.Duration,
+			UIView.animate(
+				withDuration: Animation.duration,
 				delay: 0,
-				options: Animation.Options,
+				options: Animation.options,
 				animations: changes,
 				completion: { finished in
 					if finished,
@@ -25,7 +25,7 @@ internal func applyChanges(changes: Closure, _ animated: Bool, _ completion: Clo
 			})
 		} else {
 			// Animation of 0 seconds to cancel previous animations
-			UIView.animateWithDuration(0) {
+			UIView.animate(withDuration: 0) {
 				changes()
 				
 				if let completion = completion {

@@ -10,51 +10,51 @@ import UIKit
 import DropDown
 
 @IBDesignable
-public class SingleChoiceFloatingField: UIView, FieldType {
+open class SingleChoiceFloatingField: UIView, FieldType {
 
 	//MARK: - Properties
 
 	//MARK: UI
-	private let choiceLabel = UILabel()
-	public let choiceSwitch = UISwitch()
+	fileprivate let choiceLabel = UILabel()
+	open let choiceSwitch = UISwitch()
 
 	//MARK: Appearance
-	@IBInspectable public dynamic var activeColor: UIColor = UIColor.blueColor() {
+	@IBInspectable open dynamic var activeColor = UIColor.blue {
 		willSet { onTintColor = newValue }
 	}
 
-	@IBInspectable public dynamic var textColor: UIColor = UIColor.blackColor() {
+	@IBInspectable open dynamic var textColor = UIColor.black {
 		willSet { choiceLabel.textColor = newValue }
 	}
 
-	@IBInspectable public dynamic var textFont: UIFont = UIFont.systemFontOfSize(15) {
+	@IBInspectable open dynamic var textFont = UIFont.systemFont(ofSize: 15) {
 		willSet { choiceLabel.font = newValue }
 	}
 
 	//MARK: Content
-	@IBInspectable public var value: Bool {
+	@IBInspectable open var value: Bool {
 		get { return on }
 		set { on = newValue }
 	}
 
-	@IBInspectable public var text: String! {
+	@IBInspectable open var text: String! {
 		get { return choiceLabel.text }
 		set { choiceLabel.text = newValue }
 	}
 
-	public var textAlignment: NSTextAlignment {
+	open var textAlignment: NSTextAlignment {
 		get { return choiceLabel.textAlignment }
 		set { choiceLabel.textAlignment = newValue }
 	}
 
-	public var valueChangedAction: ((Bool) -> Void)?
+	open var valueChangedAction: ((Bool) -> Void)?
 
-	private var didSetupConstraints = false
+	fileprivate var didSetupConstraints = false
 
 	//MARK: - Init's
 
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 
 	override init(frame: CGRect) {
@@ -75,7 +75,7 @@ private extension SingleChoiceFloatingField {
 
 	func setup() {
 		setupUI()
-		choiceSwitch.addTarget(self, action: #selector(switchValueChanged), forControlEvents: .ValueChanged)
+		choiceSwitch.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
 	}
 
 }
@@ -84,12 +84,12 @@ private extension SingleChoiceFloatingField {
 
 extension SingleChoiceFloatingField {
 
-	private func setupUI() {
+	fileprivate func setupUI() {
 		updateConstraintsIfNeeded()
 
 		choiceLabel.textColor = textColor
 		choiceLabel.font = textFont
-		choiceLabel.numberOfLines = SingleChoiceText.NumberOfLines
+		choiceLabel.numberOfLines = SingleChoiceText.numberOfLines
 
 		onTintColor = activeColor
 
@@ -98,7 +98,7 @@ extension SingleChoiceFloatingField {
 		#endif
 	}
 
-	public override func updateConstraints() {
+	open override func updateConstraints() {
 		if !didSetupConstraints {
 			setupConstraints()
 		}
@@ -107,18 +107,18 @@ extension SingleChoiceFloatingField {
 		super.updateConstraints()
 	}
 
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		addSubview(choiceLabel)
 		addSubview(choiceSwitch)
 
 		choiceLabel.translatesAutoresizingMaskIntoConstraints = false
 		choiceSwitch.translatesAutoresizingMaskIntoConstraints = false
 
-		let verticalMetrics = ["padding": Constraints.SingleChoiceField.VerticalPadding]
+		let verticalMetrics = ["padding": Constraints.SingleChoiceField.verticalPadding]
 
 		addConstraints(
 			format: "H:|-(padding)-[choiceLabel]-(padding)-[choiceSwitch]-(padding)-|",
-			metrics: ["padding": Constraints.HorizontalPadding],
+			metrics: ["padding": Constraints.horizontalPadding],
 			views: [
 				"choiceLabel": choiceLabel,
 				"choiceSwitch": choiceSwitch
@@ -134,7 +134,7 @@ extension SingleChoiceFloatingField {
 			metrics: verticalMetrics,
 			views: ["choiceSwitch": choiceSwitch])
 
-		choiceSwitch.setContentCompressionResistancePriority(Constraints.SingleChoiceField.SwitchCompressionResistancePriority, forAxis: .Horizontal)
+		choiceSwitch.setContentCompressionResistancePriority(Constraints.SingleChoiceField.switchCompressionResistancePriority, for: .horizontal)
 	}
 
 }
@@ -148,7 +148,7 @@ public extension SingleChoiceFloatingField {
 		set { choiceSwitch.onTintColor = newValue }
 	}
 
-	override var tintColor: UIColor? {
+	override open var tintColor: UIColor? {
 		willSet { choiceSwitch.tintColor = newValue }
 	}
 
@@ -168,11 +168,11 @@ public extension SingleChoiceFloatingField {
 	}
 
 	var on: Bool {
-		get { return choiceSwitch.on }
-		set { choiceSwitch.on = newValue }
+		get { return choiceSwitch.isOn }
+		set { choiceSwitch.isOn = newValue }
 	}
 
-	func setOn(on: Bool, animated: Bool) {
+	func setOn(_ on: Bool, animated: Bool) {
 		choiceSwitch.setOn(on, animated: animated)
 	}
 

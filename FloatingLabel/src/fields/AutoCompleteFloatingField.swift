@@ -12,18 +12,18 @@ import DropDown
 private let HeightPadding: CGFloat = 20
 private let RowHeight: CGFloat = 44
 
-public class AutoCompleteFloatingField: FloatingTextField {
+open class AutoCompleteFloatingField: FloatingTextField {
 	
 	//MARK: - Properties
 	
 	//MARK: UI
-	private let dropDown = DropDown()
+	fileprivate let dropDown = DropDown()
 	
 	//MARK: Content
-	public var dataSource = [String]()
-	public var maxDisplayedItems: Int?
+	open var dataSource = [String]()
+	open var maxDisplayedItems: Int?
 	
-	private var filteredSource: [String] {
+	fileprivate var filteredSource: [String] {
 		get { return dropDown.dataSource }
 		set { dropDown.dataSource = newValue }
 	}
@@ -31,7 +31,7 @@ public class AutoCompleteFloatingField: FloatingTextField {
 	//MARK: - Init's
 	
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 	
 	override init(frame: CGRect) {
@@ -51,21 +51,21 @@ extension AutoCompleteFloatingField {
 	public override func setup() {
 		super.setup()
 		
-		textField.autocorrectionType = .No
-		textField.spellCheckingType = .No
+		textField.autocorrectionType = .no
+		textField.spellCheckingType = .no
 		
 		dropDown.anchorView = self
-		dropDown.direction = .Bottom
-		dropDown.dismissMode = .Automatic
+		dropDown.direction = .bottom
+		dropDown.dismissMode = .automatic
 		dropDown.selectionAction = { [unowned self] (index, item) in
 			self.text = item
-			self.dropDown.selectRowAtIndex(nil)
+			self.dropDown.selectRow(at: nil)
 			self.valueChangedAction?(self.value)
 		}
 	}
 	
-	public override func layoutSublayersOfLayer(layer: CALayer) {
-		super.layoutSublayersOfLayer(layer)
+	override open func layoutSublayers(of layer: CALayer) {
+		super.layoutSublayers(of: layer)
 		
 		updateDropDownWidth()
 	}
@@ -80,10 +80,10 @@ extension AutoCompleteFloatingField {
 	override public func textFieldTextDidChangeNotification() {
 		super.textFieldTextDidChangeNotification()
 		
-		if let newText = text?.lowercaseString where !newText.isEmpty {
+		if let newText = text?.lowercased(), !newText.isEmpty {
 			let resultsDataSource = dataSource
-				.filter { $0.lowercaseString.characters.startsWith(newText.characters) }
-				.sort { $0.lowercaseString < $1.lowercaseString }
+				.filter { $0.lowercased().characters.starts(with: newText.characters) }
+				.sorted { $0.lowercased() < $1.lowercased() }
 			
 			let endIndex = min(maxDisplayedItems ?? Int.max, resultsDataSource.count)
 			
@@ -93,7 +93,7 @@ extension AutoCompleteFloatingField {
 				filteredSource = Array(resultsDataSource[0..<endIndex])
 			}
 			
-			if dropDown.hidden {
+			if dropDown.isHidden {
 				dropDown.show()
 			}
 		} else {
@@ -125,8 +125,8 @@ public extension AutoCompleteFloatingField {
 	}
 	
 	func updateDropDownWidth() {
-		let separatorLineMaxY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView?.plainView).maxY
-		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMaxY)
+		let separatorLineMaxY = separatorLine.superview!.convert(separatorLine.frame, to: dropDown.anchorView?.plainView).maxY
+		dropDown.bottomOffset = CGPoint(x: Constraints.horizontalPadding, y: separatorLineMaxY)
 		dropDown.width = separatorLine.bounds.width
 	}
 }

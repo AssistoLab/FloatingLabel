@@ -9,12 +9,12 @@
 import UIKit
 import SZTextView
 
-public class FloatingFieldTextView: SZTextView {
+open class FloatingFieldTextView: SZTextView {
 	
 	//MARK: - Init's
 	
 	init() {
-		super.init(frame: CGRectZero, textContainer: nil)
+		super.init(frame: .zero, textContainer: nil)
 		listenToTextView()
 	}
 	
@@ -29,24 +29,24 @@ public class FloatingFieldTextView: SZTextView {
 	
 	//MARK: - Properties
 	
-	private var shouldUpdateSizeIfNeeded = true
+	fileprivate var shouldUpdateSizeIfNeeded = true
 	
 }
 
 //MARK: - UIView
 
-public extension FloatingFieldTextView {
+extension FloatingFieldTextView {
 	
-	override func layoutSubviews() {
+	override open func layoutSubviews() {
 		super.layoutSubviews()
 		
-		if shouldUpdateSizeIfNeeded && bounds.size != intrinsicContentSize() {
+		if shouldUpdateSizeIfNeeded && bounds.size != intrinsicContentSize {
 			invalidateIntrinsicContentSize()
 			parentCollectionView()?.collectionViewLayout.invalidateLayout()
 		}
 	}
 	
-	override func intrinsicContentSize() -> CGSize {
+	override open var intrinsicContentSize: CGSize {
 		#if TARGET_INTERFACE_BUILDER
 			return CGSize(width: UIViewNoIntrinsicMetric, height: 24)
 		#else
@@ -60,42 +60,42 @@ public extension FloatingFieldTextView {
 
 extension FloatingFieldTextView {
 	
-	private func listenToTextView() {
-		NSNotificationCenter.defaultCenter().addObserver(
+	fileprivate func listenToTextView() {
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(textViewTextDidBeginEditingNotification),
-			name: UITextViewTextDidBeginEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidBeginEditing,
 			object: self)
 		
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(textViewTextDidChangeNotification),
-			name: UITextViewTextDidChangeNotification,
+			name: NSNotification.Name.UITextViewTextDidChange,
 			object: self)
 		
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(textViewTextDidEndEditingNotification),
-			name: UITextViewTextDidEndEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidEndEditing,
 			object: self)
 		
-		self.addObserver(self, forKeyPath: "text", options: .New, context: &textKVOContext)
+		self.addObserver(self, forKeyPath: "text", options: .new, context: &textKVOContext)
 	}
 	
 	func stopListeningToTextView() {
-		NSNotificationCenter.defaultCenter().removeObserver(
+		NotificationCenter.default.removeObserver(
 			self,
-			name: UITextViewTextDidBeginEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidBeginEditing,
 			object: self)
 		
-		NSNotificationCenter.defaultCenter().removeObserver(
+		NotificationCenter.default.removeObserver(
 			self,
-			name: UITextViewTextDidChangeNotification,
+			name: NSNotification.Name.UITextViewTextDidChange,
 			object: self)
 		
-		NSNotificationCenter.defaultCenter().removeObserver(
+		NotificationCenter.default.removeObserver(
 			self,
-			name: UITextViewTextDidEndEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidEndEditing,
 			object: self)
 		
 		self.removeObserver(self, forKeyPath: "text", context: &textKVOContext)
@@ -126,14 +126,14 @@ private var textKVOContext = 0
 
 extension FloatingFieldTextView {
 	
-	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 		if context == &textKVOContext
-			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
+			&& (change?[NSKeyValueChangeKey.newKey] as? String) != nil
 		{
 			parentCollectionView()?.collectionViewLayout.invalidateLayout()
 		}
 		
-		super.observeValueForKeyPath(keyPath!, ofObject: object!, change: change!, context: context)
+		super.observeValue(forKeyPath: keyPath!, of: object!, change: change!, context: context)
 	}
 	
 }

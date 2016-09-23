@@ -1,3 +1,4 @@
+
 //
 //  PhoneFloatingField.swift
 //  FloatingLabel
@@ -10,26 +11,26 @@ import UIKit
 import DropDown
 
 @IBDesignable
-public class PhoneFloatingField: UIView, TextFieldType, Validatable {
+open class PhoneFloatingField: UIView, TextFieldType, Validatable {
 	
 	//MARK: - Properties
 	
 	//MARK: UI
-	public let prefixField = ActionFloatingField() // eg. +32
-	public let suffixField = FloatingTextField() // eg. 123 45 67 89
+	open let prefixField = ActionFloatingField() // eg. +32
+	open let suffixField = FloatingTextField() // eg. 123 45 67 89
 	
 	//MARK: Constraints
-	private var prefixWidthConstraint: NSLayoutConstraint!
+	fileprivate var prefixWidthConstraint: NSLayoutConstraint!
 	
 	//MARK: Content
-	public var value: String? {
+	open var value: String? {
 		get { return text }
 		set { text = newValue }
 	}
 	
-	public var valueChangedAction: ((String?) -> Void)?
+	open var valueChangedAction: ((String?) -> Void)?
 	
-	@IBInspectable public var text: String? {
+	@IBInspectable open var text: String? {
 		get {
 			return phoneNumber
 		}
@@ -55,7 +56,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	public var phoneNumber: String? {
+	open var phoneNumber: String? {
 		var phoneNumber = ""
 		
 		if let prefix = prefixField.text {
@@ -69,7 +70,7 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		return phoneNumber.isEmpty ? nil : phoneNumber
 	}
 	
-	public var prefix: String? {
+	open var prefix: String? {
 		get {
 			return prefixField.text
 		}
@@ -79,12 +80,12 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	public var suffix: String? {
+	open var suffix: String? {
 		get { return suffixField.text }
 		set { suffixField.text = newValue }
 	}
 	
-	@IBInspectable public var prefixPlaceholder: String? {
+	@IBInspectable open var prefixPlaceholder: String? {
 		get {
 			return prefixField.placeholder
 		}
@@ -94,50 +95,50 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 		}
 	}
 	
-	@IBInspectable public var suffixPlaceholder: String? {
+	@IBInspectable open var suffixPlaceholder: String? {
 		get { return suffixField.placeholder }
 		set { suffixField.placeholder = newValue }
 	}
 	
-	@IBInspectable public var helpText: String? {
+	@IBInspectable open var helpText: String? {
 		get { return suffixField.helpText }
 		set { suffixField.helpText = newValue }
 	}
 	
-	@IBInspectable public var errorText: String? {
-		willSet { validations = [Validation(.PhoneNumber, message: newValue)] }
+	@IBInspectable open var errorText: String? {
+		willSet { validations = [Validation(.phoneNumber, message: newValue)] }
 	}
 	
-	public var validations = [Validation(.PhoneNumber)]
+	open var validations = [Validation(.phoneNumber)]
 	
-	public var validation: Validation? {
+	open var validation: Validation? {
 		get { return validations.first }
 		set { validations.replaceFirstItemBy(newValue) }
 	}
 	
-	public var isValid: Bool {
+	open var isValid: Bool {
 		if !suffixField.hasBeenEdited {
 			return true
 		} else {
-			return checkValidity(text: phoneNumber, validations: validations, level: .Error).isValid
+			return checkValidity(text: phoneNumber, validations: validations, level: .error).isValid
 		}
 	}
 	
-	public var isEditing: Bool {
+	open var isEditing: Bool {
 		return suffixField.isEditing
 	}
 	
-	public var prefixHandler: Closure! {
+	open var prefixHandler: Closure! {
 		get { return prefixField.action }
 		set { prefixField.action = newValue }
 	}
 	
-	private var didSetupConstraints = false
+	fileprivate var didSetupConstraints = false
 	
 	//MARK: - Init's
 	
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 	
 	public override init(frame: CGRect) {
@@ -156,20 +157,20 @@ public class PhoneFloatingField: UIView, TextFieldType, Validatable {
 
 extension PhoneFloatingField {
 	
-	private func setupUI() {
+	fileprivate func setupUI() {
 		updateConstraintsIfNeeded()
 		setupFields()
 	}
 	
-	private func setupFields() {
-		prefixField.autocorrectionType = .No
-		prefixField.spellCheckingType = .No
+	fileprivate func setupFields() {
+		prefixField.autocorrectionType = .no
+		prefixField.spellCheckingType = .no
 		prefixField.rightView = UIImageView(image: Icon.Arrow.image().template())
-		prefixField.rightViewMode = .Always
+		prefixField.rightViewMode = .always
 		prefixField.validation = Validation({ [unowned self] text in
 			if !text.isEmpty,
 				let suffix = self.suffixField.text
-				where !suffix.isEmpty
+				, !suffix.isEmpty
 			{
 				self.suffixField.validate()
 			}
@@ -177,17 +178,17 @@ extension PhoneFloatingField {
 			return true
 		})
 		
-		suffixField.autocorrectionType = .No
-		suffixField.spellCheckingType = .No
-		suffixField.keyboardType = .NumberPad
+		suffixField.autocorrectionType = .no
+		suffixField.spellCheckingType = .no
+		suffixField.keyboardType = .numberPad
 		suffixField.valueChangedAction = { [unowned self] value in
 			self.valueChangedAction?(value)
 		}
 		suffixField.validation = Validation(
 			{ [unowned self] _ in
-				return DataValidationHelper.isPhoneNumberValid(self.phoneNumber ?? "")
+				return DataValidationHelper.isValid(phone: self.phoneNumber ?? "")
 			},
-			message: validation?.message ?? Validation.messages[.PhoneNumber]?.message ?? "")
+			message: validation?.message ?? Validation.messages[.phoneNumber]?.message ?? "")
 		
 		#if TARGET_INTERFACE_BUILDER
 			prefixPlaceholder = "Prefix"
@@ -196,7 +197,7 @@ extension PhoneFloatingField {
 		#endif
 	}
 	
-	public override func updateConstraints() {
+	open override func updateConstraints() {
 		if !didSetupConstraints {
 			setupConstraints()
 		}
@@ -205,7 +206,7 @@ extension PhoneFloatingField {
 		super.updateConstraints()
 	}
 	
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		addSubview(prefixField)
 		addSubview(suffixField)
 		
@@ -218,18 +219,18 @@ extension PhoneFloatingField {
 		
 		prefixWidthConstraint = NSLayoutConstraint(
 			item: prefixField,
-			attribute: .Width,
-			relatedBy: .Equal,
+			attribute: .width,
+			relatedBy: .equal,
 			toItem: nil,
-			attribute: .NotAnAttribute,
+			attribute: .notAnAttribute,
 			multiplier: 1,
 			constant: prefixField.contentWidth())
 		
 		prefixField.addConstraint(prefixWidthConstraint)
 		
-		prefixField.setContentCompressionResistancePriority(Constraints.PhoneField.Prefix.CompressionResistancePriority, forAxis: .Horizontal)
-		prefixField.setContentHuggingPriority(Constraints.PhoneField.Prefix.VerticalHuggingPriority, forAxis: .Vertical)
-		suffixField.setContentHuggingPriority(Constraints.PhoneField.Prefix.VerticalHuggingPriority, forAxis: .Vertical)
+		prefixField.setContentCompressionResistancePriority(Constraints.PhoneField.Prefix.compressionResistancePriority, for: .horizontal)
+		prefixField.setContentHuggingPriority(Constraints.PhoneField.Prefix.verticalHuggingPriority, for: .vertical)
+		suffixField.setContentHuggingPriority(Constraints.PhoneField.Prefix.verticalHuggingPriority, for: .vertical)
 	}
 	
 }
@@ -261,36 +262,36 @@ public extension PhoneFloatingField {
 					return false
 				}
 			},
-			message: Validation.messages[.Required]?.message),
-			atIndex: 0)
+			message: Validation.messages[.required]?.message),
+			at: 0)
 		
-		suffixField.validations.insert(Validation(.Required), atIndex: 0)
+		suffixField.validations.insert(Validation(.required), at: 0)
 	}
 	
 }
 
 //MARK: - Responder
 
-public extension PhoneFloatingField {
+extension PhoneFloatingField {
 	
-	override func canBecomeFirstResponder() -> Bool {
-		return suffixField.canBecomeFirstResponder()
+	override open var canBecomeFirstResponder: Bool {
+		return suffixField.canBecomeFirstResponder
 	}
 	
-	override func becomeFirstResponder() -> Bool {
+	override open func becomeFirstResponder() -> Bool {
 		return suffixField.becomeFirstResponder()
 	}
 	
-	override func resignFirstResponder() -> Bool {
+	override open func resignFirstResponder() -> Bool {
 		return suffixField.resignFirstResponder()
 	}
 	
-	override func isFirstResponder() -> Bool {
-		return suffixField.isFirstResponder()
+	override open var isFirstResponder: Bool {
+		return suffixField.isFirstResponder
 	}
 	
-	override func canResignFirstResponder() -> Bool {
-		return suffixField.canResignFirstResponder()
+	override open var canResignFirstResponder: Bool {
+		return suffixField.canResignFirstResponder
 	}
 	
 }
@@ -299,8 +300,8 @@ public extension PhoneFloatingField {
 
 public extension PhoneFloatingField {
 	
-	override func viewForBaselineLayout() -> UIView {
-		return suffixField.viewForBaselineLayout()
+	override open func forBaselineLayout() -> UIView {
+		return suffixField.forBaselineLayout()
 	}
 	
 }

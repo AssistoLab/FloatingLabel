@@ -16,8 +16,8 @@ public struct Validation {
 	public static var evaluations = [ValidationType: ValidationClosure]()
 	
 	public let type: ValidationType
-	private var __message: String?
-	private let __level: ValidationLevel?
+	fileprivate var __message: String?
+	fileprivate let __level: ValidationLevel?
 	
 	public var message: String? {
 		get {
@@ -40,21 +40,21 @@ public struct Validation {
 		} else if let (_, level) = Validation.messages[type] {
 			return level
 		} else {
-			return .Error
+			return .error
 		}
 	}
 
-	public init(_ type: ValidationType, message: String? = nil, level: ValidationLevel? = .Error) {
+	public init(_ type: ValidationType, message: String? = nil, level: ValidationLevel? = .error) {
 		self.type = type
 		self.__message = message
 		self.__level = level
 	}
 	
-	public init(_ customClosure: ValidationClosure, message: String? = nil, level: ValidationLevel? = .Error) {
-		self.init(.Custom(customClosure), message: message, level: level)
+	public init(_ customClosure: @escaping ValidationClosure, message: String? = nil, level: ValidationLevel? = .error) {
+		self.init(.custom(customClosure), message: message, level: level)
 	}
 	
-	public func isValid(text: String) -> Bool {
+	public func isValid(_ text: String) -> Bool {
 		if let evaluation = Validation.evaluations[type] {
 			return evaluation(text)
 		} else {
@@ -68,26 +68,26 @@ public struct Validation {
 
 public enum ValidationType {
 	
-	case Required
-	case EmailAddress
-	case PhoneNumber
-	case Custom(ValidationClosure)
+	case required
+	case emailAddress
+	case phoneNumber
+	case custom(ValidationClosure)
 	
-	private var evaluation: ValidationClosure {
+	fileprivate var evaluation: ValidationClosure {
 		switch self {
-		case .Required:
+		case .required:
 			return { (text) in
 				return !text.isEmpty
 			}
-		case .EmailAddress:
+		case .emailAddress:
 			return { (text) in
-				return text.isEmpty || DataValidationHelper.isAddressEmailValid(text)
+				return text.isEmpty || DataValidationHelper.isValid(email: text)
 			}
-		case .PhoneNumber:
+		case .phoneNumber:
 			return { (text) in
-				return text.isEmpty || DataValidationHelper.isPhoneNumberValid(text)
+				return text.isEmpty || DataValidationHelper.isValid(phone: text)
 			}
-		case let .Custom(closure):
+		case let .custom(closure):
 			return closure
 		}
 	}
@@ -100,13 +100,13 @@ extension ValidationType: Hashable {
 	
 	public var hashValue: Int {
 		switch self {
-		case .Required:
+		case .required:
 			return 1
-		case .EmailAddress:
+		case .emailAddress:
 			return 2
-		case .PhoneNumber:
+		case .phoneNumber:
 			return 3
-		case .Custom(_):
+		case .custom(_):
 			return 4
 		}
 	}
@@ -115,7 +115,7 @@ extension ValidationType: Hashable {
 
 public func ==(lhs: ValidationType, rhs: ValidationType) -> Bool {
 	switch (lhs, rhs) {
-	case (.Custom, .Custom):
+	case (.custom, .custom):
 		return false
 	default:
 		return lhs.hashValue == rhs.hashValue
@@ -126,7 +126,7 @@ public func ==(lhs: ValidationType, rhs: ValidationType) -> Bool {
 
 public enum ValidationLevel {
 	
-	case Error
-	case Warning
+	case error
+	case warning
 	
 }

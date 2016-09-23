@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class FloatingFieldTextField: UITextField {
+open class FloatingFieldTextField: UITextField {
 	
 	var showCursor = true
 	var enableContextMenu = true
@@ -27,16 +27,16 @@ public extension FloatingFieldTextField {
 	}
 	
 	// show/hide cursor
-	override func caretRectForPosition(position: UITextPosition) -> CGRect {
+	override open func caretRect(for position: UITextPosition) -> CGRect {
 		if showCursor {
-			return super.caretRectForPosition(position)
+			return super.caretRect(for: position)
 		} else {
-			return CGRectZero
+			return .zero
 		}
 	}
 	
 	// enable/disable context menu
-	override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+	override open func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 		if enableContextMenu {
 			return super.canPerformAction(action, withSender: sender)
 		} else {
@@ -45,16 +45,16 @@ public extension FloatingFieldTextField {
 	}
 	
 	// enable/disable text selection
-	override func selectionRectsForRange(range: UITextRange) -> [AnyObject] {
+	override open func selectionRects(for range: UITextRange) -> [Any] {
 		if enableSelection {
-			return super.selectionRectsForRange(range)
+			return super.selectionRects(for: range)
 		} else {
 			return []
 		}
 	}
 	
 	// enable/disable magnifier
-	override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+	override open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 		if !enableSelection
 			&& (gestureRecognizer is UILongPressGestureRecognizer
 				|| (gestureRecognizer is UITapGestureRecognizer

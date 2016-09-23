@@ -4,24 +4,24 @@ import DropDown
 
 internal enum HelperState {
 	
-	case Hidden
-	case Help
-	case Error
-	case Warning
+	case hidden
+	case help
+	case error
+	case warning
 	
 	init(level: ValidationLevel) {
 		switch level {
-		case .Error:
-			self = Error
-		case .Warning:
-			self = .Warning
+		case .error:
+			self = .error
+		case .warning:
+			self = .warning
 		}
 	}
 	
 }
 
 @IBDesignable
-public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
+open class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 	
 	//MARK: - Properties
 	
@@ -31,81 +31,81 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 	internal var separatorLine = UIView()
 	internal var helperLabel = UILabel()
 	
-	override public var inputView: UIView? {
+	override open var inputView: UIView? {
 		get { return input.__inputView }
 		set { input.__inputView = newValue }
 	}
 	
 	//MARK: Constraints
-	private var helperLabelHeightConstraint: NSLayoutConstraint!
-	private weak var helperLabelBottomToSuperviewConstraint: NSLayoutConstraint!
-	private weak var separatorLineHeightConstraint: NSLayoutConstraint!
+	fileprivate var helperLabelHeightConstraint: NSLayoutConstraint!
+	fileprivate weak var helperLabelBottomToSuperviewConstraint: NSLayoutConstraint!
+	fileprivate weak var separatorLineHeightConstraint: NSLayoutConstraint!
 	
 	//MARK: Appearance
-	@IBInspectable public dynamic var activeColor: UIColor = UIColor.blueColor() {
+	@IBInspectable open dynamic var activeColor = UIColor.blue {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var idleColor: UIColor = UIColor.lightGrayColor() {
+	@IBInspectable open dynamic var idleColor = UIColor.lightGray {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var textColor: UIColor = UIColor.blackColor() {
+	@IBInspectable open dynamic var textColor = UIColor.black {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var floatingLabelColor: UIColor = UIColor.grayColor() {
+	@IBInspectable open dynamic var floatingLabelColor = UIColor.gray {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var helpColor: UIColor = UIColor.grayColor() {
+	@IBInspectable open dynamic var helpColor = UIColor.gray {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var errorColor: UIColor = UIColor.redColor() {
+	@IBInspectable open dynamic var errorColor = UIColor.red {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var warningColor: UIColor = UIColor.orangeColor() {
+	@IBInspectable open dynamic var warningColor = UIColor.orange {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var helperFont = UIFont.systemFontOfSize(13) {
+	@IBInspectable open dynamic var helperFont = UIFont.systemFont(ofSize: 13) {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var floatingLabelFont = UIFont.systemFontOfSize(12) {
+	@IBInspectable open dynamic var floatingLabelFont = UIFont.systemFont(ofSize: 12) {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
 		}
 	}
 	
-	@IBInspectable public dynamic var textFont = UIFont.systemFontOfSize(15) {
+	@IBInspectable open dynamic var textFont = UIFont.systemFont(ofSize: 15) {
 		didSet {
 			customizeUI()
 			updateUI(animated: false)
@@ -113,34 +113,34 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 	}
 	
 	//MARK: Content
-	public var value: String? {
+	open var value: String? {
 		get { return text }
 		set { text = newValue }
 	}
 	
-	public var valueChangedAction: ((String?) -> Void)?
+	open var valueChangedAction: ((String?) -> Void)?
 	
-	@IBInspectable public var helpText: String? {
+	@IBInspectable open var helpText: String? {
 		didSet { updateUI(animated: false) }
 	}
 	
-	public var validations = [Validation]()
+	open var validations = [Validation]()
 	
-	public var validation: Validation? {
+	open var validation: Validation? {
 		get { return validations.first }
 		set { validations.replaceFirstItemBy(newValue) }
 	}
 	
-	internal var helperState = HelperState.Hidden
-	private var previousHelperState = HelperState.Hidden
+	internal var helperState = HelperState.hidden
+	fileprivate var previousHelperState = HelperState.hidden
 	internal var hasBeenEdited = false
-	public var forceValidation = false
+	open var forceValidation = false
 	
-	private var isEmpty: Bool {
+	fileprivate var isEmpty: Bool {
 		return input.__text?.isEmpty ?? false
 	}
 	
-	public var isEditing: Bool {
+	open var isEditing: Bool {
 		return input.__editing
 	}
 	
@@ -148,20 +148,20 @@ public class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 		return floatingLabel.alpha > 0
 	}
 	
-	public var isValid: Bool {
+	open var isValid: Bool {
 		if !hasBeenEdited {
 			return true
 		} else {
-			return checkValidity(text: text, validations: validations, level: .Error).isValid
+			return checkValidity(text: text, validations: validations, level: .error).isValid
 		}
 	}
 	
-	private var didSetupConstraints = false
+	fileprivate var didSetupConstraints = false
 	
 	//MARK: - Init's
 	
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 	
 	override public init(frame: CGRect) {
@@ -190,7 +190,7 @@ internal extension FloatingField {
 
 extension FloatingField {
 	
-	private func setupUI() {
+	fileprivate func setupUI() {
 		updateConstraintsIfNeeded()
 		
 		#if TARGET_INTERFACE_BUILDER
@@ -202,23 +202,23 @@ extension FloatingField {
 		updateUI(animated: false)
 	}
 	
-	private func customizeUI() {
+	fileprivate func customizeUI() {
 		floatingLabel.textColor = floatingLabelColor
 		floatingLabel.font = floatingLabelFont
-		floatingLabel.numberOfLines = FLoatingLabel.NumberOfLines
-		floatingLabel.adjustsFontSizeToFitWidth = FLoatingLabel.AdjustsFontSizeToFitWidth
-		floatingLabel.minimumScaleFactor = FLoatingLabel.MinimumScaleFactor
+		floatingLabel.numberOfLines = FLoatingLabel.numberOfLines
+		floatingLabel.adjustsFontSizeToFitWidth = FLoatingLabel.adjustsFontSizeToFitWidth
+		floatingLabel.minimumScaleFactor = FLoatingLabel.minimumScaleFactor
 		
 		input.__textColor = textColor
 		input.__font = textFont
 		input.__tintColor = activeColor
 		
 		helperLabel.font = helperFont
-		helperLabel.numberOfLines = HelperLabel.NumberOfLines
+		helperLabel.numberOfLines = HelperLabel.numberOfLines
 		helperLabel.clipsToBounds = true
 	}
 	
-	public override func updateConstraints() {
+	open override func updateConstraints() {
 		if !didSetupConstraints {
 			setupConstraints()
 		}
@@ -227,7 +227,7 @@ extension FloatingField {
 		super.updateConstraints()
 	}
 	
-	private func setupConstraints() {
+	fileprivate func setupConstraints() {
 		translatesAutoresizingMaskIntoConstraints = false
 		
 		// Floating label
@@ -243,7 +243,7 @@ extension FloatingField {
 		let separatorContainer = UIView()
 		separatorContainer.addConstraints(
 			format: "V:[separatorContainer(height)]",
-			metrics: ["height": Constraints.Separator.ActiveHeight],
+			metrics: ["height": Constraints.Separator.activeHeight],
 			views: ["separatorContainer": separatorContainer])
 		
 		separatorContainer.addSubview(separatorLine)
@@ -251,36 +251,36 @@ extension FloatingField {
 		separatorContainer.addConstraints(format: "H:|[separatorLine]|", views: ["separatorLine": separatorLine])
 		separatorContainer.addConstraint(NSLayoutConstraint(
 			item: separatorLine,
-			attribute: .CenterY,
-			relatedBy: .Equal,
+			attribute: .centerY,
+			relatedBy: .equal,
 			toItem: separatorContainer,
-			attribute: .CenterY,
+			attribute: .centerY,
 			multiplier: 1,
 			constant: 0))
 		separatorLineHeightConstraint = NSLayoutConstraint(
 			item: separatorLine,
-			attribute: .Height,
-			relatedBy: .Equal,
+			attribute: .height,
+			relatedBy: .equal,
 			toItem: nil,
-			attribute: .NotAnAttribute,
+			attribute: .notAnAttribute,
 			multiplier: 1,
-			constant: Constraints.Separator.IdleHeight)
+			constant: Constraints.Separator.idleHeight)
 		separatorLine.addConstraint(separatorLineHeightConstraint)
 		
 		// Helper label
 		helperLabel.translatesAutoresizingMaskIntoConstraints = false
 		helperLabelHeightConstraint = NSLayoutConstraint(
 			item: helperLabel,
-			attribute: .Height,
-			relatedBy: .Equal,
+			attribute: .height,
+			relatedBy: .equal,
 			toItem: nil,
-			attribute: .NotAnAttribute,
+			attribute: .notAnAttribute,
 			multiplier: 1,
-			constant: Constraints.Helper.HiddenHeight)
+			constant: Constraints.Helper.hiddenHeight)
 		helperLabel.addConstraint(helperLabelHeightConstraint)
 		
 		// Global
-		let metrics = ["padding": Constraints.HorizontalPadding]
+		let metrics = ["padding": Constraints.horizontalPadding]
 		
 		// Horizontal
 		addSubview(floatingLabelContainer)
@@ -316,10 +316,10 @@ extension FloatingField {
 		addConstraints(
 			format: "V:|-(labelTopPadding)-[label]-(labelBottomPadding)-[inputAsView]-(fieldBottomPadding)-[separator]-(separatorBottomPadding)-[helper]",
 			metrics: [
-				"labelTopPadding": Constraints.FloatingLabel.TopPadding,
-				"labelBottomPadding": Constraints.FloatingLabel.BottomPadding,
-				"fieldBottomPadding": Constraints.TextField.BottomPadding,
-				"separatorBottomPadding": Constraints.Separator.BottomPadding
+				"labelTopPadding": Constraints.FloatingLabel.topPadding,
+				"labelBottomPadding": Constraints.FloatingLabel.bottomPadding,
+				"fieldBottomPadding": Constraints.TextField.bottomPadding,
+				"separatorBottomPadding": Constraints.Separator.bottomPadding
 			],
 			views: [
 				"label": floatingLabelContainer,
@@ -329,12 +329,12 @@ extension FloatingField {
 			])
 		
 		helperLabelBottomToSuperviewConstraint = NSLayoutConstraint(item: self,
-			attribute: .Bottom,
-			relatedBy: .Equal,
+			attribute: .bottom,
+			relatedBy: .equal,
 			toItem: helperLabel,
-			attribute: .Bottom,
+			attribute: .bottom,
 			multiplier: 1,
-			constant: Constraints.Helper.HiddenBottomPadding)
+			constant: Constraints.Helper.hiddenBottomPadding)
 		addConstraint(helperLabelBottomToSuperviewConstraint)
 	}
 	
@@ -344,7 +344,7 @@ extension FloatingField {
 
 internal extension FloatingField {
 	
-	func updateUI(animated animated: Bool) {
+	func updateUI(animated: Bool) {
 		/* BEGIN HACK:
 		 * Avoid text in the textfield to jump when edition did finished 
 		 * (Happened only the first time)
@@ -375,10 +375,10 @@ private extension FloatingField {
 		let separatorColor: UIColor
 		
 		if isEditing {
-			separatorHeight = Constraints.Separator.ActiveHeight
+			separatorHeight = Constraints.Separator.activeHeight
 			separatorColor = activeColor
 		} else {
-			separatorHeight = Constraints.Separator.IdleHeight
+			separatorHeight = Constraints.Separator.idleHeight
 			separatorColor = idleColor
 		}
 		
@@ -397,12 +397,12 @@ private extension FloatingField {
 	}
 	
 	func showFloatingLabel() {
-		floatingLabel.transform = CGAffineTransformIdentity
+		floatingLabel.transform = CGAffineTransform.identity
 		floatingLabel.alpha = 1
 	}
 	
 	func hideFloatingLabel() {
-		floatingLabel.transform = Animation.FloatingLabelTransform
+		floatingLabel.transform = Animation.floatingLabelTransform
 		floatingLabel.alpha = 0
 	}
 	
@@ -426,17 +426,17 @@ private extension FloatingField {
 		updateHelperUI()
 		
 		switch helperState {
-		case .Help:
+		case .help:
 			if let text = helperText(helpText, helperLabel.text, previousHelperState) {
 				showHelper(text: text)
 			}
-		case .Error, .Warning:
+		case .error, .warning:
 			let errorText = validationCheck.failedValidation?.message
 			
 			if let text = helperText(errorText, helperLabel.text, previousHelperState) {
 				showHelper(text: text)
 			}
-		case .Hidden:
+		case .hidden:
 			hideHelper()
 		}
 	}
@@ -447,22 +447,22 @@ private extension FloatingField {
 		var separatorHeight: CGFloat? = nil
 		
 		switch helperState {
-		case .Help:
+		case .help:
 			helperColor = helpColor
 			
 			if !isEditing {
 				separatorColor = idleColor
-				separatorHeight = Constraints.Separator.IdleHeight
+				separatorHeight = Constraints.Separator.idleHeight
 			}
-		case .Error:
+		case .error:
 			helperColor = errorColor
 			separatorColor = errorColor
-			separatorHeight = Constraints.Separator.ActiveHeight
-		case .Warning:
+			separatorHeight = Constraints.Separator.activeHeight
+		case .warning:
 			helperColor = warningColor
 			separatorColor = warningColor
-			separatorHeight = Constraints.Separator.ActiveHeight
-		case .Hidden:
+			separatorHeight = Constraints.Separator.activeHeight
+		case .hidden:
 			return
 		}
 		
@@ -477,7 +477,7 @@ private extension FloatingField {
 		}
 	}
 	
-	func showHelper(text text: String) {
+	func showHelper(text: String) {
 		helperLabel.text = text
 		
 		if helperState == previousHelperState {
@@ -487,19 +487,19 @@ private extension FloatingField {
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 1
 			self.helperLabel.removeConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.DisplayedBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.displayedBottomPadding
 		}
 	}
 	
 	func hideHelper() {
-		if previousHelperState == .Hidden {
+		if previousHelperState == .hidden {
 			return
 		}
 		
 		performBatchUpdates { [unowned self] in
 			self.helperLabel.alpha = 0
 			self.helperLabel.addConstraint(self.helperLabelHeightConstraint)
-			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.HiddenBottomPadding
+			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.hiddenBottomPadding
 		}
 	}
 	
@@ -507,47 +507,47 @@ private extension FloatingField {
 
 //MARK: - UIView (UIConstraintBasedLayoutLayering)
 
-public extension FloatingField {
+extension FloatingField {
 	
 	func contentWidth() -> CGFloat {
-		let padding = Constraints.HorizontalPadding * 2
+		let padding = Constraints.horizontalPadding * 2
 		input.invalidateIntrinsicContentSize()
 		
-		return max(input.intrinsicContentSize().width + padding, 40)
+		return max(input.intrinsicContentSize.width + padding, 40)
 	}
 	
-	override func intrinsicContentSize() -> CGSize {
-		let floatingLabelHeight = NSString(string: floatingLabel.text ?? "").boundingRectWithSize(
-			CGSize(width: CGFloat.max, height: CGFloat.max),
-			options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+	override open var intrinsicContentSize : CGSize {
+		let floatingLabelHeight = NSString(string: floatingLabel.text ?? "").boundingRect(
+			with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude),
+			options: NSStringDrawingOptions.usesLineFragmentOrigin,
 			attributes: [NSFontAttributeName: floatingLabelFont],
 			context: nil).height
-		let textHeight = input.intrinsicContentSize().height
+		let textHeight = input.intrinsicContentSize.height
 		let spaces: CGFloat = 40
 		let height = spaces + floatingLabelHeight + textHeight
 		
 		return CGSize(width: UIViewNoIntrinsicMetric, height: height)
 	}
 	
-	override func contentHuggingPriorityForAxis(axis: UILayoutConstraintAxis) -> UILayoutPriority {
+	override open func contentHuggingPriority(for axis: UILayoutConstraintAxis) -> UILayoutPriority {
 		switch axis {
-		case .Horizontal:
+		case .horizontal:
 			return 250
-		case .Vertical:
+		case .vertical:
 			return 1000
 		}
 	}
 	
-	override func contentCompressionResistancePriorityForAxis(axis: UILayoutConstraintAxis) -> UILayoutPriority {
+	override open func contentCompressionResistancePriority(for axis: UILayoutConstraintAxis) -> UILayoutPriority {
 		switch axis {
-		case .Horizontal:
+		case .horizontal:
 			return 750
-		case .Vertical:
+		case .vertical:
 			return 1000
 		}
 	}
 	
-	override func viewForBaselineLayout() -> UIView {
+	override open func forBaselineLayout() -> UIView {
 		return input.viewForBaselineLayout()
 	}
 	
@@ -555,14 +555,14 @@ public extension FloatingField {
 
 //MARK: - Touch events
 
-public extension FloatingField {
+extension FloatingField {
 	
 	// If self is tapped, we assume the user wants the textfield so we return it
-	override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-		if pointInside(point, withEvent: event) {
+	override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+		if self.point(inside: point, with: event) {
 			return input as? UIView
 		} else {
-			return super.hitTest(point, withEvent: event)
+			return super.hitTest(point, with: event)
 		}
 	}
 	
@@ -579,7 +579,7 @@ public extension FloatingField {
 		updateUI(animated: true)
 	}
 	
-	public func validate(force: Bool) {
+	public func validate(_ force: Bool) {
 		// Avoid skipping validation because text was not edited yet
 		hasBeenEdited = true
 		
@@ -589,7 +589,7 @@ public extension FloatingField {
 	
 }
 
-public func checkValidity(text text: String?, validations: [Validation], level: ValidationLevel?) -> (isValid: Bool, failedValidation: Validation?) {
+public func checkValidity(text: String?, validations: [Validation], level: ValidationLevel?) -> (isValid: Bool, failedValidation: Validation?) {
 	for validation in validations {
 		let shouldPassLevelValidation = level == nil
 		let isWantedLevel = validation.level == level
@@ -606,17 +606,17 @@ public func checkValidity(text text: String?, validations: [Validation], level: 
 
 //MARK: - Helpers
 
-func baseHelperState(helpText: String?) -> HelperState {
-	if let text = helpText where !text.isEmpty {
-		return .Help
+func baseHelperState(_ helpText: String?) -> HelperState {
+	if let text = helpText, !text.isEmpty {
+		return .help
 	} else {
-		return .Hidden
+		return .hidden
 	}
 }
 
-func helperText(text: String?, _ helperText: String?, _ previousHelperState: HelperState) -> String? {
-	if text != helperText || previousHelperState == .Hidden,
-		let text = text where !text.isEmpty
+func helperText(_ text: String?, _ helperText: String?, _ previousHelperState: HelperState) -> String? {
+	if text != helperText || previousHelperState == .hidden,
+		let text = text, !text.isEmpty
 	{
 		return text
 	} else {

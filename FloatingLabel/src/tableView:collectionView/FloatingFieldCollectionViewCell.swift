@@ -9,11 +9,11 @@
 import UIKit
 import DropDown
 
-public class FloatingFieldCollectionViewCell: UICollectionViewCell {
+open class FloatingFieldCollectionViewCell: UICollectionViewCell {
 	
 	//MARK: - Properties
 	
-	public var field: UIView!
+	open var field: UIView!
 	
 }
 

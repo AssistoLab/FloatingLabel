@@ -11,11 +11,11 @@ import UIKit
 internal extension UIImage {
 	
 	func original() -> UIImage {
-		return self.imageWithRenderingMode(.AlwaysOriginal)
+		return withRenderingMode(.alwaysOriginal)
 	}
 	
 	func template() -> UIImage {
-		return self.imageWithRenderingMode(.AlwaysTemplate)
+		return withRenderingMode(.alwaysTemplate)
 	}
 	
 }

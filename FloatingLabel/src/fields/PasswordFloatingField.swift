@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class PasswordFloatingField: FloatingTextField {
+open class PasswordFloatingField: FloatingTextField {
 	
-	override public func setup() {
+	override open func setup() {
 		super.setup()
 		passwordModeEnabled = true
 	}

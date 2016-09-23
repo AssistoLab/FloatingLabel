@@ -10,7 +10,7 @@ import UIKit
 
 internal extension Array {
 	
-	mutating func replaceFirstItemBy(item: Element?) {
+	mutating func replaceFirstItemBy(_ item: Element?) {
 		let isEmpty = count <= 0
 		
 		if let item = item {
@@ -20,7 +20,7 @@ internal extension Array {
 				self[0] = item
 			}
 		} else if !isEmpty {
-			removeAtIndex(0)
+			remove(at: 0)
 		}
 	}
 	

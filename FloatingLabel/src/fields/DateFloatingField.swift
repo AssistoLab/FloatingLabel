@@ -8,16 +8,16 @@
 
 import UIKit
 
-public class DateFloatingField: FloatingTextField {
+open class DateFloatingField: FloatingTextField {
 	
 	//MARK: - Properties
 	
 	//MARK: UI
-	public let picker = UIDatePicker()
-	public let formatter = NSDateFormatter()
+	open let picker = UIDatePicker()
+	open let formatter = DateFormatter()
 	
 	//MARK: Content
-	public override weak var delegate: UITextFieldDelegate? {
+	open override weak var delegate: UITextFieldDelegate? {
 		get { return self }
 		set { }
 	}
@@ -25,7 +25,7 @@ public class DateFloatingField: FloatingTextField {
 	//MARK: - Init's
 	
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 	
 	override init(frame: CGRect) {
@@ -57,9 +57,9 @@ private extension DateFloatingField {
 	
 	func setupUI() {
 		rightView = UIImageView(image: Icon.Arrow.image().template())
-		rightViewMode = .Always
+		rightViewMode = .always
 		
-		picker.addTarget(self, action: #selector(dateChanged), forControlEvents: .ValueChanged)
+		picker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
 		inputView = picker
 		
 		textField.delegate = self
@@ -67,7 +67,7 @@ private extension DateFloatingField {
 	
 	@objc
 	func dateChanged() {
-		text = formatter.stringFromDate(picker.date)
+		text = formatter.string(from: picker.date)
 	}
 	
 }
@@ -76,8 +76,8 @@ private extension DateFloatingField {
 
 extension DateFloatingField: UITextFieldDelegate {
 	
-	public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-		guard let dateFormat = formatter.dateFormat where !dateFormat.isEmpty else {
+	public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		guard let dateFormat = formatter.dateFormat, !dateFormat.isEmpty else {
 			fatalError("Oops! You forgot to provide a date format for the formatter property.")
 		}
 		
@@ -85,7 +85,7 @@ extension DateFloatingField: UITextFieldDelegate {
 		return true
 	}
 	
-	public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+	public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		return false
 	}
 	

@@ -42,7 +42,7 @@
 		0AE6D8AD1B7A0BA500BA9D61 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8AC1B7A0BA500BA9D61 /* Array+Extension.swift */; };
 		0AE6D8B01B7A12A400BA9D61 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8AF1B7A12A400BA9D61 /* UIView+Extension.swift */; };
 		0AE6D8C01B7AA25200BA9D61 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6D8BF1B7AA25200BA9D61 /* TableViewController.swift */; };
-		39A980554197CBC5439C603B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AC830D706F9246F82C1846 /* Pods.framework */; };
+		515655BDE2FBC1F705618511 /* Pods_FloatingLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28126B69A9FC1718D3DD346C /* Pods_FloatingLabel.framework */; };
 		E82F81941CA52C4B000F3F29 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = E82F81911CA52C4B000F3F29 /* arrow.png */; };
 		E82F81951CA52C4B000F3F29 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82F81921CA52C4B000F3F29 /* arrow@2x.png */; };
 		E82F81961CA52C4B000F3F29 /* arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E82F81931CA52C4B000F3F29 /* arrow@3x.png */; };
@@ -98,9 +98,10 @@
 		0AE6D8AC1B7A0BA500BA9D61 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		0AE6D8AF1B7A12A400BA9D61 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		0AE6D8BF1B7AA25200BA9D61 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		579A3D9C86E6213EBDE7672B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		28126B69A9FC1718D3DD346C /* Pods_FloatingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73AC830D706F9246F82C1846 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1E0B0B7383A40D6E2CB4CF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		823811A4515858A1F2E53CBD /* Pods-FloatingLabel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingLabel.release.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingLabel/Pods-FloatingLabel.release.xcconfig"; sourceTree = "<group>"; };
+		92E43EA672E8F638EF0C361B /* Pods-FloatingLabel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingLabel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingLabel/Pods-FloatingLabel.debug.xcconfig"; sourceTree = "<group>"; };
 		E82F81911CA52C4B000F3F29 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		E82F81921CA52C4B000F3F29 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		E82F81931CA52C4B000F3F29 /* arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@3x.png"; sourceTree = "<group>"; };
@@ -111,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39A980554197CBC5439C603B /* Pods.framework in Frameworks */,
+				515655BDE2FBC1F705618511 /* Pods_FloatingLabel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,8 +228,8 @@
 				0AE045E11B4FAFFE001F8100 /* FloatingLabel */,
 				0AE045F71B4FAFFE001F8100 /* FloatingLabelTests */,
 				0AE045E01B4FAFFE001F8100 /* Products */,
-				B2AE5972F70F4126C0441293 /* Pods */,
 				3DAEB452ABEAA700740454C7 /* Frameworks */,
+				F9B7AD5580D04166949A91E6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,17 +274,9 @@
 			isa = PBXGroup;
 			children = (
 				73AC830D706F9246F82C1846 /* Pods.framework */,
+				28126B69A9FC1718D3DD346C /* Pods_FloatingLabel.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B2AE5972F70F4126C0441293 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A1E0B0B7383A40D6E2CB4CF1 /* Pods.debug.xcconfig */,
-				579A3D9C86E6213EBDE7672B /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		E82F81901CA52C4B000F3F29 /* Resources */ = {
@@ -296,6 +289,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		F9B7AD5580D04166949A91E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92E43EA672E8F638EF0C361B /* Pods-FloatingLabel.debug.xcconfig */,
+				823811A4515858A1F2E53CBD /* Pods-FloatingLabel.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -303,12 +305,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AE045FE1B4FAFFE001F8100 /* Build configuration list for PBXNativeTarget "FloatingLabel" */;
 			buildPhases = (
-				E64CA0BC351F1166C3E49473 /* Check Pods Manifest.lock */,
+				71920475AC97DAE8882CE54B /* [CP] Check Pods Manifest.lock */,
 				0AE045DB1B4FAFFE001F8100 /* Sources */,
 				0AE045DC1B4FAFFE001F8100 /* Frameworks */,
 				0AE045DD1B4FAFFE001F8100 /* Resources */,
-				541A9012139D58ADE67167BC /* Embed Pods Frameworks */,
-				BFD714F6E5679D3DDBBB8E67 /* Copy Pods Resources */,
+				902E358CE6C1C076F63E75F9 /* [CP] Embed Pods Frameworks */,
+				B10C7DDEDEB4C207C5B1E88F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -344,14 +346,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Kevin Hirsch";
 				TargetAttributes = {
 					0AE045DE1B4FAFFE001F8100 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 					};
 					0AE045F31B4FAFFE001F8100 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						TestTargetID = 0AE045DE1B4FAFFE001F8100;
 					};
 				};
@@ -399,49 +403,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		541A9012139D58ADE67167BC /* Embed Pods Frameworks */ = {
+		71920475AC97DAE8882CE54B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BFD714F6E5679D3DDBBB8E67 /* Copy Pods Resources */ = {
+		902E358CE6C1C076F63E75F9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FloatingLabel/Pods-FloatingLabel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E64CA0BC351F1166C3E49473 /* Check Pods Manifest.lock */ = {
+		B10C7DDEDEB4C207C5B1E88F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FloatingLabel/Pods-FloatingLabel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -538,14 +542,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -566,6 +573,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -582,8 +590,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -602,32 +612,36 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		0AE045FF1B4FAFFE001F8100 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1E0B0B7383A40D6E2CB4CF1 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 92E43EA672E8F638EF0C361B /* Pods-FloatingLabel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/FloatingLabel/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevin.hirsch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		0AE046001B4FAFFE001F8100 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 579A3D9C86E6213EBDE7672B /* Pods.release.xcconfig */;
+			baseConfigurationReference = 823811A4515858A1F2E53CBD /* Pods-FloatingLabel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "$(SRCROOT)/FloatingLabel/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevin.hirsch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -646,6 +660,7 @@
 				);
 				INFOPLIST_FILE = FloatingLabelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Pinch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FloatingLabel.app/FloatingLabel";
 			};
@@ -661,6 +676,7 @@
 				);
 				INFOPLIST_FILE = FloatingLabelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Pinch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FloatingLabel.app/FloatingLabel";
 			};

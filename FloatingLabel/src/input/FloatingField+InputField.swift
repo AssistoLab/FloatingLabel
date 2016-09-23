@@ -74,26 +74,26 @@ public extension FloatingTextField {
 
 //MARK: - Responder
 
-public extension FloatingField {
+extension FloatingField {
 	
-	override func canBecomeFirstResponder() -> Bool {
-		return input.canBecomeFirstResponder()
+	override open var canBecomeFirstResponder: Bool {
+		return input.canBecomeFirstResponder
 	}
 	
-	override func becomeFirstResponder() -> Bool {
+	override open func becomeFirstResponder() -> Bool {
 		return input.becomeFirstResponder()
 	}
 	
-	override func resignFirstResponder() -> Bool {
+	override open func resignFirstResponder() -> Bool {
 		return input.resignFirstResponder()
 	}
 	
-	override func isFirstResponder() -> Bool {
-		return input.isFirstResponder()
+	override open var isFirstResponder: Bool {
+		return input.isFirstResponder
 	}
 	
-	override func canResignFirstResponder() -> Bool {
-		return input.canResignFirstResponder()
+	override open var canResignFirstResponder: Bool {
+		return input.canResignFirstResponder
 	}
 	
 }

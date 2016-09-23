@@ -9,15 +9,15 @@
 import UIKit
 import DropDown
 
-public class ListFloatingField: ActionFloatingField {
+open class ListFloatingField: ActionFloatingField {
 
 	//MARK: - Properties
 
 	//MARK: UI
-	public let dropDown = DropDown()
+	open let dropDown = DropDown()
 
 	//MARK: Content
-	public var dataSource: [String] {
+	open var dataSource: [String] {
 		get { return dropDown.dataSource }
 		set { dropDown.dataSource = newValue }
 	}
@@ -28,36 +28,37 @@ public class ListFloatingField: ActionFloatingField {
 	Changing this value automatically reloads the drop down.
 	This has uses for setting accibility identifiers on the drop down cells (same ones as the localization keys).
 	*/
-	public var localizationKeysDataSource: [String] {
+	open var localizationKeysDataSource: [String] {
 		get { return dropDown.localizationKeysDataSource }
 		set { dropDown.localizationKeysDataSource = newValue }
 	}
 
-	public var selectedItem: String?
+	open var selectedItem: String?
 
-	public var selectedRow: Index? {
+	open var selectedRow: Index? {
 		get {
 			return dropDown.indexForSelectedRow
 		}
 		set {
-			if let newValue = newValue
-				where newValue >= 0 && newValue < dataSource.count {
-				dropDown.selectRowAtIndex(newValue)
+			if let newValue = newValue,
+				newValue >= 0 && newValue < dataSource.count
+			{
+				dropDown.selectRow(at: newValue)
 			} else {
-				dropDown.deselectRowAtIndexPath(newValue)
+				dropDown.deselectRow(at: newValue)
 			}
 		}
 	}
 
-	public override var isEditing: Bool {
+	open override var isEditing: Bool {
 		return editing
 	}
 
-	private var editing = false {
+	fileprivate var editing = false {
 		didSet { updateUI(animated: true) }
 	}
 
-	public var willShowAction: Closure? {
+	open var willShowAction: Closure? {
 		willSet {
 			dropDown.willShowAction = newValue
 		}
@@ -66,7 +67,7 @@ public class ListFloatingField: ActionFloatingField {
 	//MARK: - Init's
 
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 
 	override init(frame: CGRect) {
@@ -87,12 +88,12 @@ extension ListFloatingField {
 		super.setup()
 
 		rightView = UIImageView(image: Icon.Arrow.image().template())
-		rightViewMode = .Always
+		rightViewMode = .always
 
 		setNeedsUpdateConstraints()
 
 		dropDown.anchorView = self
-		dropDown.topOffset = CGPoint(x: Constraints.HorizontalPadding, y: -bounds.height)
+		dropDown.topOffset = CGPoint(x: Constraints.horizontalPadding, y: -bounds.height)
 
 		dropDown.selectionAction = { [unowned self] (index, item) in
 			self.editing = false
@@ -120,21 +121,21 @@ extension ListFloatingField {
 
 extension ListFloatingField {
 
-	public override func layoutSublayersOfLayer(layer: CALayer) {
-		super.layoutSublayersOfLayer(layer)
+	override open func layoutSublayers(of layer: CALayer) {
+		super.layoutSublayers(of: layer)
 
-		let separatorLineMinY = separatorLine.superview!.convertRect(separatorLine.frame, toView: dropDown.anchorView?.plainView).minY - 1
-		dropDown.bottomOffset = CGPoint(x: Constraints.HorizontalPadding, y: separatorLineMinY)
+		let separatorLineMinY = separatorLine.superview!.convert(separatorLine.frame, to: dropDown.anchorView?.plainView).minY - 1
+		dropDown.bottomOffset = CGPoint(x: Constraints.horizontalPadding, y: separatorLineMinY)
 		dropDown.width = separatorLine.bounds.width
 	}
 
-	override public func updateUI(animated animated: Bool) {
+	override public func updateUI(animated: Bool) {
 		super.updateUI(animated: animated)
 
 		if isFloatingLabelDisplayed {
 			dropDown.topOffset.y = -bounds.height
 		} else {
-			let floatingLabelMinY = floatingLabel.superview!.convertRect(floatingLabel.frame, toView: dropDown.anchorView?.plainView).minY
+			let floatingLabelMinY = floatingLabel.superview!.convert(floatingLabel.frame, to: dropDown.anchorView?.plainView).minY
 			dropDown.topOffset.y = -bounds.height + floatingLabelMinY
 		}
 	}

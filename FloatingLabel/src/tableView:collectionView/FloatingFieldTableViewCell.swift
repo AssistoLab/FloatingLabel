@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class FloatingFieldTableViewCell: UITableViewCell {
+open class FloatingFieldTableViewCell: UITableViewCell {
 	
 	//MARK: - Properties
 	
-	public weak var tableView: UITableView?
+	open weak var tableView: UITableView?
 	
-	public var field: UIView = UIView() {
+	open var field: UIView = UIView() {
 		didSet {
 			oldValue.removeFromSuperview()
 			setupConstraints()

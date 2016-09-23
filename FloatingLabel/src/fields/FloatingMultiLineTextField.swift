@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class FloatingMultiLineTextField: FloatingField {
+open class FloatingMultiLineTextField: FloatingField {
 	
 	//MARK: - Properties
 	
@@ -24,15 +24,15 @@ public class FloatingMultiLineTextField: FloatingField {
 		}
 	}
 	
-	public var textView = FloatingFieldTextView()
+	open var textView = FloatingFieldTextView()
 	
 	//MARK: Content
-	public weak var delegate: UITextViewDelegate? {
+	open weak var delegate: UITextViewDelegate? {
 		get { return textView.delegate }
 		set { textView.delegate = newValue }
 	}
 	
-	private var didSetupConstraints = false
+	fileprivate var didSetupConstraints = false
 	
 	//MARK: - Init's
 	
@@ -41,7 +41,7 @@ public class FloatingMultiLineTextField: FloatingField {
 	}
 	
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 	
 	override init(frame: CGRect) {
@@ -62,7 +62,7 @@ internal extension FloatingMultiLineTextField {
 		super.setup()
 		
 		textView.fadeTime = 0
-		textView.textContainerInset = UIEdgeInsetsZero
+		textView.textContainerInset = .zero
 		textView.textContainer.lineFragmentPadding = 0
 		
 		listenToTextView()
@@ -83,7 +83,7 @@ internal extension FloatingMultiLineTextField {
 	@objc
 	func textViewTextDidChangeNotification() {
 		updateUI(animated: true)
-		textView.setContentOffset(CGPointZero, animated: true)
+		textView.setContentOffset(.zero, animated: true)
 		
 		valueChangedAction?(value)
 	}
@@ -103,41 +103,41 @@ internal extension FloatingMultiLineTextField {
 	//MARK: - KVO
 	
 	func listenToTextView() {
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(textViewTextDidBeginEditingNotification),
-			name: UITextViewTextDidBeginEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidBeginEditing,
 			object: textView)
 		
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(textViewTextDidChangeNotification),
-			name: UITextViewTextDidChangeNotification,
+			name: NSNotification.Name.UITextViewTextDidChange,
 			object: textView)
 		
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(textViewTextDidEndEditingNotification),
-			name: UITextViewTextDidEndEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidEndEditing,
 			object: textView)
 		
-		self.addObserver(self, forKeyPath: "textView.text", options: .New, context: &textViewKVOContext)
+		self.addObserver(self, forKeyPath: "textView.text", options: .new, context: &textViewKVOContext)
 	}
 	
 	func stopListeningToTextView() {
-		NSNotificationCenter.defaultCenter().removeObserver(
+		NotificationCenter.default.removeObserver(
 			self,
-			name: UITextViewTextDidBeginEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidBeginEditing,
 			object: textView)
 		
-		NSNotificationCenter.defaultCenter().removeObserver(
+		NotificationCenter.default.removeObserver(
 			self,
-			name: UITextViewTextDidChangeNotification,
+			name: NSNotification.Name.UITextViewTextDidChange,
 			object: textView)
 		
-		NSNotificationCenter.defaultCenter().removeObserver(
+		NotificationCenter.default.removeObserver(
 			self,
-			name: UITextViewTextDidEndEditingNotification,
+			name: NSNotification.Name.UITextViewTextDidEndEditing,
 			object: textView)
 		
 		self.removeObserver(self, forKeyPath: "textView.text", context: &textViewKVOContext)
@@ -149,13 +149,13 @@ internal extension FloatingMultiLineTextField {
 
 public extension FloatingMultiLineTextField {
 	
-	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if context == &textViewKVOContext
-			&& (change?[NSKeyValueChangeNewKey] as? String) != nil
+			&& (change?[NSKeyValueChangeKey.newKey] as? String) != nil
 		{
 			updateUI(animated: true)
 		} else {
-			super.observeValueForKeyPath(keyPath!, ofObject: object!, change: change!, context: context)
+			super.observeValue(forKeyPath: keyPath!, of: object!, change: change!, context: context)
 		}
 	}
 	

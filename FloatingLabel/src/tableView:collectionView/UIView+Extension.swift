@@ -12,28 +12,28 @@ import DropDown
 internal extension UIView {
 	
 	func parentTableView() -> UITableView? {
-		return findSuperviewOfClass(UITableView) as? UITableView
+		return findSuperviewOfClass(UITableView.self) as? UITableView
 	}
 	
 	func parentCollectionView() -> UICollectionView? {
-		return findSuperviewOfClass(UICollectionView) as? UICollectionView
+		return findSuperviewOfClass(UICollectionView.self) as? UICollectionView
 	}
 	
-	private func findSuperviewOfClass(viewClass: AnyClass) -> UIView? {
+	fileprivate func findSuperviewOfClass(_ viewClass: AnyClass) -> UIView? {
 		var view = self.superview
 		
-		while let superview = view where !superview.isKindOfClass(viewClass) {
+		while let superview = view, !superview.isKind(of: viewClass) {
 			view = view?.superview
 		}
 		
-		if let view = view where view.isKindOfClass(viewClass) {
+		if let view = view, view.isKind(of: viewClass) {
 			return view
 		} else {
 			return nil
 		}
 	}
 	
-	func performBatchUpdates(batchUpdates: Closure) {
+	func performBatchUpdates(_ batchUpdates: @escaping Closure) {
 		if let tableView = parentTableView() {
 			tableView.beginUpdates()
 			batchUpdates()
@@ -52,11 +52,11 @@ internal extension UIView {
 
 internal extension UIView {
 	
-	func addConstraints(format format: String, options: NSLayoutFormatOptions = [], metrics: [String: AnyObject]? = nil, views: [String: UIView]) {
-		addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: options, metrics: metrics, views: views))
+	func addConstraints(format: String, options: NSLayoutFormatOptions = [], metrics: [String: Any]? = nil, views: [String: UIView]) {
+		addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views))
 	}
 	
-	func addUniversalConstraints(format format: String, options: NSLayoutFormatOptions = [], metrics: [String: AnyObject]? = nil, views: [String: UIView]) {
+	func addUniversalConstraints(format: String, options: NSLayoutFormatOptions = [], metrics: [String: Any]? = nil, views: [String: UIView]) {
 		addConstraints(format: "H:\(format)", options: options, metrics: metrics, views: views)
 		addConstraints(format: "V:\(format)", options: options, metrics: metrics, views: views)
 	}

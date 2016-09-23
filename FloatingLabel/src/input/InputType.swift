@@ -32,14 +32,14 @@ internal protocol InputType {
 	var __secureTextEntry: Bool { get set }
 	
 	func viewForBaselineLayout() -> UIView
-	func intrinsicContentSize() -> CGSize
+	var intrinsicContentSize: CGSize { get }
 	func invalidateIntrinsicContentSize()
 	func sizeToFit()
-	func canBecomeFirstResponder() -> Bool
+	var canBecomeFirstResponder: Bool { get }
 	func becomeFirstResponder() -> Bool
 	func resignFirstResponder() -> Bool
-	func isFirstResponder() -> Bool
-	func canResignFirstResponder() -> Bool
+	var isFirstResponder: Bool  { get }
+	var canResignFirstResponder: Bool { get }
 	
 }
 
@@ -56,7 +56,7 @@ extension FloatingFieldTextField: InputType {
 	}
 	
 	var __editing: Bool {
-		return editing
+		return isEditing
 	}
 	
 	var __isEmpty: Bool {
@@ -124,8 +124,8 @@ extension FloatingFieldTextField: InputType {
 	}
 	
 	var __secureTextEntry: Bool {
-		get { return secureTextEntry }
-		set { secureTextEntry = newValue }
+		get { return isSecureTextEntry }
+		set { isSecureTextEntry = newValue }
 	}
 	
 }
@@ -143,7 +143,7 @@ extension FloatingFieldTextView: InputType {
 	}
 	
 	var __editing: Bool {
-		return isFirstResponder()
+		return isFirstResponder
 	}
 	
 	var __isEmpty: Bool {
@@ -211,8 +211,8 @@ extension FloatingFieldTextView: InputType {
 	}
 	
 	var __secureTextEntry: Bool {
-		get { return secureTextEntry }
-		set { secureTextEntry = newValue }
+		get { return isSecureTextEntry }
+		set { isSecureTextEntry = newValue }
 	}
 	
 }

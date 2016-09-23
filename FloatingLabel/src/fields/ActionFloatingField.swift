@@ -9,13 +9,13 @@
 import UIKit
 import DropDown
 
-public class ActionFloatingField: FloatingTextField {
+open class ActionFloatingField: FloatingTextField {
 	
 	//MARK: - Properties
 	
-	public var action: Closure!
+	open var action: Closure!
 	
-	public override weak var delegate: UITextFieldDelegate? {
+	open override weak var delegate: UITextFieldDelegate? {
 		get { return self }
 		set { }
 	}
@@ -23,7 +23,7 @@ public class ActionFloatingField: FloatingTextField {
 	//MARK: - Init's
 	
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 	
 	public override init(frame: CGRect) {
@@ -53,16 +53,16 @@ public extension ActionFloatingField {
 
 extension ActionFloatingField: UITextFieldDelegate {
 	
-	public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+	public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		action()
 		return false
 	}
 	
-	public override func canBecomeFirstResponder() -> Bool {
+	open override var canBecomeFirstResponder: Bool {
 		return false
 	}
 	
-	public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+	public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		return false
 	}
 	

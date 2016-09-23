@@ -8,19 +8,19 @@
 
 import UIKit
 
-public class PickerFloatingField: FloatingTextField {
+open class PickerFloatingField: FloatingTextField {
 	
 	//MARK: - Properties
 	
 	//MARK: UI
-	private let picker = UIPickerView()
+	fileprivate let picker = UIPickerView()
 	
 	//MARK: Content
-	public var dataSource = [String]() {
+	open var dataSource = [String]() {
 		didSet { picker.reloadAllComponents() }
 	}
 	
-	public override var delegate: UITextFieldDelegate? {
+	open override var delegate: UITextFieldDelegate? {
 		get { return self }
 		set { }
 	}
@@ -28,7 +28,7 @@ public class PickerFloatingField: FloatingTextField {
 	//MARK: - Init's
 	
 	convenience init() {
-		self.init(frame: Frame.InitialFrame)
+		self.init(frame: Frame.initialFrame)
 	}
 	
 	override init(frame: CGRect) {
@@ -47,7 +47,7 @@ public extension PickerFloatingField {
 	
 	override func setup() {
 		rightView = UIImageView(image: Icon.Arrow.image().template())
-		rightViewMode = .Always
+		rightViewMode = .always
 		
 		picker.dataSource = self
 		picker.delegate = self
@@ -65,14 +65,14 @@ public extension PickerFloatingField {
 
 extension PickerFloatingField: UITextFieldDelegate {
 	
-	public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-		let newIndex = picker.selectedRowInComponent(0)
+	public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		let newIndex = picker.selectedRow(inComponent: 0)
 		text = dataSource[newIndex]
 		
 		return true
 	}
 	
-	public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+	public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		return false
 	}
 	
@@ -82,19 +82,19 @@ extension PickerFloatingField: UITextFieldDelegate {
 
 extension PickerFloatingField: UIPickerViewDataSource, UIPickerViewDelegate {
 	
-	public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+	public func numberOfComponents(in pickerView: UIPickerView) -> Int {
 		return 1
 	}
 	
-	public func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+	public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return dataSource.count
 	}
 	
-	public func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+	public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 		return dataSource[row]
 	}
 	
-	public func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+	public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		text = dataSource[row]
 	}
 	

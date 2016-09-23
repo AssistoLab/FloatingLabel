@@ -12,16 +12,16 @@ class TableViewController: UITableViewController {
 	
 	enum Cell: Int {
 		
-		case BasicField = 0
-		case MultilineField
-		case EmailField
-		case PasswordlineField
-		case ActionField
-		case PhoneField
-		case SingleChoiceField
-		case PickerField
-		case ListField
-		case AutoCompletionField
+		case basicField = 0
+		case multilineField
+		case emailField
+		case passwordlineField
+		case actionField
+		case phoneField
+		case singleChoiceField
+		case pickerField
+		case listField
+		case autoCompletionField
 		
 	}
 	
@@ -59,18 +59,18 @@ class TableViewController: UITableViewController {
 	func setupBasicField() {
 		basicTextField.validations = [
 			Validation(
-				.Custom({ (text) in
+				.custom({ (text) in
 					return text != "Test error"
 				}),
 				message: "Error: you wrote \"Test error\"",
-				level: .Error
+				level: .error
 			),
 			Validation(
-				.Custom({ (text) in
+				.custom({ (text) in
 					return text != "Test warning"
 				}),
 				message: "Warning: you wrote \"Test warning\"",
-				level: .Warning
+				level: .warning
 			)
 		]
 	}
@@ -98,7 +98,7 @@ class TableViewController: UITableViewController {
 	}
 	
 	func setupPhoneField() {
-		Validation.messages[.PhoneNumber] = ("Your phone number is incorrect. Please enter a correct format (eg. +32123456", .Error)
+		Validation.messages[.phoneNumber] = ("Your phone number is incorrect. Please enter a correct format (eg. +32123456", .error)
 		
 		struct Static {
 			static var counter = 30
@@ -153,43 +153,43 @@ class TableViewController: UITableViewController {
 
 extension TableViewController {
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 1
 	}
 	
-	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		let cell = Cell(rawValue: indexPath.row)
 		let field = fieldForCell(cell)
 		
 		if let field = field {
-			return field.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
+			return field.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height + 1
 		} else {
 			return 44
 		}
 	}
 	
-	func fieldForCell(cell: Cell?) -> UIView? {
+	func fieldForCell(_ cell: Cell?) -> UIView? {
 		if let cell = cell {
 			switch cell {
-			case .BasicField:
+			case .basicField:
 				return basicTextField
-			case .MultilineField:
+			case .multilineField:
 				return multilineTextField
-			case .EmailField:
+			case .emailField:
 				return emailField
-			case .PasswordlineField:
+			case .passwordlineField:
 				return passwordField
-			case .ActionField:
+			case .actionField:
 				return actionField
-			case .PhoneField:
+			case .phoneField:
 				return phoneField
-			case .SingleChoiceField:
+			case .singleChoiceField:
 				return singleChoiceField
-			case .PickerField:
+			case .pickerField:
 				return pickerField
-			case .ListField:
+			case .listField:
 				return listField
-			case .AutoCompletionField:
+			case .autoCompletionField:
 				return autoCompletionField
 			}
 		} else {
