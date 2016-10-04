@@ -208,9 +208,9 @@ private extension ComposeFieldsView {
 
 //MARK: - Validation
 
-public extension ComposeFieldsView {
+extension ComposeFieldsView {
 	
-	public func validate() {
+	open func validate() {
 		updateUI(animated: true)
 	}
 	
