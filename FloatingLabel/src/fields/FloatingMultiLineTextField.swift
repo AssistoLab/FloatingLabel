@@ -56,9 +56,9 @@ open class FloatingMultiLineTextField: FloatingField {
 
 //MARK: - Initialization
 
-internal extension FloatingMultiLineTextField {
+extension FloatingMultiLineTextField {
 	
-	override func setup() {
+	override open func setup() {
 		super.setup()
 		
 		textView.fadeTime = 0
