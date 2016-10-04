@@ -42,9 +42,9 @@ open class DateFloatingField: FloatingTextField {
 
 //MARK: - Initialization
 
-public extension DateFloatingField {
+extension DateFloatingField {
 	
-	override func setup() {
+	override open func setup() {
 		super.setup()
 		setupUI()
 	}

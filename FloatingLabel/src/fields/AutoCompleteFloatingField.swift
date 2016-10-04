@@ -48,7 +48,7 @@ open class AutoCompleteFloatingField: FloatingTextField {
 
 extension AutoCompleteFloatingField {
 	
-	public override func setup() {
+	open override func setup() {
 		super.setup()
 		
 		textField.autocorrectionType = .no
@@ -77,7 +77,7 @@ extension AutoCompleteFloatingField {
 
 extension AutoCompleteFloatingField {
 	
-	override public func textFieldTextDidChangeNotification() {
+	override open func textFieldTextDidChangeNotification() {
 		super.textFieldTextDidChangeNotification()
 		
 		if let newText = text?.lowercased(), !newText.isEmpty {
@@ -101,7 +101,7 @@ extension AutoCompleteFloatingField {
 		}
 	}
 	
-	override public func textFieldTextDidEndEditingNotification() {
+	override open func textFieldTextDidEndEditingNotification() {
 		super.textFieldTextDidEndEditingNotification()
 		dropDown.hide()
 	}

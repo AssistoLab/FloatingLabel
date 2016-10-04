@@ -178,9 +178,9 @@ open class FloatingField: UIView, TextFieldType, Helpable, Validatable {
 
 //MARK: - Initialization
 
-internal extension FloatingField {
+extension FloatingField {
 	
-	func setup() {
+	open func setup() {
 		setupUI()
 	}
 	

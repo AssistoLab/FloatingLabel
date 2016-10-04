@@ -39,9 +39,9 @@ open class FloatingTextField: FloatingField {
 
 //MARK: - Initialization
 
-public extension FloatingTextField {
+extension FloatingTextField {
 	
-	override func setup() {
+	override open func setup() {
 		super.setup()
 		
 		listenToTextField()
@@ -51,9 +51,9 @@ public extension FloatingTextField {
 
 //MARK: - Update UI
 
-public extension FloatingTextField {
+extension FloatingTextField {
 	
-	override func updateUI(animated: Bool) {
+	override open func updateUI(animated: Bool) {
 		super.updateUI(animated: animated)
 		
 		let changes: Closure = {
@@ -72,19 +72,19 @@ private var textFieldKVOContext = 0
 extension FloatingTextField {
 	
 	@objc
-	public func textFieldTextDidChangeNotification() {
+	open func textFieldTextDidChangeNotification() {
 		updateUI(animated: true)
 		valueChangedAction?(value)
 	}
 	
 	@objc
-	public func textFieldTextDidBeginEditingNotification() {
+	open func textFieldTextDidBeginEditingNotification() {
 		updateUI(animated: true)
 		hasBeenEdited = true
 	}
 	
 	@objc
-	public func textFieldTextDidEndEditingNotification() {
+	open func textFieldTextDidEndEditingNotification() {
 		updateUI(animated: true)
 	}
 	

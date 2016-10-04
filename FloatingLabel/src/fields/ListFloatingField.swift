@@ -84,7 +84,7 @@ open class ListFloatingField: ActionFloatingField {
 
 extension ListFloatingField {
 
-	public override func setup() {
+	open override func setup() {
 		super.setup()
 
 		rightView = UIImageView(image: Icon.Arrow.image().template())
@@ -129,7 +129,7 @@ extension ListFloatingField {
 		dropDown.width = separatorLine.bounds.width
 	}
 
-	override public func updateUI(animated: Bool) {
+	override open func updateUI(animated: Bool) {
 		super.updateUI(animated: animated)
 
 		if isFloatingLabelDisplayed {

@@ -43,9 +43,9 @@ open class PickerFloatingField: FloatingTextField {
 
 //MARK: - Initialization
 
-public extension PickerFloatingField {
+extension PickerFloatingField {
 	
-	override func setup() {
+	override open func setup() {
 		rightView = UIImageView(image: Icon.Arrow.image().template())
 		rightViewMode = .always
 		
@@ -65,14 +65,14 @@ public extension PickerFloatingField {
 
 extension PickerFloatingField: UITextFieldDelegate {
 	
-	public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+	open func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		let newIndex = picker.selectedRow(inComponent: 0)
 		text = dataSource[newIndex]
 		
 		return true
 	}
 	
-	public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+	open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		return false
 	}
 	

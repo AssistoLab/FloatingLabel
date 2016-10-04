@@ -38,9 +38,9 @@ open class ActionFloatingField: FloatingTextField {
 
 //MARK: - Setup
 
-public extension ActionFloatingField {
+extension ActionFloatingField {
 	
-	override func setup() {
+	override open func setup() {
 		super.setup()
 		
 		textField.disableEditionByUser()
