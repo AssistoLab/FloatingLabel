@@ -80,10 +80,12 @@ extension FloatingField {
 		return input.canBecomeFirstResponder
 	}
 	
+	@discardableResult
 	override open func becomeFirstResponder() -> Bool {
 		return input.becomeFirstResponder()
 	}
 	
+	@discardableResult
 	override open func resignFirstResponder() -> Bool {
 		return input.resignFirstResponder()
 	}
