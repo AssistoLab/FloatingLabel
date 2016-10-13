@@ -67,6 +67,9 @@ extension AutoCompleteFloatingField {
 	override open func layoutSublayers(of layer: CALayer) {
 		super.layoutSublayers(of: layer)
 		
+		//HACK: layoutIfNeeded is needed on iOS 10 for the 'bound' values to be correct
+		// Follows answer found at: http://stackoverflow.com/a/39790074/2571566
+		layoutIfNeeded()
 		updateDropDownWidth()
 	}
 	

@@ -40,6 +40,10 @@ extension FloatingFieldTextView {
 	override open func layoutSubviews() {
 		super.layoutSubviews()
 		
+		//HACK: layoutIfNeeded is needed on iOS 10 for the 'bound' values to be correct
+		// Follows answer found at: http://stackoverflow.com/a/39790074/2571566
+		layoutIfNeeded()
+		
 		if shouldUpdateSizeIfNeeded && bounds.size != intrinsicContentSize {
 			invalidateIntrinsicContentSize()
 			parentCollectionView()?.collectionViewLayout.invalidateLayout()
