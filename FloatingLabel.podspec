@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = "FloatingLabel"
-  s.version = "0.2.4"
+  s.version = "0.2.5"
   s.summary = "An implementation of a UX pattern \"Float Label Pattern\""
 
   s.description  = <<-DESC
