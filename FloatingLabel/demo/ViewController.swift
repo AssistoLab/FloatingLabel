@@ -79,6 +79,9 @@ class ViewController: UIViewController {
 		dateField.picker.datePickerMode = .date
 		dateField.formatter.dateStyle = .long
 		dateField.formatter.timeStyle = .none
+        dateField.valueChangedAction = { value in
+            print("Value: \(value)")
+        }
 	}
 	
 	func setupVehicleTypeField() {

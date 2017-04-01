@@ -68,6 +68,7 @@ private extension DateFloatingField {
 	@objc
 	func dateChanged() {
 		text = formatter.string(from: picker.date)
+        valueChangedAction?(text)
 	}
 	
 }
