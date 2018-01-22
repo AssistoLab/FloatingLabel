@@ -529,18 +529,18 @@ extension FloatingField {
 	override open func contentHuggingPriority(for axis: UILayoutConstraintAxis) -> UILayoutPriority {
 		switch axis {
 		case .horizontal:
-			return UILayoutPriority(rawValue: 250)
+			return UILayoutPriority(250)
 		case .vertical:
-			return UILayoutPriority(rawValue: 1000)
+			return UILayoutPriority(1000)
 		}
 	}
 	
 	override open func contentCompressionResistancePriority(for axis: UILayoutConstraintAxis) -> UILayoutPriority {
 		switch axis {
 		case .horizontal:
-			return UILayoutPriority(rawValue: 750)
+			return UILayoutPriority(750)
 		case .vertical:
-			return UILayoutPriority(rawValue: 1000)
+			return UILayoutPriority(1000)
 		}
 	}
 	
