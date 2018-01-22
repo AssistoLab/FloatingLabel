@@ -34,33 +34,37 @@ open class FloatingTextField: FloatingField {
 	deinit {
 		stopListeningToTextField()
 	}
-	
-}
 
-//MARK: - Initialization
+	//MARK: - Initialization
 
-extension FloatingTextField {
-	
 	override open func setup() {
 		super.setup()
-		
+
 		listenToTextField()
 	}
-	
-}
 
-//MARK: - Update UI
+	//MARK: - Update UI
 
-extension FloatingTextField {
-	
 	override open func updateUI(animated: Bool) {
 		super.updateUI(animated: animated)
-		
+
 		let changes: Closure = {
 			self.rightView?.tintColor = self.separatorLine.backgroundColor
 		}
-		
+
 		applyChanges(changes, animated)
+	}
+
+	//MARK: - KVO
+
+	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if context == &textFieldKVOContext
+			&& (change?[NSKeyValueChangeKey.newKey] as? String) != nil
+		{
+			updateUI(animated: true)
+		} else {
+			super.observeValue(forKeyPath: keyPath!, of: object!, change: change!, context: context)
+		}
 	}
 	
 }
@@ -129,22 +133,6 @@ extension FloatingTextField {
 			object: textField)
 		
 		self.removeObserver(self, forKeyPath: "textField.text", context: &textFieldKVOContext)
-	}
-	
-}
-
-//MARK: - KVO
-
-extension FloatingField {
-	
-	override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if context == &textFieldKVOContext
-			&& (change?[NSKeyValueChangeKey.newKey] as? String) != nil
-		{
-			updateUI(animated: true)
-		} else {
-			super.observeValue(forKeyPath: keyPath!, of: object!, change: change!, context: context)
-		}
 	}
 	
 }

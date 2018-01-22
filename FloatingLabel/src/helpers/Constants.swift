@@ -79,14 +79,14 @@ public struct Constraints {
 		
 		struct Prefix {
 			
-			static let compressionResistancePriority: Float = 1000
-			static let verticalHuggingPriority: Float = 0
+			static let compressionResistancePriority = UILayoutPriority(1000)
+			static let verticalHuggingPriority = UILayoutPriority(0)
 			
 		}
 		
 		struct Suffix {
 			
-			static let verticalHuggingPriority: Float = 0
+			static let verticalHuggingPriority = UILayoutPriority(0)
 			
 		}
 		
@@ -95,7 +95,7 @@ public struct Constraints {
 	struct SingleChoiceField {
 		
 		static let verticalPadding: Float = 8
-		static let switchCompressionResistancePriority: Float = 1000
+		static let switchCompressionResistancePriority = UILayoutPriority(1000)
 		
 	}
 	

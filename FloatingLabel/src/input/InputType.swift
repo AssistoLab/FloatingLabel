@@ -31,7 +31,7 @@ internal protocol InputType {
 	var __enablesReturnKeyAutomatically: Bool { get set }
 	var __secureTextEntry: Bool { get set }
 	
-	func viewForBaselineLayout() -> UIView
+	func forBaselineLayout() -> UIView
 	var intrinsicContentSize: CGSize { get }
 	func invalidateIntrinsicContentSize()
 	func sizeToFit()

@@ -78,11 +78,7 @@ open class ListFloatingField: ActionFloatingField {
 		super.init(coder: aDecoder)
 	}
 
-}
-
-//MARK: - Initialization
-
-extension ListFloatingField {
+	//MARK: - Initialization
 
 	open override func setup() {
 		super.setup()
@@ -115,19 +111,15 @@ extension ListFloatingField {
 		}
 	}
 
-}
-
-//MARK: - Initialization
-
-extension ListFloatingField {
+	//MARK: - Initialization
 
 	override open func layoutSublayers(of layer: CALayer) {
 		super.layoutSublayers(of: layer)
-		
+
 		//HACK: layoutIfNeeded is needed on iOS 10 for the 'bound' values to be correct
 		// Follows answer found at: http://stackoverflow.com/a/39790074/2571566
 		layoutIfNeeded()
-		
+
 		let separatorLineMinY = separatorLine.superview!.convert(separatorLine.frame, to: dropDown.anchorView?.plainView).minY - 1
 		dropDown.bottomOffset = CGPoint(x: Constraints.horizontalPadding, y: separatorLineMinY)
 		dropDown.width = separatorLine.bounds.width
