@@ -51,21 +51,25 @@ public extension FloatingField {
 public extension FloatingTextField {
 	
 	var minimumFontSize: CGFloat {
+	@objc var minimumFontSize: CGFloat {
 		get { return textField.minimumFontSize }
 		set { textField.minimumFontSize = newValue }
 	}
 	
 	var adjustsFontSizeToFitWidth: Bool {
+	@objc var adjustsFontSizeToFitWidth: Bool {
 		get { return textField.adjustsFontSizeToFitWidth }
 		set { textField.adjustsFontSizeToFitWidth = newValue }
 	}
 	
 	var rightView: UIView? {
+	@objc var rightView: UIView? {
 		get { return textField.rightView }
 		set { textField.rightView = newValue }
 	}
 	
 	var rightViewMode: UITextFieldViewMode {
+	@objc var rightViewMode: UITextFieldViewMode {
 		get { return textField.rightViewMode }
 		set { textField.rightViewMode = newValue }
 	}
