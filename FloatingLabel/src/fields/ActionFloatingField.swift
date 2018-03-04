@@ -13,7 +13,7 @@ open class ActionFloatingField: FloatingTextField {
 	
 	//MARK: - Properties
 	
-	open var action: Closure!
+	@objc open var action: Closure!
 	
 	open override weak var delegate: UITextFieldDelegate? {
 		get { return self }
