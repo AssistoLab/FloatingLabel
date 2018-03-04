@@ -20,7 +20,7 @@ open class AutoCompleteFloatingField: FloatingTextField {
 	fileprivate let dropDown = DropDown()
 	
 	//MARK: Content
-	open var dataSource = [String]()
+	@objc open var dataSource = [String]()
 	open var maxDisplayedItems: Int?
 	
 	fileprivate var filteredSource: [String] {

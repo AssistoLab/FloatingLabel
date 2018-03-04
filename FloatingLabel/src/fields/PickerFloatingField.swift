@@ -16,11 +16,11 @@ open class PickerFloatingField: FloatingTextField {
 	fileprivate let picker = UIPickerView()
 	
 	//MARK: Content
-	open var dataSource = [String]() {
+	@objc open var dataSource = [String]() {
 		didSet { picker.reloadAllComponents() }
 	}
 	
-	open override var delegate: UITextFieldDelegate? {
+	@objc open override var delegate: UITextFieldDelegate? {
 		get { return self }
 		set { }
 	}

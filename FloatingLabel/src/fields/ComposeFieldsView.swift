@@ -14,7 +14,7 @@ open class ComposeFieldsView: UIView, Validatable {
 	//MARK: - Properties
 	
 	//MARK: UI
-	open var contentView: UIView! {
+	@objc open var contentView: UIView! {
 		didSet {
 			setupConstraints()
 			updateUI(animated: false)
@@ -28,7 +28,7 @@ open class ComposeFieldsView: UIView, Validatable {
 	fileprivate weak var helperLabelBottomToSuperviewConstraint: NSLayoutConstraint!
 	
 	//MARK: Content
-	open var helpText: String? {
+	@objc open var helpText: String? {
 		didSet { updateUI(animated: false) }
 	}
 	
@@ -43,7 +43,7 @@ open class ComposeFieldsView: UIView, Validatable {
 	internal var helperState = HelperState.hidden
 	fileprivate var previousHelperState = HelperState.hidden
 	
-	open var isValid: Bool {
+	@objc open var isValid: Bool {
 		return checkValidity(text: "", validations: validations, level: .error).isValid
 	}
 	

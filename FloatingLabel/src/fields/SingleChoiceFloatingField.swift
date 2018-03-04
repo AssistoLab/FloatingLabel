@@ -16,38 +16,38 @@ open class SingleChoiceFloatingField: UIView, FieldType {
 
 	//MARK: UI
 	fileprivate let choiceLabel = UILabel()
-	open let choiceSwitch = UISwitch()
+	@objc open let choiceSwitch = UISwitch()
 
 	//MARK: Appearance
-	@IBInspectable open dynamic var activeColor = UIColor.blue {
+	@IBInspectable @objc open dynamic var activeColor = UIColor.blue {
 		willSet { onTintColor = newValue }
 	}
 
-	@IBInspectable open dynamic var textColor = UIColor.black {
+	@IBInspectable @objc open dynamic var textColor = UIColor.black {
 		willSet { choiceLabel.textColor = newValue }
 	}
 
-	@IBInspectable open dynamic var textFont = UIFont.systemFont(ofSize: 15) {
+	@IBInspectable @objc open dynamic var textFont = UIFont.systemFont(ofSize: 15) {
 		willSet { choiceLabel.font = newValue }
 	}
 
 	//MARK: Content
-	@IBInspectable open var value: Bool {
+	@IBInspectable @objc open var value: Bool {
 		get { return on }
 		set { on = newValue }
 	}
 
-	@IBInspectable open var text: String! {
+	@IBInspectable @objc open var text: String! {
 		get { return choiceLabel.text }
 		set { choiceLabel.text = newValue }
 	}
 
-	open var textAlignment: NSTextAlignment {
+	@objc open var textAlignment: NSTextAlignment {
 		get { return choiceLabel.textAlignment }
 		set { choiceLabel.textAlignment = newValue }
 	}
 
-	open var valueChangedAction: ((Bool) -> Void)?
+	@objc open var valueChangedAction: ((Bool) -> Void)?
 
 	fileprivate var didSetupConstraints = false
 

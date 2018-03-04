@@ -22,7 +22,7 @@ open class FloatingTextField: FloatingField {
 		}
 	}
 	
-	open var textField = FloatingFieldTextField()
+	@objc open var textField = FloatingFieldTextField()
 	
 	open weak var delegate: UITextFieldDelegate? {
 		get { return textField.delegate }

@@ -24,7 +24,7 @@ open class FloatingMultiLineTextField: FloatingField {
 		}
 	}
 	
-	open var textView = FloatingFieldTextView()
+	@objc open var textView = FloatingFieldTextView()
 	
 	//MARK: Content
 	open weak var delegate: UITextViewDelegate? {

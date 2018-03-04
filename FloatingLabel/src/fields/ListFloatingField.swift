@@ -14,10 +14,10 @@ open class ListFloatingField: ActionFloatingField {
 	//MARK: - Properties
 
 	//MARK: UI
-	open let dropDown = DropDown()
+	@objc open let dropDown = DropDown()
 
 	//MARK: Content
-	open var dataSource: [String] {
+	@objc open var dataSource: [String] {
 		get { return dropDown.dataSource }
 		set { dropDown.dataSource = newValue }
 	}
@@ -28,12 +28,12 @@ open class ListFloatingField: ActionFloatingField {
 	Changing this value automatically reloads the drop down.
 	This has uses for setting accibility identifiers on the drop down cells (same ones as the localization keys).
 	*/
-	open var localizationKeysDataSource: [String] {
+	@objc open var localizationKeysDataSource: [String] {
 		get { return dropDown.localizationKeysDataSource }
 		set { dropDown.localizationKeysDataSource = newValue }
 	}
 
-	open var selectedItem: String?
+	@objc open var selectedItem: String?
 
 	open var selectedRow: Index? {
 		get {
@@ -50,7 +50,7 @@ open class ListFloatingField: ActionFloatingField {
 		}
 	}
 
-	open override var isEditing: Bool {
+	@objc open override var isEditing: Bool {
 		return editing
 	}
 
@@ -58,7 +58,7 @@ open class ListFloatingField: ActionFloatingField {
 		didSet { updateUI(animated: true) }
 	}
 
-	open var willShowAction: Closure? {
+	@objc open var willShowAction: Closure? {
 		willSet {
 			dropDown.willShowAction = newValue
 		}

@@ -16,19 +16,19 @@ open class PhoneFloatingField: UIView, TextFieldType, Validatable {
 	//MARK: - Properties
 	
 	//MARK: UI
-	open let prefixField = ActionFloatingField() // eg. +32
-	open let suffixField = FloatingTextField() // eg. 123 45 67 89
+	@objc open let prefixField = ActionFloatingField() // eg. +32
+	@objc open let suffixField = FloatingTextField() // eg. 123 45 67 89
 	
 	//MARK: Constraints
 	fileprivate var prefixWidthConstraint: NSLayoutConstraint!
 	
 	//MARK: Content
-	open var value: String? {
+	@objc open var value: String? {
 		get { return text }
 		set { text = newValue }
 	}
 	
-	open var valueChangedAction: ((String?) -> Void)?
+	@objc open var valueChangedAction: ((String?) -> Void)?
 	
 	@IBInspectable open var text: String? {
 		get {
