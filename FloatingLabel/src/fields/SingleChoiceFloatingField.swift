@@ -143,41 +143,41 @@ extension SingleChoiceFloatingField {
 
 extension SingleChoiceFloatingField {
 
-	public var onTintColor: UIColor! {
+	@objc public var onTintColor: UIColor! {
 		get { return choiceSwitch.onTintColor }
 		set { choiceSwitch.onTintColor = newValue }
 	}
 
-	override open var tintColor: UIColor? {
+	@objc override open var tintColor: UIColor? {
 		willSet { choiceSwitch.tintColor = newValue }
 	}
 
-	public var thumbTintColor: UIColor? {
+	@objc public var thumbTintColor: UIColor? {
 		get { return choiceSwitch.thumbTintColor }
 		set { choiceSwitch.thumbTintColor = newValue }
 	}
 
-	public var onImage: UIImage? {
+	@objc public var onImage: UIImage? {
 		get { return choiceSwitch.onImage }
 		set { choiceSwitch.onImage = newValue }
 	}
 
-	public var offImage: UIImage? {
+	@objc public var offImage: UIImage? {
 		get { return choiceSwitch.offImage }
 		set { choiceSwitch.offImage = newValue }
 	}
 
-	public var on: Bool {
+	@objc public var on: Bool {
 		get { return choiceSwitch.isOn }
 		set { choiceSwitch.isOn = newValue }
 	}
 
-	public func setOn(_ on: Bool, animated: Bool) {
+	@objc public func setOn(_ on: Bool, animated: Bool) {
 		choiceSwitch.setOn(on, animated: animated)
 	}
 
-	@objc
-	public func switchValueChanged() {
+	@objc public func switchValueChanged() {
 		valueChangedAction?(on)
 	}
 }
+
