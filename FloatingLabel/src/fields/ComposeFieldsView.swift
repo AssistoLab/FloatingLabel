@@ -50,6 +50,10 @@ open class ComposeFieldsView: UIView, Validatable {
 	fileprivate var failedValidation: Validation? {
 		return checkValidity(text: "", validations: validations, level: .error).failedValidation
 	}
+
+	open func validate() {
+		updateUI(animated: true)
+	}
 	
 }
 
@@ -202,16 +206,6 @@ private extension ComposeFieldsView {
 			self.helperLabel.addConstraint(self.helperLabelHeightConstraint)
 			self.helperLabelBottomToSuperviewConstraint.constant = Constraints.Helper.hiddenBottomPadding
 		}
-	}
-	
-}
-
-//MARK: - Validation
-
-extension ComposeFieldsView {
-	
-	open func validate() {
-		updateUI(animated: true)
 	}
 	
 }
